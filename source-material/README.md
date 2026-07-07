@@ -6,8 +6,15 @@ analytics-first weightlifting tracker (React/Vite + Express/Prisma/Postgres)
 where the two-seat workflow ran in production for real feature work.
 
 **Scrubbing:** infrastructure identifiers (DB hosts, hosting service IDs)
-were replaced with `<placeholders>` like `<prod-db-id>` at copy time.
-Nothing else was altered. Never reconstruct or guess the real values.
+and throwaway staging smoke credentials were replaced with `<placeholders>`
+like `<prod-db-id>` at copy time. Nothing else was altered. Never
+reconstruct or guess the real values.
+
+**Refreshed 2026-07-07:** all copies re-snapshotted from the source project
+at its relay-v4 state (the 2026-07-02 snapshot predated v3 and v4). Two
+files added: the queue snapshot and the HANDOFF archive — together they are
+the ground truth behind the tracking doc's receipts section (section 8);
+every published number must trace to them.
 
 **This directory is read-only reference.** Don't edit it during the
 buildout; it gets deleted (with a history squash if needed) on the
@@ -24,3 +31,5 @@ pre-publish checklist.
 | `task-template-unit.md` | `docs/tasks/_TEMPLATE.md` | The unit-scale task block template with the standing stop-condition footer — per the source project, the single most important part of the format. |
 | `task-block-template.md` | `cursor-task-block-template.md` | The original small-scale block format plus the rationale for every section, a worked example, and the unit-scale variant rules. |
 | `runbook-excerpts.md` | `docs/RUNBOOK.md` (sections) | The operational rituals: session start, pre-merge checklist, deploy verification, the parallel worktree ritual, safety invariants. |
+| `queue-snapshot.md` | `docs/tasks/QUEUE.md` | The task-queue index at pilot end (2026-07-07): every landed unit with its SHA and per-unit review outcome. Half of the receipts ground truth. |
+| `handoff-archive.md` | `docs/HANDOFF-ARCHIVE.md` | The verbatim session-log history: reviewer fixes, escalations, sequencing flags, the recorded review skip, the wrong-belief correction. The other half of the receipts ground truth. |

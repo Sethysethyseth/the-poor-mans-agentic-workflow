@@ -3,7 +3,9 @@
 You are an agent (most likely Claude, in a claude.ai/code web session)
 building this repo from a shell into a publishable public repo. The owner
 (Seth) wants the work off his hands: you do the extraction, structuring, and
-writing; he answers a small batched set of decisions and reviews PRs.
+writing; he reviews PRs. **All open decisions are already settled (section
+2)** — do not re-interview him; the only research task left for you is the
+repo-name collision check.
 
 Read this whole file, then read everything in `source-material/`, before
 writing anything.
@@ -13,113 +15,186 @@ writing anything.
 ## 1. What this repo becomes
 
 A public repo (working title `the-poor-mans-agentic-workflow`) documenting a
-two-seat agentic coding workflow:
+low-cost agentic coding workflow: two paid seats plus the human as the
+message bus, ~$40/mo total vs ~$100–200/mo for a single-seat Max-tier setup.
 
-- **Planner/reviewer seat** (Claude Code on Claude Pro, $20/mo): architecture,
-  task authoring, diff review against spec, root-cause debugging, sole owner
-  of git and state files.
-- **Executor seat** (Cursor on Cursor Pro, $20/mo): token-heavy codegen —
-  whole roadmap units, multi-file implementation, test runs. Writes code and
-  STOPS: never commits, never touches state files.
+**Ship the v4 three-role story** (the current reality in the source project;
+the tracking doc's log entries for 2026-07-03 and 2026-07-06 tell the
+evolution). Frame it as the refinement of the simpler two-seat idea:
+
+- **The planner seat is really two roles.** Frontier intelligence
+  (Fable/Opus in Claude Code) is rented by the session: it authors
+  contract-first task blocks in short wave-sessions and does ONE thorough
+  review of the accumulated branch diff before release. A mid-tier resident
+  (Sonnet) runs the day-to-day loop: per-unit audit of each delivery,
+  commits with SHA verification, state upkeep, dispatch — escalating on
+  standing triggers instead of guessing.
+- **Executor seat** (Cursor): token-heavy codegen — whole roadmap units,
+  multi-file implementation, test runs, a self-verified delivery report.
+  Writes code and STOPS: never commits, never touches state files.
 - **The human is the message bus**: tasks are dispatched as files in the
   repo; the human's job is one pointer line per unit plus telling the
   reviewer when the executor stopped.
 
-Total ~$40/mo vs ~$100–200/mo for a single-seat Max-tier setup. The claim —
-and this exact framing is required, see section 4 — is "Max-quality
-*results* for $40, paid for in wall-clock time, human attention, and
-rationing discipline," NOT "Max for $40."
+The claim — and this exact framing is required, see section 4 — is
+"Max-quality *results* for $40, paid for in wall-clock time, human
+attention, and rationing discipline," NOT "Max for $40."
 
-`source-material/tracking-doc.md` is the primary source. It was written
-session-by-session in the live project specifically so this repo could be
-extracted from it. Its structure (pitch, cost model, mechanism table,
-hard-won rules, honest positioning, open questions) is a good skeleton for
-the final README, but you own the final structure.
+Beyond the seats and the relay, the repo ships two more first-class layers,
+both now specified in the tracking doc:
 
-## 2. Step 1 — batch these questions to Seth, up front, before building
+- **The steering layer** (tracking doc section 6): the state files double as
+  a steering mechanism that keeps the HUMAN on task (single next action,
+  off-queue labeling, resurfacing TODOs, trigger-phrase gates, session-close
+  ritual, post-push smoke checklists) and stops AGENTS from working in loops
+  (machine-checkable done conditions, the stop-and-explain footer,
+  diagnosis-before-fix, escalation-instead-of-retry, ground-truth
+  verification, bounce-don't-thrash).
+- **The receipts** (tracking doc section 8): measured results from the
+  July 2–7, 2026 pilot — the proof the workflow works, including the
+  unflattering numbers.
 
-Ask all of these in one message. Do not drip them one at a time, and do not
-start the buildout on guessed answers.
+`source-material/tracking-doc.md` is the primary source (refreshed
+2026-07-07 to the v4 state). Its structure is a good skeleton for the final
+README, but you own the final structure. `queue-snapshot.md` +
+`handoff-archive.md` are the ground truth behind every receipts number.
 
-1. **Final repo name.** Working title is `the-poor-mans-agentic-workflow`.
-   Check GitHub for collisions/squatting on similar names and suggest 2–3
-   alternatives alongside the working title.
-2. **License.** This is a documentation/template repo, not code. Reasonable
-   options: MIT (maximally simple), CC BY 4.0 (docs-appropriate,
-   attribution). Recommend one, let him pick.
-3. **Tool-specific or tool-agnostic?** Ship it as "Cursor + Claude Code,
-   named" (concrete, copy-pasteable, dates faster) or "any planner seat +
-   any executor seat, with Cursor + Claude Code as the worked example"
-   (durable, vaguer). The tracking doc lists this as an open question.
-4. **The receipts.** The source project (a fitness-tracking app called
-   LogChamp) provides dated, concrete evidence — a shipped-contract bug
-   caught by the review gate on day one, a working-tree race between two
-   agents, a Pro-limit scar. Does Seth want the project named, anonymized
-   ("a production web app"), or the receipts summarized without dates?
-5. **README angle/tone.** The honest-positioning content ships regardless
-   (see section 4), but the framing around it — how hype vs. how dry — is
-   his call. Offer 2 short sample intro paragraphs in different registers.
+## 2. Settled decisions (write these in; do not re-ask)
 
-## 3. Step 2 — proposed target structure (adjust per Seth's answers)
+Recorded 2026-07-07, decided by Seth in session:
+
+1. **Repo name:** working title `the-poor-mans-agentic-workflow` stands
+   unless your GitHub collision check finds squatting/confusion on similar
+   names — if it does, present 2–3 alternatives in your first PR, don't
+   pick one yourself.
+2. **License: MIT, everything.** One license file, maximum copy-paste
+   freedom on the templates. No dual-licensing.
+3. **Framing: named tools first.** "Cursor + Claude Code" is the concrete,
+   copy-pasteable primary path, with one short section generalizing to any
+   planner+executor pair. Timestamp all prices and model names ("as of
+   mid-2026") — the structural claim (rent frontier intelligence by the
+   session for judgment, keep a cheap resident for the loop, route typing
+   to commodity models) is the durable content; the dollar figures are the
+   dated worked example.
+4. **Receipts: provenance-only.** The source project is named — LogChamp, a
+   production fitness tracker — exactly where evidence needs a source, with
+   dates and numbers intact. HARD RULE: no app link, no feature pitch, no
+   screenshots, no "check it out." The repo documents a workflow; it never
+   markets the app. If a sentence about LogChamp isn't load-bearing for a
+   receipt, cut it.
+5. **Tone: accessible on-ramp.** The README opens for people who want to
+   get INTO agentic coding without committing $100+/mo — "dip your foot in"
+   energy, first person, zero gatekeeping — then goes numbers-forward.
+   Sample register (adapt, don't copy verbatim):
+
+   > Want to get into agentic coding, but don't want to spend $100+ a month
+   > on what the top people tell you is the only real setup? I built a
+   > "poor man's" version that runs on two $20 seats — a planner/reviewer
+   > and an executor, with you as the message bus — so you can dip your
+   > foot in without committing hundreds a month. It shipped a real
+   > production app: ~24 units in 6 days, zero bounced deliveries, two
+   > prod-breaking bugs caught before deploy. It is not "Max for $40" —
+   > it's Max-quality results for $40, paid for in your time, attention,
+   > and rationing discipline. This repo is the whole workflow, including
+   > the honest list of what you give up.
+
+6. **Story version: v4** (three roles + two-tier state channel), told as
+   the refinement of the two-seat idea, with the v2→v3→v4 evolution kept
+   as content — the log of stated trade-offs is itself one of the repo's
+   most transferable ideas.
+
+## 3. Target structure
 
 ```
-README.md                     the pitch, cost model, honest positioning,
-                              who-should-not-use-this, quickstart pointer
+README.md                     the on-ramp pitch, cost model, receipts,
+                              honest positioning, who-should-not-use-this,
+                              quickstart pointer
 docs/
-  setup.md                    the two seats, accounts, one-time setup
+  setup.md                    the seats, accounts, one-time setup
   protocol.md                 the loop: author -> dispatch -> execute ->
                               review -> land; statuses; the two modes
-  economics.md                cost model + token levers + where the $40 creeps
-  scar-tissue.md              the hard-won rules and the incidents behind them
+  steering.md                 the steering layer: keep-the-human-on-task
+                              mechanisms + anti-loop mechanisms, framed
+                              "erosion-resistant, not foolproof"
+  economics.md                cost model + token levers + where the $40
+                              creeps + the bookkeeping tax
+  scar-tissue.md              the hard-won rules and the incidents behind
+                              them (include the recorded review skip and
+                              the wrong-belief correction — process erosion
+                              and belief loops are scars too)
 templates/
+  setup-interview.md          the adopter's setup-phase questionnaire
+                              (tracking doc section 7): asked in ONE batch,
+                              answers GENERATE the target repo's AGENTS.md /
+                              gate / HANDOFF / steering rules; unanswerable
+                              questions get strict defaults
   AGENTS.md                   generic shared agent contract
-  HANDOFF.md                  work-state channel template + single-writer rule
-  task-block.md               the block template, both scales, standing footer
+  HANDOFF.md                  work-state channel template + single-writer
+                              rule + the cap/archive two-tier split
+  task-block.md               the block template, both scales, standing
+                              footer, delivery report, diagnosis variant
   tasks-README.md             the file-dispatch queue protocol (drop into
                               docs/tasks/ of a target repo)
   command-gate.md             generic ask-first gate (merge / deploy /
                               migrations / destructive / dependencies)
 checklists/
-  reviewer-checklist.md       the review ritual + verify-before-trust
+  reviewer-checklist.md       the per-unit audit ritual + verify-before-trust
   worktree-ritual.md          parallel Mode 2 isolation ritual
 ```
 
 Keep it lean. This repo sells a workflow, not a framework: no code, no CLI,
-no build tooling, no GitHub Actions, unless Seth explicitly asks.
+no build tooling, no GitHub Actions, unless Seth explicitly asks. The
+setup interview is a document an adopter points their own agent at — not a
+script.
 
 ## 4. Hard requirements (non-negotiable, from the source project)
 
-- **Honest positioning ships.** Section 5 of the tracking doc — the
-  comparability claim, the five "where Max wins" cons stated without
-  softening, and the "who should NOT use this" list — is REQUIRED published
-  content in the final README, whatever the angle. This was an explicit
-  owner decision, recorded in the tracking doc.
+- **Honest positioning ships.** Tracking doc section 5 — the comparability
+  claim, the five "where Max wins" cons stated without softening, and the
+  "who should NOT use this" list — is REQUIRED published content in the
+  final README, whatever the angle. Add the two cons measured since it was
+  written: the ~20% planner-direct leak rate and process erosion (both in
+  the receipts). This was an explicit owner decision.
+- **Steering claims stay honest.** The steering layer is published as
+  EROSION-RESISTANT, NOT FOOLPROOF: the guarantee is "no silent drift" —
+  every deviation requires an explicit, recorded step around a named rule.
+  The recorded review skip (July 4) ships as the receipt that proves both
+  the limit and the guarantee. Never publish "foolproof."
+- **Receipts trace or die.** Every number in the receipts section must
+  trace to `queue-snapshot.md` / `handoff-archive.md` /
+  `tracking-doc.md` section 8. If it isn't there, ask Seth or leave it out.
+  Provenance-only rule from section 2 applies everywhere.
 - **The load-bearing rules survive genericization.** Whatever the templates
   look like, they must carry: single committer; single state-file writer;
   executor never commits; blocks fully self-contained (executor gets zero
-  chat context); the standing stop-condition footer verbatim in every block;
+  chat context); the standing stop-condition footer verbatim in every
+  block; the delivery report (audit a claim, don't reconstruct a tree);
   verify-before-trust (re-run the executor's "tests green," SHA-check every
-  commit, confirm pushes reached origin); worktrees/repos outside
-  cloud-synced folders.
-- **No source-project internals leak.** `source-material/` was already
-  scrubbed of infrastructure identifiers (placeholders like
-  `<prod-db-id>` mark the spots). Keep it that way in everything you write;
-  never reconstruct or guess at real service names, hosts, or IDs.
-- **Don't invent facts.** Every claim about what the workflow did ("caught a
-  bug," "raced on the working tree") must trace to the source material. If
-  it isn't there, ask Seth or leave it out.
+  commit, confirm pushes reached origin); the capped state file + verbatim
+  archive split; worktrees/repos outside cloud-synced folders.
+- **The setup interview is batched.** All questions in one message, answers
+  written INTO the generated files, strict defaults for anything
+  unanswered. Drip-fed interviews are a documented anti-pattern.
+- **No source-project internals leak.** `source-material/` is scrubbed
+  (placeholders like `<prod-db-id>`, `<smoke-user>`). Keep it that way in
+  everything you write; never reconstruct or guess real service names,
+  hosts, IDs, or credentials.
+- **Don't invent facts.** Every claim about what the workflow did must
+  trace to the source material.
 
 ## 5. Working method
 
 - Work on branches; open PRs for Seth to review. Prefer several readable
-  PRs (e.g. README first, then templates, then docs/) over one huge one.
+  PRs (suggested order: README first, then templates/ + the setup
+  interview, then docs/, then checklists/ + the pre-publish PR) over one
+  huge one.
 - The repo stays **private** until Seth explicitly says to publish. Never
   change repo visibility, settings, or name yourself — surface it as a
-  question instead. The pre-publish checklist (name, license, final scrub
-  pass, positioning present) should be your last PR.
+  question instead. The pre-publish checklist (name collision check
+  resolved, LICENSE present, final scrub pass, honest positioning present,
+  `source-material/` + HANDOFF.md deleted or history squashed) should be
+  your last PR.
 - `source-material/` is read-only reference. Don't edit it; don't delete it
-  until Seth says the extraction is complete. It must be removed (or the
-  repo history squashed) before the repo goes public — put that on the
-  pre-publish checklist.
+  until Seth says the extraction is complete.
 - If source material conflicts with this brief, say so and ask rather than
   silently picking one.
