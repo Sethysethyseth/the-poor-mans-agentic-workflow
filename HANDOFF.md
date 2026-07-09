@@ -9,6 +9,11 @@ match (roles-not-tools in templates, per-rung honest caveats, rung
 question in the setup interview). Cursor trial/Hobby facts in decision 7
 are community-reported as of mid-2026 - the buildout agent must re-verify
 against cursor.com/pricing and timestamp them.
+**Updated:** 2026-07-09 (later, same seat): rung 2 reframed per Seth as
+the CONVERSION rung - the trial is sequenced after rung 1 so the felt
+contrast (single-meter squeeze removed, Mode 2 possible) sells the second
+seat; intent ships stated openly; what's sold is the relay, not Cursor
+the brand. `checklists/trial-playbook.md` added to the target structure.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.

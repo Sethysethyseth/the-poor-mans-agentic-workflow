@@ -125,16 +125,27 @@ Recorded 2026-07-07, decided by Seth in session:
      planner tokens (rationing pressure is highest on this rung), and
      review keeps the fresh-context second look but loses the
      cross-vendor second opinion.
-   - **Rung 2 — Claude + Cursor trial (~$20/mo + $0).** The evaluation
-     rung. A new Cursor account gets a Pro trial (~2 weeks, full agent
-     mode, no card required, as of mid-2026); when it lapses the free
-     Hobby tier allows only a token number of agent requests per month.
-     Frame the trial as a measured evaluation window: dispatch real
-     unit-scale blocks (not toy prompts), keep your own mini-receipts
-     (units shipped, bounces, review catches), decide at trial end with
-     your own numbers. State plainly: the post-trial Hobby tier is NOT a
-     sustainable executor seat — this rung is "try, then decide," never
-     "free forever."
+   - **Rung 2 — Claude + Cursor trial (~$20/mo + $0).** The CONVERSION
+     rung — its job is to make the adopter not want to go back. It is
+     deliberately sequenced AFTER rung 1: a week or two solo teaches the
+     protocol and makes the single-meter squeeze felt; the trial (a new
+     Cursor account gets a Pro trial — ~2 weeks, full agent mode, no
+     card required, as of mid-2026) then removes exactly that pain.
+     Guidance to publish: route the token-heaviest units of your real
+     backlog to the executor during the trial (the ones that hurt most
+     on rung 1), taste Mode 2 parallelism in week two (impossible on one
+     seat), and keep mini-receipts (units shipped, bounces, review
+     catches, planner tokens freed) — by trial's end the adopter's own
+     numbers are the pitch for rung 3. State the intent openly:
+     designed-to-convert is honest persuasion, not a dark pattern, and
+     what is being sold is the SECOND SEAT (the relay), not Cursor the
+     brand — any executor with an agent mode qualifies at rung 3
+     (decision 3's generalization section). State plainly that the
+     post-trial Hobby tier is NOT a sustainable executor seat: the exits
+     from this rung are up to $40 or back to rung 1, never "free
+     forever." If the adopter's receipts genuinely don't justify the
+     second seat, rung 1 is a fully supported destination, not a
+     failure state.
    - **Rung 3 — Full setup (~$40/mo).** The documented v4 relay.
      Upgrading from rung 2 means paying Cursor and changing nothing
      else — same account, same repo files, same protocol; the `MODEL:`
@@ -203,6 +214,12 @@ templates/
 checklists/
   reviewer-checklist.md       the per-unit audit ritual + verify-before-trust
   worktree-ritual.md          parallel Mode 2 isolation ritual
+  trial-playbook.md           the rung-2 conversion playbook: how to spend
+                              the ~2-week executor trial so the two-seat
+                              contrast is felt (heaviest real units first,
+                              Mode 2 taste in week two, which
+                              mini-receipts to keep, the decision point
+                              at trial end)
 ```
 
 Keep it lean. This repo sells a workflow, not a framework: no code, no CLI,
@@ -250,7 +267,10 @@ script.
   rung 2's expiring trial and the non-viability of post-trial Hobby as an
   executor seat; rung 3's allowance-creep risk. The ladder is an on-ramp,
   never a "free Max" pitch — the no-softening rule from section 5 of the
-  tracking doc applies to the rungs too.
+  tracking doc applies to the rungs too. Rung 2's conversion intent ships
+  STATED, not hidden ("this trial is sequenced to sell you the second
+  seat — here's how to check it worked on your own numbers"), and rung 1
+  is always written as a supported destination, never as a nag screen.
 - **No source-project internals leak.** `source-material/` is scrubbed
   (placeholders like `<prod-db-id>`, `<smoke-user>`). Keep it that way in
   everything you write; never reconstruct or guess real service names,
