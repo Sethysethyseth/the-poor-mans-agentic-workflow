@@ -1,6 +1,14 @@
 # HANDOFF - roadmap-setup session state (for the next chat)
 
 **Written:** 2026-07-07, by the planner seat (Fable, workout-db session).
+**Updated:** 2026-07-09 (Fable): BRIEF gained settled decision 7 - the
+three-rung entry ladder (Solo Claude $20 / Claude + free Cursor trial /
+full $40), with rung moves in either direction requiring zero repo-file
+changes. Section 3 structure and section 4 hard requirements updated to
+match (roles-not-tools in templates, per-rung honest caveats, rung
+question in the setup interview). Cursor trial/Hobby facts in decision 7
+are community-reported as of mid-2026 - the buildout agent must re-verify
+against cursor.com/pricing and timestamp them.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.

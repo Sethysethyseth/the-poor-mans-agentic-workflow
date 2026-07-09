@@ -4,9 +4,12 @@
 > published.** Do not flip this repo to public; that is the owner's call.
 
 This repo will document a real two-seat agentic coding workflow that runs at
-~$40/month (a planner/reviewer seat + an executor seat, with the human as the
-message bus) as an honest alternative to $200/month single-seat agentic
-coding. It was extracted from a live project where the workflow shipped real
+$20-40/month (a planner/reviewer seat + an executor seat, with the human as
+the message bus) as an honest alternative to $200/month single-seat agentic
+coding. It ships as a three-rung on-ramp: solo Claude ($20), Claude + a free
+Cursor trial to evaluate the two-seat relay ($20), the full two-seat setup
+($40) - with rung changes in either direction requiring zero repo changes.
+It was extracted from a live project where the workflow shipped real
 features and caught real bugs.
 
 ## State of this repo

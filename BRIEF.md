@@ -40,6 +40,13 @@ The claim — and this exact framing is required, see section 4 — is
 "Max-quality *results* for $40, paid for in wall-clock time, human
 attention, and rationing discipline," NOT "Max for $40."
 
+The setup ships as a **three-rung on-ramp** (settled decision 7): start on
+a single $20 Claude seat, add Cursor for free via its trial to evaluate
+the two-seat relay, upgrade to the full $40 setup — or step back down —
+without changing a single file in your repo. The protocol-is-files
+property is what makes that true, and section 4 makes keeping it true a
+hard requirement.
+
 Beyond the seats and the relay, the repo ships two more first-class layers,
 both now specified in the tracking doc:
 
@@ -102,22 +109,72 @@ Recorded 2026-07-07, decided by Seth in session:
    the refinement of the two-seat idea, with the v2→v3→v4 evolution kept
    as content — the log of stated trade-offs is itself one of the repo's
    most transferable ideas.
+7. **Entry ladder: three rungs, one protocol** (recorded 2026-07-09).
+   The README and setup doc present the workflow as an on-ramp you climb
+   (and can climb back down), not a $40 buy-in:
+   - **Rung 1 — Solo Claude (~$20/mo, Claude Pro only).** One tool plays
+     all three roles, separated by SESSION instead of by seat: a planner
+     session (frontier model) authors blocks into the queue; a FRESH
+     executor session (mid-tier model, e.g. `/model sonnet`) implements
+     one block and writes the delivery report, committing nothing; a
+     reviewer session audits and commits. Every load-bearing rule
+     survives with "seat" mapped to "session" — single committer (the
+     reviewer session), executor-never-commits, self-contained blocks,
+     fresh-context review. Honest caveats to state plainly: all three
+     roles share ONE usage meter, so executor tokens compete with
+     planner tokens (rationing pressure is highest on this rung), and
+     review keeps the fresh-context second look but loses the
+     cross-vendor second opinion.
+   - **Rung 2 — Claude + Cursor trial (~$20/mo + $0).** The evaluation
+     rung. A new Cursor account gets a Pro trial (~2 weeks, full agent
+     mode, no card required, as of mid-2026); when it lapses the free
+     Hobby tier allows only a token number of agent requests per month.
+     Frame the trial as a measured evaluation window: dispatch real
+     unit-scale blocks (not toy prompts), keep your own mini-receipts
+     (units shipped, bounces, review catches), decide at trial end with
+     your own numbers. State plainly: the post-trial Hobby tier is NOT a
+     sustainable executor seat — this rung is "try, then decide," never
+     "free forever."
+   - **Rung 3 — Full setup (~$40/mo).** The documented v4 relay.
+     Upgrading from rung 2 means paying Cursor and changing nothing
+     else — same account, same repo files, same protocol; the `MODEL:`
+     header starts doing real economic work here (it is where the
+     included allowance holds or creeps).
+
+   Movement between rungs — up OR down — changes which agent the human
+   points at a block and nothing else. If someone tries Cursor and walks
+   away, their queue, state files, templates, and habits are all intact
+   on rung 1; nothing is uninstalled from the repo. This reversibility
+   is a selling point — say it explicitly. Verify Cursor's current
+   trial/Hobby terms against cursor.com/pricing at buildout time and
+   timestamp them (decision 3's rule applies); the trial length and
+   Hobby limits above are community-reported and change.
 
 ## 3. Target structure
 
 ```
-README.md                     the on-ramp pitch, cost model, receipts,
-                              honest positioning, who-should-not-use-this,
-                              quickstart pointer
+README.md                     the on-ramp pitch, the three-rung ladder
+                              (pick your rung up front), cost model,
+                              receipts, honest positioning,
+                              who-should-not-use-this, quickstart pointer
 docs/
-  setup.md                    the seats, accounts, one-time setup
+  setup.md                    the seats, accounts, one-time setup — per
+                              rung (solo / trial / full), plus the
+                              rung-up and rung-down moves (each is one
+                              paragraph precisely because nothing in the
+                              repo changes)
   protocol.md                 the loop: author -> dispatch -> execute ->
-                              review -> land; statuses; the two modes
+                              review -> land; statuses; the two modes;
+                              the rung-1 mapping (roles = sessions, not
+                              seats)
   steering.md                 the steering layer: keep-the-human-on-task
                               mechanisms + anti-loop mechanisms, framed
                               "erosion-resistant, not foolproof"
   economics.md                cost model + token levers + where the $40
-                              creeps + the bookkeeping tax
+                              creeps + the bookkeeping tax + per-rung
+                              cost profiles (rung 1's single-meter
+                              squeeze, rung 2's trial-window math,
+                              rung 3's creep risk)
   scar-tissue.md              the hard-won rules and the incidents behind
                               them (include the recorded review skip and
                               the wrong-belief correction — process erosion
@@ -127,7 +184,13 @@ templates/
                               (tracking doc section 7): asked in ONE batch,
                               answers GENERATE the target repo's AGENTS.md /
                               gate / HANDOFF / steering rules; unanswerable
-                              questions get strict defaults
+                              questions get strict defaults. Includes a
+                              "which rung are you starting on?" question
+                              that parameterizes the generated files
+                              (executor name, model vocabulary in the
+                              MODEL: header) — and the generated files
+                              must remain valid unchanged if the adopter
+                              later moves rungs
   AGENTS.md                   generic shared agent contract
   HANDOFF.md                  work-state channel template + single-writer
                               rule + the cap/archive two-tier split
@@ -175,6 +238,19 @@ script.
 - **The setup interview is batched.** All questions in one message, answers
   written INTO the generated files, strict defaults for anything
   unanswered. Drip-fed interviews are a documented anti-pattern.
+- **Templates name ROLES, not tools, in load-bearing places.** The
+  executor is "whatever agent you point at the block"; Cursor + Claude
+  Code stay the concrete worked example (decision 3), but the seamless
+  rung-up/rung-down claim in decision 7 is only honest if the generated
+  repo files (AGENTS.md, task blocks, queue protocol, HANDOFF) need ZERO
+  edits when the executor changes. If a template hardcodes "Cursor" where
+  "the executor" belongs, that's a bug against this requirement.
+- **Tier claims stay honest.** Each rung's cost ships next to its catch:
+  rung 1's single-meter squeeze and weaker (same-vendor) second opinion;
+  rung 2's expiring trial and the non-viability of post-trial Hobby as an
+  executor seat; rung 3's allowance-creep risk. The ladder is an on-ramp,
+  never a "free Max" pitch — the no-softening rule from section 5 of the
+  tracking doc applies to the rungs too.
 - **No source-project internals leak.** `source-material/` is scrubbed
   (placeholders like `<prod-db-id>`, `<smoke-user>`). Keep it that way in
   everything you write; never reconstruct or guess real service names,
