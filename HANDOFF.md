@@ -14,6 +14,21 @@ the CONVERSION rung - the trial is sequenced after rung 1 so the felt
 contrast (single-meter squeeze removed, Mode 2 possible) sells the second
 seat; intent ships stated openly; what's sold is the relay, not Cursor
 the brand. `checklists/trial-playbook.md` added to the target structure.
+**Updated:** 2026-07-09 (third pass, Fable): BRIEF gained settled
+decision 8 - meter literacy. Three parts: (a) the plan comparison table
+(Pro / $40 stack / Max 5x / Max 20x) with a hard provenance rule -
+Anthropic publishes multipliers only, never token quotas, so official
+facts and community estimates ship labeled and timestamped; (b) window
+anchoring - the 5-hour window opens on the FIRST prompt and doesn't roll
+over, so the adopter opens it deliberately with a cheap anchor prompt to
+control where resets land (Seth's own practice, now published content);
+(c) `templates/usage-tracker.md` added to the target structure - weekly
+window plan + per-session log + weekly review; doubles as rung 2's
+mini-receipts sheet and the move-up/move-down rung instrument. New hard
+requirement in section 4 ("Meter numbers stay honest"). URGENT for the
+buildout agent: the +50% weekly-limit promotion cited in decision 8
+expires 2026-07-13 - every meter number MUST be re-verified fresh, not
+copied from the brief.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.

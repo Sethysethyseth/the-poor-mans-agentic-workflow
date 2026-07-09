@@ -161,6 +161,68 @@ Recorded 2026-07-07, decided by Seth in session:
    timestamp them (decision 3's rule applies); the trial length and
    Hobby limits above are community-reported and change.
 
+8. **Meter literacy: the plan table, window anchoring, and the usage
+   tracker** (recorded 2026-07-09). Most adopters have no idea what a
+   $20 seat actually buys — the repo teaches the meters and how to ration
+   them. Ships as required content in `economics.md` plus a new
+   `templates/usage-tracker.md`:
+   - **The comparison table, with honest provenance.** economics.md
+     opens with a plan table — Claude Pro $20 / the $40 stack / Max 5x
+     $100 / Max 20x $200 — showing what each buys. Facts as of
+     2026-07-09 (buildout re-verifies and timestamps): Anthropic
+     publishes MULTIPLIERS only (Pro 1x, Max 5x, Max 20x) — it does not
+     publish token quotas, and any guide quoting an exact token figure
+     invented it. Community-measured anchors, always labeled as
+     estimates: roughly 45 prompts per 5-hour window on Pro, ~225 on
+     Max 5x, ~900 on Max 20x; 5-hour limits were permanently DOUBLED
+     2026-05-06, and a +50% weekly-limit promotion (2026-05-13) runs
+     through 2026-07-13 — it expires days after this decision was
+     recorded, so numbers gathered today WILL shift; re-verify is not
+     optional. Cursor Pro is a DIFFERENT KIND of meter and that contrast
+     is the pedagogical point: $20/mo of agent usage billed at
+     model-provider prices (per cursor.com docs), plus a separate
+     first-party-models pool and unlimited tab completion; monthly
+     reset, no rollover; overflow is opt-in pay-as-you-go. So the $40
+     stack = one windowed/weekly meter (Claude) + one monthly dollar
+     meter (Cursor) — two meters that fail independently, which is
+     itself an argument the README can make. The Max case ships too
+     (the where-Max-wins cons are already required content): a Max seat
+     removes rationing as a daily concern; the repo's claim is never
+     "Max is bad," it's that a beginner coding <2 hrs/day is paying for
+     headroom they cannot use.
+   - **Window anchoring — the human controls the clock.** The 5-hour
+     window opens on your FIRST prompt and expires five hours later
+     whether you used it or not; capacity does not roll over. So the
+     published discipline: open the window DELIBERATELY — a cheap
+     "anchor" prompt at a chosen time — so the reset lands where your
+     life needs it (anchor at 4pm and a fresh window is waiting for the
+     9pm session; anchor at 8am and lunch + evening draw on separate
+     windows). Corollaries to publish with it: batch work into planned
+     window-blocks instead of trickling prompts across the day; learn
+     your weekly reset time and schedule the heaviest wave right after
+     it; route token-heavy execution to the executor seat, whose
+     monthly dollar meter doesn't care about your windows — this is the
+     `MODEL:` header doing economic work at the meter level, and on
+     rung 1 (single meter) window anchoring is the ONLY lever, which is
+     worth saying explicitly.
+   - **The tracker: windows are the budget unit, not tokens.**
+     `templates/usage-tracker.md` is a copy-paste markdown file an
+     adopter keeps in their repo or notes. Three parts: a weekly plan
+     (which window-blocks they intend to open, and when), a per-session
+     log (date, anchor time, seat used, units shipped, cap-hit y/n,
+     one-line note), and a weekly review (windows used vs planned,
+     units per window, Cursor $ spent of $20, cap hits). It doubles as
+     the RUNG INSTRUMENT: never hitting caps → rung 1 suffices;
+     the single meter pinching while units queue → the rung-2 trial
+     pays; hitting caps weekly even on the $40 stack → the honest
+     answer is Max, and the repo says so plainly. It is also the same
+     file that carries rung 2's mini-receipts (decision 7) — one
+     tracker, two jobs; do not ship two overlapping templates. Name
+     the in-product readouts alongside the paper tracker (timestamped,
+     re-verify at buildout): Claude Code's `/usage` readout, Cursor's
+     dashboard included-usage meter, and `ccusage` (community npm tool
+     that parses local Claude Code logs) as the power-user option.
+
 ## 3. Target structure
 
 ```
@@ -185,7 +247,12 @@ docs/
                               creeps + the bookkeeping tax + per-rung
                               cost profiles (rung 1's single-meter
                               squeeze, rung 2's trial-window math,
-                              rung 3's creep risk)
+                              rung 3's creep risk) + the decision-8
+                              meter literacy content: the plan
+                              comparison table (Pro / $40 stack /
+                              Max 5x / Max 20x, provenance-labeled),
+                              the two-kinds-of-meter explainer, and
+                              window anchoring
   scar-tissue.md              the hard-won rules and the incidents behind
                               them (include the recorded review skip and
                               the wrong-belief correction — process erosion
@@ -211,6 +278,12 @@ templates/
                               docs/tasks/ of a target repo)
   command-gate.md             generic ask-first gate (merge / deploy /
                               migrations / destructive / dependencies)
+  usage-tracker.md            the decision-8 weekly meter tracker:
+                              weekly window plan, per-session log
+                              (anchor time, seat, units shipped,
+                              cap-hit), weekly review; doubles as the
+                              rung-2 mini-receipts sheet and the
+                              move-up/move-down rung instrument
 checklists/
   reviewer-checklist.md       the per-unit audit ritual + verify-before-trust
   worktree-ritual.md          parallel Mode 2 isolation ritual
@@ -262,6 +335,15 @@ script.
   repo files (AGENTS.md, task blocks, queue protocol, HANDOFF) need ZERO
   edits when the executor changes. If a template hardcodes "Cursor" where
   "the executor" belongs, that's a bug against this requirement.
+- **Meter numbers stay honest.** In the decision-8 content, official
+  facts (the plan multipliers, window/weekly mechanics, Cursor's
+  published dollar amounts) and community estimates (prompts-per-window
+  counts, hours-per-week figures) are DIFFERENT CLASSES of claim and
+  must be labeled as such, each timestamped. Never present a token
+  quota as official — Anthropic does not publish one; a guide that
+  quotes one invented it, and this repo will not be that guide. All
+  meter numbers get re-verified at buildout (the +50% weekly promotion
+  recorded in decision 8 expires 2026-07-13, days after it was written).
 - **Tier claims stay honest.** Each rung's cost ships next to its catch:
   rung 1's single-meter squeeze and weaker (same-vendor) second opinion;
   rung 2's expiring trial and the non-viability of post-trial Hobby as an
