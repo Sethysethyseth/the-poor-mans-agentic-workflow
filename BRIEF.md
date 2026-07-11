@@ -332,13 +332,61 @@ Recorded 2026-07-07, decided by Seth in session:
       whose honest answer is: the check lanes and the gate list; nothing
       else.
 
+12. **One-paste bootstrap: the agent-guided setup path** (recorded
+    2026-07-11, Seth's call). The primary quickstart is a PROMPT, not a
+    procedure — and it mirrors how this repo itself was built:
+    - **The entry.** The README quickstart is one paste: open Claude
+      Code in (or cd to) your project — or an empty folder; the agent
+      can `git init` — and paste "Read <github-link-to-SETUP.md> and
+      set me up." A root-level `SETUP.md` is the agent-facing setup
+      contract (added to target structure): the agent fetches/clones
+      this workflow repo, reads the contract, and drives the whole
+      setup from the adopter's terminal — step-0 tooling (it may run
+      installs and, after installing WezTerm, tell the adopter to
+      relaunch inside it), the rung question, the evidence-fill of the
+      manifest (decision 9 path B), ONE confirmation pass, generation,
+      the receipt, and the hello-relay first lap as the closing smoke
+      test. Sell the symmetry openly: this repo was built by an agent
+      reading BRIEF.md; the adopter's setup works the same way.
+    - **Written like a task block.** SETUP.md carries ordered steps and
+      machine-checkable done conditions (manifest complete and
+      confirmed; files generated; receipt posted; hello-relay lap
+      landed as the adopter's first commit) — agent-guided flows erode
+      exactly like human ones, so the contract discipline applies to
+      the setup itself.
+    - **The pre-agent surface stays minimal.** The only human-executed
+      instructions in the README are: install Claude Code, log in,
+      open it somewhere. Everything after first launch is agent-driven.
+      Bootstrap ordering is real (you need SOME terminal to start);
+      the answer is relaunch-into-WezTerm mid-setup, not a manual
+      tooling chapter.
+    - **One source, two drivers.** The agent path EXECUTES the same
+      content the manual path documents — SETUP.md orchestrates and
+      points into setup.md, the manifest, and the checklists; it never
+      forks from them. If an adopter's agent flails, the manual path
+      is the same material read by a human, not a second maintained
+      flow. Decision 9's guards apply unchanged inside this path:
+      evidence before questions, batched confirmation, conversation is
+      never the record.
+
 ## 3. Target structure
 
 ```
 README.md                     the on-ramp pitch, the three-rung ladder
                               (pick your rung up front), cost model,
                               receipts, honest positioning,
-                              who-should-not-use-this, quickstart pointer
+                              who-should-not-use-this, and the one-paste
+                              quickstart (decision 12): install Claude
+                              Code, open it, paste the SETUP.md prompt
+SETUP.md                      the agent-facing setup contract (decision
+                              12): ordered steps + done conditions for
+                              an agent driving the full setup from the
+                              adopter's terminal — step-0 tooling,
+                              rung question, manifest evidence-fill +
+                              one confirmation pass, generation +
+                              receipt, hello-relay lap. Orchestrates
+                              docs/setup.md + the manifest + the
+                              checklists; never duplicates them
 docs/
   setup.md                    the seats, accounts, one-time setup — per
                               rung (solo / trial / full), plus the
@@ -459,6 +507,11 @@ script.
   cheat sheet (decision 10) all exist to guarantee this. A generated
   state file whose writer can leave that line empty is a bug against
   this requirement.
+- **One source, two drivers.** The agent-guided setup (SETUP.md,
+  decision 12) orchestrates the same files the manual path reads —
+  docs/setup.md, the manifest, the checklists. If the two paths can
+  drift apart, that's a bug: SETUP.md points into the content, never
+  copies it.
 - **Setup degrades gracefully to any project shape.** Generated files
   must be valid for projects with no tests, no prod, no DB (decision 11):
   check lanes and gate items parameterize from manifest answers, the

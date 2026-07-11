@@ -55,7 +55,17 @@ gained "two fill paths, one artifact" - hand-edit the manifest OR
 (recommended) point your agent at manifest + project and it fills the
 manifest FROM EVIDENCE, one confirmation pass; guard is "the
 conversation is never the record" - answers always land in the manifest
-file before generation.
+file before generation. Second same-session addition (Seth's call):
+settled decision 12 - ONE-PASTE BOOTSTRAP. Quickstart is a prompt:
+paste "Read <github-link-to-SETUP.md> and set me up" into Claude Code
+in your project; root SETUP.md (added to target structure) is the
+agent-facing setup contract, written like a task block (ordered steps,
+done conditions, hello-relay lap as closing smoke test), driving
+tooling installs (incl. relaunch-into-WezTerm mid-setup), manifest
+evidence-fill, generation, receipt. New hard requirement "one source,
+two drivers": SETUP.md orchestrates docs/setup.md + manifest +
+checklists, never duplicates them - agent and manual paths must not
+be able to drift.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
