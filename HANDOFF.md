@@ -50,7 +50,12 @@ and section 4 updated to match (new hard requirements: defaults-first,
 no-dangling-next-action, graceful degradation to any project shape).
 NEW re-verify item for the buildout agent: when exactly Cursor's trial
 clock starts (install vs account signup) - decision 9's rung-1 "wait"
-guidance depends on it.
+guidance depends on it. Same-session amendment (Seth's call): decision 9
+gained "two fill paths, one artifact" - hand-edit the manifest OR
+(recommended) point your agent at manifest + project and it fills the
+manifest FROM EVIDENCE, one confirmation pass; guard is "the
+conversation is never the record" - answers always land in the manifest
+file before generation.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
