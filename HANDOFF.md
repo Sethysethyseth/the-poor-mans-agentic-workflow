@@ -84,7 +84,42 @@ move.
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
 
-## Status: READY FOR BUILDOUT
+**Updated: 2026-07-11 (buildout seat, local Claude Code session): BUILDOUT
+STARTED.** Two PRs open, both off main, independent of each other:
+
+- **PR #1 (`readme-onramp`, 8f84c3a):** README v1 - the full public
+  on-ramp page (pitch, cost model, relay loop + rung ladder as mermaid
+  diagrams, one-paste quickstart, receipts incl. unflattering, full honest
+  positioning, steering summary, v2->v4 evolution, repo map, MIT).
+  Verified at buildout: name-collision check CLEAR (title stands);
+  install one-liners + Claude prices confirmed 2026-07-11; **Cursor trial
+  terms UNVERIFIABLE** (cursor.com/pricing silent; community reports
+  conflict: 14d / 7d / removed) - README hedges them as
+  community-reported + unstable; the trial-playbook must hedge the same
+  way.
+- **PR #2 (`templates-wave`, e27aa2f):** all seven templates/ files -
+  task-block (both scales, verbatim footer, delivery report w/ fixed
+  next-action footer, diagnosis variant), tasks-README (queue protocol),
+  command-gate (G4/G5 non-deletable), AGENTS.md, HANDOFF (capped +
+  archive + never-empty next-action line), usage-tracker (decision 8),
+  setup-interview (decision-9 defaults-first manifest + generation
+  contract: stamps, receipt spec, upgrade-as-diff, hello-relay starter
+  block in the generated set). Roles-not-tools verified by grep.
+
+Decisions made by the buildout seat, flaggable at review: root SETUP.md
+deferred to the docs/ PR (one-source-two-drivers needs docs/setup.md to
+exist first); +50% weekly-promo numbers kept OUT of the README
+(economics.md re-verifies fresh - promo expires 2026-07-13, past by the
+time that PR is written); command-gate.md's deliberate duplication of the
+AGENTS.md gate section is stated in both files.
+
+**Next: Seth reviews PRs #1-#2** (or lets them ride and says "keep going" -
+his stated preference today was volume before critique). Then the docs/
+wave: setup.md, protocol.md, steering.md, economics.md (re-verify ALL
+meter numbers fresh), scar-tissue.md, root SETUP.md. Then checklists/,
+then the pre-publish PR.
+
+## Status: BUILDOUT IN PROGRESS (was: ready for buildout)
 
 All three blockers from the 2026-07-04 handoff are resolved:
 
