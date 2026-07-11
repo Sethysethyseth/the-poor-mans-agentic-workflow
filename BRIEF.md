@@ -384,6 +384,34 @@ Recorded 2026-07-07, decided by Seth in session:
       evidence before questions, batched confirmation, conversation is
       never the record.
 
+13. **Maintenance: stamped generation, re-paste updates, sideways
+    rows** (recorded 2026-07-11, Fable recommendation). The adopter
+    story can't end at generation — this repo will improve after
+    people have generated from it:
+    - **Stamped generation.** Every generated file's header carries the
+      workflow version it was generated from and the date (one line,
+      e.g. "generated from poor-mans-agentic-workflow v1.0,
+      2026-07-15"). The repo tags releases so the stamp means
+      something. Combined with the manifest, any generated setup is
+      fully reproducible: version + manifest = the whole story.
+    - **Updating is the same paste.** To pick up workflow improvements,
+      the adopter re-runs the SETUP.md paste; the agent sees the
+      existing manifest and stamps, regenerates against the new
+      version, and presents a DIFF of what changed and why before
+      touching anything. No separate update procedure to document or
+      maintain — the one-paste path is also the upgrade path, which is
+      only possible because the manifest is the record (decision 9).
+    - **Sideways rows in the cheat sheet.** The loop cheat sheet gains
+      a short "when it goes sideways" section, same you-see-X-do-Y
+      format: agent flailed mid-setup -> the manual path is the same
+      content, read docs/setup.md yourself; loop stalled and you're
+      lost -> HANDOFF's "Next action (human):" line is the resume
+      point; executor committed when it shouldn't have -> the
+      reviewer-checklist's recovery note. Three to five rows, not a
+      troubleshooting manual — the goal is that no failure strands a
+      beginner without a next move (the no-dangling-next-action
+      requirement, extended to failure states).
+
 ## 3. Target structure
 
 ```
@@ -469,7 +497,9 @@ checklists/
   loop-cheat-sheet.md         one printable page: the relay loop as a
                               "you see X -> you do Y" table for the
                               human, loop diagram, per-rung vocabulary,
-                              the three most-broken rules (decision 10)
+                              the three most-broken rules (decision 10),
+                              plus 3-5 "when it goes sideways" rows
+                              (decision 13)
   reviewer-checklist.md       the per-unit audit ritual + verify-before-trust
   worktree-ritual.md          parallel Mode 2 isolation ritual
   trial-playbook.md           the rung-2 conversion playbook: how to spend

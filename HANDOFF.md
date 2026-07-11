@@ -73,6 +73,13 @@ zero-install doorstep-not-residence). Design rule: defer every choice
 that can wait into the agent-driven part (WezTerm is a step-0 offer,
 never a prerequisite); never present the doors as a chooser matrix.
 Buildout re-verifies installer commands and web-session capabilities.
+Final same-session addition: settled decision 13 - MAINTENANCE.
+Generated files carry a version+date stamp (repo tags releases);
+upgrading = re-run the SETUP paste (agent regenerates from the
+existing manifest and presents a diff first) - the one-paste path is
+also the upgrade path; the loop cheat sheet gains 3-5 "when it goes
+sideways" rows so no failure state strands the adopter without a next
+move.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
