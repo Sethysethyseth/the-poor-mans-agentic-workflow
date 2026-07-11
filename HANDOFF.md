@@ -29,6 +29,28 @@ requirement in section 4 ("Meter numbers stay honest"). URGENT for the
 buildout agent: the +50% weekly-limit promotion cited in decision 8
 expires 2026-07-13 - every meter number MUST be re-verified fresh, not
 copied from the brief.
+**Updated:** 2026-07-11 (Fable): BRIEF gained settled decisions 9-11 -
+the adopter-experience pass, from Seth's direct critique. Decision 9:
+the setup interview reshapes into a DEFAULTS-FIRST MANIFEST (every
+question pre-answered + one-line summary; adopter keeps/changes/deletes;
+editing nothing yields a working setup), a step-0 machine-tooling
+section (WezTerm recommended for Claude Code; executor-app install is
+RUNG-AWARE - rung 1 waits so the trial clock isn't burned during the
+learning weeks), and a generation receipt (one line per generated file +
+a <=10-line loop primer; depth linked, not inlined). Decision 10: relay
+legibility - `checklists/loop-cheat-sheet.md` added to target structure
+("you see X -> you do Y" table), you-are-here cues ("Next action
+(human):" line in HANDOFF template, delivery-report footer), and
+setup.md now closes with a ~15-min "hello, relay" first-loop
+walkthrough. Decision 11: any-project parameterization - manifest asks
+project shape + check lanes; "tests green" parameterizes; laneless
+projects get an honest degraded default; gate items include/exclude by
+manifest, destructive-ops + dependency items always survive. Section 3
+and section 4 updated to match (new hard requirements: defaults-first,
+no-dangling-next-action, graceful degradation to any project shape).
+NEW re-verify item for the buildout agent: when exactly Cursor's trial
+clock starts (install vs account signup) - decision 9's rung-1 "wait"
+guidance depends on it.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.

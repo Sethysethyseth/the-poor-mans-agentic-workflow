@@ -223,6 +223,98 @@ Recorded 2026-07-07, decided by Seth in session:
      dashboard included-usage meter, and `ccusage` (community npm tool
      that parses local Claude Code logs) as the power-user option.
 
+9. **Setup UX: defaults-first manifest, step-0 tooling, generation
+   receipt** (recorded 2026-07-11). The setup phase is where adopters are
+   won or lost; it ships as READ-AND-PRUNE, not author-from-scratch:
+   - **The interview becomes a manifest.** `templates/setup-interview.md`
+     is restructured as a defaults-first manifest: every question ships
+     ALREADY ANSWERED with the strict default plus a one-line
+     plain-language summary of what the answer controls (e.g. "Single
+     committer — only the reviewer runs `git commit`, so two agents never
+     race one tree. Default: ON."). The adopter's whole job is
+     keep / change / delete per line — an adopter who edits NOTHING gets
+     a complete working setup. The batched-interview hard requirement in
+     section 4 stands and gets sharper: the consuming agent asks zero
+     questions the manifest already answers, and "strict defaults for
+     unanswered items" now means defaults the adopter has already SEEN
+     printed on the page — no hidden fallbacks.
+   - **Step 0 — machine tooling, before the meat.** The manifest's first
+     section (and setup.md's first page) settles tools before any
+     protocol content: terminal (WezTerm recommended for Claude Code —
+     one-line why + per-platform install command; recommended, never
+     required, and only surfaced on platforms where it matters), the
+     executor app, git, and whatever runtime the adopter's project needs.
+     The executor-app item is RUNG-AWARE: on rung 2/3 the setup
+     recommends installing Cursor now (the agent may offer the install
+     command or link the download); on rung 1 it says explicitly to WAIT
+     — if the trial clock starts at account signup, creating the account
+     during the learning weeks burns the decision-7 conversion window;
+     the trial-playbook says when to pull that trigger. Buildout must
+     verify when Cursor's trial clock actually starts and timestamp it.
+     GUARD: tooling recommendations live in setup.md and the manifest
+     ONLY — generated templates keep naming roles, not tools (section 4).
+   - **The generation receipt.** After consuming the manifest and
+     generating the adopter's repo files, the consuming agent must post a
+     BRIEF receipt: one line per generated file (what it is + which
+     manifest answer shaped it) and a <=10-line "how your loop runs"
+     primer — who acts, in what order, and the one-sentence why behind
+     the two rules that surprise people (executor never commits; one
+     writer for state). Brevity is a hard property of the receipt: deep
+     rationale lives in the public repo's docs (protocol.md, steering.md)
+     and gets LINKED, not inlined. The receipt spec ships inside
+     setup-interview.md as instructions to the consuming agent.
+
+10. **Relay-loop legibility: cheat sheet, you-are-here cues, first loop**
+    (recorded 2026-07-11). The loop must be understandable at a glance
+    mid-session, not only in a docs read-through:
+    - **`checklists/loop-cheat-sheet.md`** (added to the target
+      structure): one printable page. The loop as a "you see X -> you do
+      Y" table keyed to what the HUMAN observes ("executor ended its turn
+      with a delivery report -> tell the reviewer to audit"; "reviewer
+      committed and updated HANDOFF -> point the executor at the next
+      block"), a small loop diagram, per-rung vocabulary variants (rung 1
+      in sessions, rung 3 in seats), and the three rules most often
+      broken (executor never commits; one state-file writer; blocks are
+      self-contained). This is the page an adopter keeps open in week
+      one.
+    - **You-are-here cues in the generated files.** The HANDOFF template
+      carries a standing "Next action (human):" line the state-writer
+      must fill on every rewrite; the delivery-report format ends with a
+      fixed footer telling the human the next move. Companion hard
+      requirement in section 4: the generated repo never leaves the
+      adopter without a stated next action.
+    - **The first loop is a walkthrough, not a reading.** setup.md ends
+      with a ~15-minute "hello, relay" exercise: a pre-written trivial
+      starter block (e.g. add one line to the project README) run through
+      the FULL loop once — dispatch, execute, deliver, review, commit —
+      before any real work. One lap teaches the relay better than any
+      prose; it is cheap enough to run on every rung, and it doubles as
+      the smoke test that the generated files actually work.
+
+11. **Any-project parameterization** (recorded 2026-07-11). The
+    load-bearing rules are already project-agnostic; the setup must be
+    too, and must SAY so:
+    - The manifest asks PROJECT SHAPE (web app / API / CLI / library /
+      scripts / data-or-notebooks / docs-or-content) and CHECK LANES
+      (which command proves the project still works: tests, build, lint,
+      typecheck — or NOTHING YET). Generated files parameterize on the
+      answers: every "tests green" in the templates becomes the adopter's
+      named check lane(s). A no-lane project gets the honest degraded
+      default — executor evidence becomes "show the change running"
+      (command output, before/after) — plus a standing TODO in the
+      generated files to add a real check lane, because
+      verify-before-trust visibly weakens without one. Say that plainly;
+      don't pretend the workflow is equally strong laneless.
+    - The command gate parameterizes the same way: no prod -> no prod
+      item; no DB -> no migrations item; EVERY project keeps the
+      destructive-ops and dependency items. Dropping a gate item is a
+      manifest choice, never a hand-edit of a generated template.
+    - setup.md and the README state plainly that the source project (a
+      full-stack app) is the worked EXAMPLE, not a requirement — one
+      short "what changes if your project isn't a web app" subsection,
+      whose honest answer is: the check lanes and the gate list; nothing
+      else.
+
 ## 3. Target structure
 
 ```
@@ -235,7 +327,11 @@ docs/
                               rung (solo / trial / full), plus the
                               rung-up and rung-down moves (each is one
                               paragraph precisely because nothing in the
-                              repo changes)
+                              repo changes). Opens with step-0 machine
+                              tooling (terminal, rung-aware executor-app
+                              timing, git — decision 9) and closes with
+                              the ~15-min "hello, relay" first-loop
+                              walkthrough (decision 10)
   protocol.md                 the loop: author -> dispatch -> execute ->
                               review -> land; statuses; the two modes;
                               the rung-1 mapping (roles = sessions, not
@@ -258,17 +354,22 @@ docs/
                               the wrong-belief correction — process erosion
                               and belief loops are scars too)
 templates/
-  setup-interview.md          the adopter's setup-phase questionnaire
-                              (tracking doc section 7): asked in ONE batch,
-                              answers GENERATE the target repo's AGENTS.md /
-                              gate / HANDOFF / steering rules; unanswerable
-                              questions get strict defaults. Includes a
-                              "which rung are you starting on?" question
-                              that parameterizes the generated files
-                              (executor name, model vocabulary in the
-                              MODEL: header) — and the generated files
-                              must remain valid unchanged if the adopter
-                              later moves rungs
+  setup-interview.md          the adopter's DEFAULTS-FIRST SETUP MANIFEST
+                              (tracking doc section 7, reshaped per
+                              decision 9): every question pre-answered
+                              with its strict default + one-line summary;
+                              the adopter keeps/changes/deletes per line,
+                              then points their agent at it in ONE pass.
+                              Answers GENERATE the target repo's
+                              AGENTS.md / gate / HANDOFF / steering
+                              rules. Sections: step-0 tooling, "which
+                              rung?" (parameterizes executor name +
+                              MODEL: vocabulary), project shape + check
+                              lanes (decision 11), gate items, state
+                              files. Also carries the generation-receipt
+                              spec for the consuming agent (decision 9).
+                              Generated files must remain valid unchanged
+                              if the adopter later moves rungs
   AGENTS.md                   generic shared agent contract
   HANDOFF.md                  work-state channel template + single-writer
                               rule + the cap/archive two-tier split
@@ -285,6 +386,10 @@ templates/
                               rung-2 mini-receipts sheet and the
                               move-up/move-down rung instrument
 checklists/
+  loop-cheat-sheet.md         one printable page: the relay loop as a
+                              "you see X -> you do Y" table for the
+                              human, loop diagram, per-rung vocabulary,
+                              the three most-broken rules (decision 10)
   reviewer-checklist.md       the per-unit audit ritual + verify-before-trust
   worktree-ritual.md          parallel Mode 2 isolation ritual
   trial-playbook.md           the rung-2 conversion playbook: how to spend
@@ -325,16 +430,34 @@ script.
   verify-before-trust (re-run the executor's "tests green," SHA-check every
   commit, confirm pushes reached origin); the capped state file + verbatim
   archive split; worktrees/repos outside cloud-synced folders.
-- **The setup interview is batched.** All questions in one message, answers
-  written INTO the generated files, strict defaults for anything
-  unanswered. Drip-fed interviews are a documented anti-pattern.
+- **The setup interview is batched AND defaults-first.** All questions in
+  one pass, answers written INTO the generated files, strict defaults for
+  anything unanswered — and per decision 9, every default is PRINTED in
+  the manifest with a one-line summary, so an adopter who edits nothing
+  gets a working setup and no fallback is ever hidden. Drip-fed
+  interviews are a documented anti-pattern.
+- **No dangling next action.** The generated repo must never leave the
+  human without a stated next move: the HANDOFF template's standing
+  "Next action (human):" line, the delivery-report footer, and the loop
+  cheat sheet (decision 10) all exist to guarantee this. A generated
+  state file whose writer can leave that line empty is a bug against
+  this requirement.
+- **Setup degrades gracefully to any project shape.** Generated files
+  must be valid for projects with no tests, no prod, no DB (decision 11):
+  check lanes and gate items parameterize from manifest answers, the
+  laneless default is honest about being weaker, and destructive-ops +
+  dependency gate items survive in every configuration.
 - **Templates name ROLES, not tools, in load-bearing places.** The
   executor is "whatever agent you point at the block"; Cursor + Claude
   Code stay the concrete worked example (decision 3), but the seamless
   rung-up/rung-down claim in decision 7 is only honest if the generated
   repo files (AGENTS.md, task blocks, queue protocol, HANDOFF) need ZERO
   edits when the executor changes. If a template hardcodes "Cursor" where
-  "the executor" belongs, that's a bug against this requirement.
+  "the executor" belongs, that's a bug against this requirement. The
+  decision-9 tooling step does not weaken this: install recommendations
+  (WezTerm, Cursor, terminals) live in setup.md and the manifest's step-0
+  section ONLY, timestamped per decision 3, and never leak into generated
+  templates.
 - **Meter numbers stay honest.** In the decision-8 content, official
   facts (the plan multipliers, window/weekly mechanics, Cursor's
   published dollar amounts) and community estimates (prompts-per-window
