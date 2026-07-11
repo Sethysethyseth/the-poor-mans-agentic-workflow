@@ -238,6 +238,23 @@ Recorded 2026-07-07, decided by Seth in session:
      questions the manifest already answers, and "strict defaults for
      unanswered items" now means defaults the adopter has already SEEN
      printed on the page — no hidden fallbacks.
+   - **Two fill paths, one artifact** (amended 2026-07-11, Seth's call).
+     Path A: hand-edit the manifest in any editor — for adopters who
+     already know what they want. Path B, the RECOMMENDED default:
+     point your agent at the manifest plus your actual project; the
+     agent fills the manifest FROM EVIDENCE — it reads the repo and
+     infers project shape, check lanes ("check lane: `npm test` — found
+     in package.json"), whether prod/DB gate items apply — tagging each
+     inferred answer with what it saw, then presents the completed
+     manifest for ONE confirmation pass. Inference beats interrogation:
+     the exact adopter this repo targets doesn't know what "check
+     lanes" means, but can confirm "your tests run with npm test" on
+     sight. The guard that keeps this honest: THE CONVERSATION IS NEVER
+     THE RECORD — however the answers were reached, they land in the
+     manifest file before generation runs, so the choices are
+     versioned, re-consultable at rung moves, and generation stays
+     reproducible from the file alone. Rung-1 note: path B spends part
+     of one window; a fair one-time cost, worth stating.
    - **Step 0 — machine tooling, before the meat.** The manifest's first
      section (and setup.md's first page) settles tools before any
      protocol content: terminal (WezTerm recommended for Claude Code —
