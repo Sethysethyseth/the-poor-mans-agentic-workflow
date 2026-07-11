@@ -65,7 +65,14 @@ tooling installs (incl. relaunch-into-WezTerm mid-setup), manifest
 evidence-fill, generation, receipt. New hard requirement "one source,
 two drivers": SETUP.md orchestrates docs/setup.md + manifest +
 checklists, never duplicates them - agent and manual paths must not
-be able to drift.
+be able to drift. Decision 12 then amended same session: the pre-agent
+surface is ONE BLESSED DOOR (official per-OS installer one-liner,
+login, paste - three README lines) plus EXACTLY TWO one-line side
+doors (desktop app for the terminal-shy; claude.ai/code web as
+zero-install doorstep-not-residence). Design rule: defer every choice
+that can wait into the agent-driven part (WezTerm is a step-0 offer,
+never a prerequisite); never present the doors as a chooser matrix.
+Buildout re-verifies installer commands and web-session capabilities.
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.

@@ -354,12 +354,27 @@ Recorded 2026-07-07, decided by Seth in session:
       landed as the adopter's first commit) — agent-guided flows erode
       exactly like human ones, so the contract discipline applies to
       the setup itself.
-    - **The pre-agent surface stays minimal.** The only human-executed
-      instructions in the README are: install Claude Code, log in,
-      open it somewhere. Everything after first launch is agent-driven.
-      Bootstrap ordering is real (you need SOME terminal to start);
-      the answer is relaunch-into-WezTerm mid-setup, not a manual
-      tooling chapter.
+    - **The pre-agent surface stays minimal: one blessed door, two
+      labeled side doors** (amended 2026-07-11). The design rule is
+      DEFER EVERY CHOICE THAT CAN WAIT into the agent-driven part:
+      Claude Code runs fine in the stock terminal, so the terminal
+      question is not a prerequisite — the agent offers WezTerm inside
+      step 0 and handles the relaunch. What is irreducibly pre-agent
+      is three README lines (the blessed path): run Anthropic's
+      official per-OS install one-liner (no Node required; command
+      timestamped and re-verified at buildout per decision 3), log in
+      with your Claude subscription, open a terminal in your project
+      (or an empty folder) and paste the SETUP.md prompt. Beneath it,
+      a short "other ways in" note with EXACTLY TWO side doors, one
+      line each: the Claude Code desktop app (same agent, same paste,
+      lowest fear for the terminal-shy, makes WezTerm moot — but the
+      alternative, not the default, because the workflow's destination
+      is terminal-shaped and starting there avoids a migration), and
+      claude.ai/code web sessions (zero-install taste: point a web
+      session at your GitHub repo — the honest framing is doorstep,
+      not residence; the daily loop wants local; buildout verifies
+      current web-session capabilities). Never present the doors as a
+      chooser matrix; the quickstart shows the blessed path only.
     - **One source, two drivers.** The agent path EXECUTES the same
       content the manual path documents — SETUP.md orchestrates and
       points into setup.md, the manifest, and the checklists; it never
