@@ -1,0 +1,4 @@
+# Everything the tracker writes locally stays local.
+data/
+logs/
+config.json

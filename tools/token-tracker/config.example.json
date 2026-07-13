@@ -1,0 +1,16 @@
+{
+  "_comment": "Copy to config.json (gitignored) and edit. schedule: work blocks per weekday; start/end are HH:MM local 24h (end smaller than start = past midnight); optional break is where you'd like the 5h window reset to land. Blocks over 5h get an anchor computed. tokenWeights/modelWeights are UNOFFICIAL relative-cost ratios - pacing hints only, see README.",
+  "transcripts": [],
+  "schedule": {
+    "mon": [{ "start": "18:00", "end": "23:00" }],
+    "tue": [],
+    "wed": [{ "start": "18:00", "end": "23:00" }],
+    "thu": [],
+    "fri": [],
+    "sat": [{ "start": "10:00", "end": "22:00", "break": "17:30" }],
+    "sun": [{ "start": "13:00", "end": "21:00", "break": "18:00" }]
+  },
+  "anchor": { "prompt": ".", "model": "haiku" },
+  "tokenWeights": { "input": 1, "output": 5, "cacheRead": 0.1, "cacheWrite": 1.25 },
+  "modelWeights": { "fable": 5, "opus": 5, "sonnet": 1, "haiku": 0.27, "default": 1 }
+}

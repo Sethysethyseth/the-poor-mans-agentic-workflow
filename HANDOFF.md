@@ -80,6 +80,37 @@ existing manifest and presents a diff first) - the one-paste path is
 also the upgrade path; the loop cheat sheet gains 3-5 "when it goes
 sideways" rows so no failure state strands the adopter without a next
 move.
+**Updated: 2026-07-12/13 (Fable, workout-db cross-pollination session):
+BRIEF gained settled decisions 14-15.** Decision 14: the tools/ waiver -
+`tools/token-tracker/` (Seth's uncommitted tracker.js, now completed:
+README with the ccusage-complement framing, config.example.json,
+anchor-ping.ps1 with the window-open guard, .gitignore for
+data/logs/config; smoke-tested, one cosmetic anchor-plan bug fixed - the
+>10h-block override now rewrites its reason line). Honesty note declared
+load-bearing; the no-code rule stands for everything else. Decision 15:
+receipts refreshed - source-material gained the token-savings stats +
+raw data (37 units / 35 commits, July 2-11; 78.4/21.6 unit split,
+80.7/19.3 byte split, layered ~0.6-1.6M-token estimate) and a receipts
+addendum covering post-snapshot workflow events: the EXECUTOR
+SUBSTITUTION receipt (Cursor out of Opus tokens mid-wave; Composer
+delivered the wave's biggest unit from the same block file, zero repo
+changes - decision 7 proven live), the CLOUD-DISPATCH variant (pushed
+blocks, delivery report in the PR body, own clone - protocol.md carries
+it as a second delivery channel, not a third mode), the planner-seat
+tier refinement (Fable withheld for gate/skeletons/escalations, Opus
+audits execution units - economics.md), and two new steering receipts
+(post-push smoke checklist caught two bugs a clean 11-criterion audit
+missed; a second recorded process deviation). Newer numbers SUPERSEDE
+the "~24 units in 6 days" figures - README PR #1 shipped with the old
+ones and needs a refresh line before merge or in the docs wave. Still
+OPEN (Seth): whether/where the suggested charts ship and in what format.
+Source-project backports agreed in the same session but NOT yet applied
+(workout-db's tree was live with another agent): the standing
+"Next action (human):" HANDOFF line, a reviewer-checklist file, a filled
+usage-tracker updated at session close, and the tracking-doc section-10
+log catch-up for the addendum's events - until that catch-up lands, the
+addendum here is the traceable record.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.

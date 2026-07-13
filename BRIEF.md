@@ -412,6 +412,52 @@ Recorded 2026-07-07, decided by Seth in session:
       beginner without a next move (the no-dangling-next-action
       requirement, extended to failure states).
 
+14. **tools/ waiver: the token tracker** (recorded 2026-07-12, Seth's
+    call). Section 3's "no code, no CLI" rule is waived for exactly one
+    tool: `tools/token-tracker/` - a zero-dependency, single-file Node
+    script (plus a PowerShell anchor-ping wrapper, example config, and
+    README) that automates the decision-8 disciplines locally. It
+    reconstructs the adopter's 5-hour windows from the Claude Code
+    transcripts already on their disk, estimates a window budget ONLY
+    from lockouts actually observed (no lockouts seen = no percentage
+    printed, ever), computes the anchor-ping plan from the adopter's
+    weekly schedule, and offers a statusline readout. Constraints that
+    keep it inside the repo's character: zero dependencies, no network
+    calls, nothing leaves the machine, generated data/config gitignored,
+    and the HONESTY NOTE in the script header is load-bearing - every
+    figure it prints is an unofficial local estimate, and the "meter
+    numbers stay honest" hard requirement applies to code output exactly
+    as to prose. Positioning: an optional companion to
+    `templates/usage-tracker.md`, referenced from economics.md; it
+    complements ccusage (token/cost readouts) rather than replacing it -
+    the differentiators are window reconstruction, lockout calibration,
+    and the anchor-plan calculator. The paper tracker stays the primary
+    published instrument.
+
+15. **Receipts refresh through 2026-07-11 + post-snapshot events**
+    (recorded 2026-07-12). `source-material/` gained three files the
+    buildout MUST consume: `cursor-token-savings-stats.md` +
+    `cursor-token-savings-data.json` (measured delivery-route split -
+    78.4/21.6 by units, 80.7/19.3 by bytes, 37 units / 35 commits over
+    July 2-11 - plus a two-layer token-savings estimate whose layers and
+    caveats publish together or not at all) and
+    `receipts-addendum-2026-07-12.md` (the executor-substitution
+    receipt: Cursor ran out of Opus allowance mid-wave and a DIFFERENT
+    executor delivered the wave's biggest unit from the same block file
+    with zero repo changes - decision 7's roles-not-tools claim proven
+    live; the cloud-dispatch delivery variant - pushed blocks, delivery
+    report in a PR body, own-clone execution - which protocol.md carries
+    as a second delivery channel, not a third mode; the planner-seat
+    internal tier refinement for economics.md; and two new
+    steering-layer receipts including a second recorded process
+    deviation). Where these numbers overlap older receipts ("~24 units
+    in 6 days"), the new files supersede - the README PR (#1) shipped
+    with the older numbers and should be refreshed before merge or in
+    the docs wave. Still OPEN (Seth decision, do not decide it in the
+    buildout): whether/where the stats file's suggested charts ship
+    (README vs economics.md) and their format - flag it, don't render it
+    unprompted.
+
 ## 3. Target structure
 
 ```
@@ -508,12 +554,20 @@ checklists/
                               Mode 2 taste in week two, which
                               mini-receipts to keep, the decision point
                               at trial end)
+tools/
+  token-tracker/              the decision-14 waiver: single-file local
+                              window tracker + anchor-plan calculator +
+                              statusline (tracker.js, anchor-ping.ps1,
+                              config.example.json, README); optional
+                              companion to the usage-tracker template,
+                              linked from economics.md
 ```
 
 Keep it lean. This repo sells a workflow, not a framework: no code, no CLI,
-no build tooling, no GitHub Actions, unless Seth explicitly asks. The
-setup interview is a document an adopter points their own agent at — not a
-script.
+no build tooling, no GitHub Actions, unless Seth explicitly asks (he has
+asked exactly once - decision 14's token tracker; that waiver extends to
+nothing else). The setup interview is a document an adopter points their
+own agent at — not a script.
 
 ## 4. Hard requirements (non-negotiable, from the source project)
 
@@ -530,8 +584,11 @@ script.
   the limit and the guarantee. Never publish "foolproof."
 - **Receipts trace or die.** Every number in the receipts section must
   trace to `queue-snapshot.md` / `handoff-archive.md` /
-  `tracking-doc.md` section 8. If it isn't there, ask Seth or leave it out.
-  Provenance-only rule from section 2 applies everywhere.
+  `tracking-doc.md` section 8 / `cursor-token-savings-stats.md` +
+  `-data.json` / `receipts-addendum-2026-07-12.md`. If it isn't there,
+  ask Seth or leave it out. Where the newer files overlap the older ones,
+  the newer supersede (decision 15). Provenance-only rule from section 2
+  applies everywhere.
 - **The load-bearing rules survive genericization.** Whatever the templates
   look like, they must carry: single committer; single state-file writer;
   executor never commits; blocks fully self-contained (executor gets zero
