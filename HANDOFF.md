@@ -111,6 +111,42 @@ usage-tracker updated at session close, and the tracking-doc section-10
 log catch-up for the addendum's events - until that catch-up lands, the
 addendum here is the traceable record.
 
+**Updated: 2026-07-14 (Fable, workout-db session): BRIEF gained settled
+decision 16 - TWO DRIVING MODES.** The source project adopted relay v5
+the same day (autonomous dispatch: the resident seat dispatches blocks
+to the executor's headless CLI in a lane worktree, polls, audits, lands;
+first autonomous unit landed clean; pricing probe run at $0). The repo
+now offers: manual relay (DEFAULT, beginner path, the v4 story
+unchanged - human as message bus) and autonomous relay (opt-in power
+mode; human keeps authoring go-ahead, bug reports, smoke sign-off, and
+every gate item). Switching = the decision-13 re-paste with one manifest
+answer flipped (up) or simply stop-dispatching-and-point-by-hand (down,
+no regeneration) - both modes execute the same block files verbatim.
+Decision 6 amended (story = v4 baseline + v5 as the evolution's ceiling,
+never the lead pitch - age disclosure required: one landed unit vs ~5
+weeks of manual receipts). Target structure gained `docs/autonomous.md`
++ `templates/dispatch-ritual.md` (the ONE generated file allowed to
+carry a concrete executor CLI invocation - stated carve-out added to the
+roles-not-tools hard requirement); manifest gains a driving-mode
+question (default MANUAL); loop-cheat-sheet gains an autonomous variant
+block; economics.md gains the autonomous cost profile. Two new hard
+requirements: manual-default/reversibility, and autonomy-claims-honest +
+the-gate-never-dispatches-itself (migrations/prod blocks REFUSE
+autonomous dispatch; two-bounce stop; wave end hands to the frontier
+gate, never the loop). New source file the buildout MUST consume:
+`source-material/autonomous-dispatch-2026-07-14.md` (scrubbed spec +
+dispatch ritual + probe results + v5 receipts; note inside: the source
+project's skills are under live revision by another agent - re-snapshot
+if the docs wave starts more than a few days after 2026-07-14). NEW
+re-verify items for the buildout: whether an executor trial account
+includes headless-CLI/auto-model access (gates any rung-2 autonomous
+guidance; if unverifiable, say so and scope autonomous to rung 3), and
+the executor CLI install one-liner + hang-bug status. README PR #1
+impact: the pitch line "human as the message bus" stays the headline but
+now needs the one-paragraph autonomous teaser + link (decision 16's
+README treatment) - fold into the same pre-merge refresh decision 15
+already requires.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
@@ -145,10 +181,13 @@ time that PR is written); command-gate.md's deliberate duplication of the
 AGENTS.md gate section is stated in both files.
 
 **Next: Seth reviews PRs #1-#2** (or lets them ride and says "keep going" -
-his stated preference today was volume before critique). Then the docs/
-wave: setup.md, protocol.md, steering.md, economics.md (re-verify ALL
-meter numbers fresh), scar-tissue.md, root SETUP.md. Then checklists/,
-then the pre-publish PR.
+his stated preference today was volume before critique). PR #2's
+templates wave predates decision 16 - the manifest needs the
+driving-mode question and templates/ needs dispatch-ritual.md added,
+either as a review fix or a follow-up PR. Then the docs/ wave: setup.md,
+protocol.md, steering.md, economics.md (re-verify ALL meter numbers
+fresh), autonomous.md (decision 16), scar-tissue.md, root SETUP.md.
+Then checklists/, then the pre-publish PR.
 
 ## Status: BUILDOUT IN PROGRESS (was: ready for buildout)
 

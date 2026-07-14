@@ -9,6 +9,10 @@ the message bus) as an honest alternative to $200/month single-seat agentic
 coding. It ships as a three-rung on-ramp: solo Claude ($20), Claude + a free
 Cursor trial to evaluate the two-seat relay ($20), the full two-seat setup
 ($40) - with rung changes in either direction requiring zero repo changes.
+It also ships two driving modes: the manual relay (default - the human
+runs the loop) and an opt-in autonomous relay (the planner seat
+dispatches, audits, and lands units itself; the human keeps the gates),
+switchable both ways with zero protocol-file edits.
 It was extracted from a live project where the workflow shipped real
 features and caught real bugs.
 
