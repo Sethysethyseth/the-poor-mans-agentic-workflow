@@ -210,6 +210,18 @@ match. Docs-wave impact: everything ships in level vocabulary; PR #2's
 decision-16 gap still stands and now also wants the manifest's "which
 level?" wording.
 
+**Updated: 2026-07-16 (Fable, same session, final): PR #1 MERGED to main
+per Seth** (merge commit `893bbe4`; GitHub shows PR #1 MERGED) - the
+five-level on-ramp README is now the repo's front page, replacing the
+shell README. Pre-merge addition (`f4b2505`): a top-of-page [!TIP] -
+"paste this repo link into whatever AI you use for the short version +
+which level to start at" - Seth's call, emphasizing that nobody has to
+read the whole page; it mirrors decision 12's one-paste ethos at the
+reading layer. Note for the docs wave: the README's links to docs/,
+templates/, checklists/ still 404 until those PRs land (the
+buildout-in-progress banner covers this). PR #2 (templates-wave)
+remains the only open PR, its decision-16/17 gaps unchanged.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
