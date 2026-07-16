@@ -20,6 +20,13 @@ learned to run itself: the newest addition is an opt-in autonomous mode that
 recently ran a six-unit wave end-to-end while the human kept only the
 sign-offs.
 
+You don't start at $40, either. The whole thing is built as
+**[five levels](#pick-your-level)** you wade into one depth at a time —
+Level 0 is just you and one agent on the subscription you probably already
+have (Claude *or* ChatGPT — [the protocol doesn't care
+which](#on-chatgpt-instead-of-claude)), and each level up adds exactly one
+new idea and, sometimes, one $20 seat. Every level is a place you can stay.
+
 To be clear about what this is: it is **not "Max for $40."** It is
 Max-quality *results* for $40, paid for in wall-clock time, your attention,
 and rationing discipline. This repo is the whole workflow — the templates,
@@ -28,8 +35,9 @@ the checklists, the setup — including the honest list of what you give up.
 **Jump to:**
 [Why it works](#why-it-works-pay-for-judgment-not-typing) ·
 [The relay](#how-it-works-the-relay) ·
+[On ChatGPT?](#on-chatgpt-instead-of-claude) ·
 [Autonomous mode](#rather-not-run-the-loop-yourself-the-autonomous-relay) ·
-[Pick your rung](#pick-your-rung) ·
+[Pick your level](#pick-your-level) ·
 [Quickstart](#quickstart-one-paste) ·
 [Receipts](#the-receipts) ·
 [The honest trade](#the-honest-trade)
@@ -60,8 +68,10 @@ So split the seats by what the work actually costs:
 *Prices as of July 2026; the dollar figures are a dated worked example — the
 durable claim is the structure: rent frontier intelligence by the session for
 judgment, keep a cheap resident for the routine loop, route the typing to
-commodity models. Full cost model, meter mechanics, and where the $40 can
-creep: [docs/economics.md](docs/economics.md).*
+commodity models. Already paying OpenAI instead? The same table works with
+ChatGPT Plus (~$20) in the planner row — [see the Codex
+door](#on-chatgpt-instead-of-claude). Full cost model, meter mechanics, and
+where the $40 can creep: [docs/economics.md](docs/economics.md).*
 
 The catch — and it's a real one — is that two seats have no API between
 them. That's where you come in.
@@ -127,11 +137,45 @@ that's the worked example, not a requirement: for a CLI, a library, or a docs
 project, what changes is which check commands prove your work and which
 dangerous operations get gated — nothing else.
 
+### On ChatGPT instead of Claude?
+
+The planner seat swaps the same way the executor does. OpenAI's **Codex
+CLI** is the direct analogue of Claude Code — a terminal agent you sign
+into with your existing ChatGPT plan, no API key required. As of July 2026,
+Codex is included across ChatGPT plans (per [OpenAI's help
+center](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan),
+even the Free tier includes some usage — re-verify, plan terms move):
+
+```bash
+# macOS / Linux
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+```
+
+```powershell
+# Windows PowerShell
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+```
+
+Run `codex`, pick *Sign in with ChatGPT*, and the [level
+ladder](#pick-your-level) reads the same with the seat swapped: Levels 0–1
+on ChatGPT Plus (~$20), Level 2 adds the free executor trial, Level 3 is
+the same $40 pair with a different logo on the planner seat.
+
+Honesty, per the house rule: **every receipt in this repo was earned on the
+Claude Code + Cursor pair.** The protocol ports by construction — it's
+markdown files that name roles, and the executor-side swap has a live
+receipt (mid-wave, a different executor delivered the wave's biggest unit
+from the same block file, zero repo changes) — but the planner-side swap is
+untested by us. If you run this on Codex, your own mini-receipts from the
+[usage tracker](templates/usage-tracker.md) are the proof that matters, and
+honestly, we'd love to see them.
+
 ### Rather not run the loop yourself? The autonomous relay
 
 The manual relay above is the default and the beginner path — every hop is
 visible, and you learn where the quality comes from. Once the loop is
-boring, there's an opt-in power mode: the resident reviewer seat dispatches
+boring, there's an opt-in power mode — [Level 4 on the
+ladder](#pick-your-level): the resident reviewer seat dispatches
 queued blocks to the executor's headless CLI itself, watches the run, audits
 the delivery, lands it, and picks up the next block — one session per wave.
 You keep exactly the judgment surface: authoring go-aheads, bug reports, one
@@ -147,41 +191,57 @@ modes execute the same block files verbatim, so nothing is uninstalled
 either way. Details, dispatch channels, and the hard stops:
 [docs/autonomous.md](docs/autonomous.md).
 
-## Pick your rung
+## Pick your level
 
-You don't buy in at $40. The protocol lives in repo files, not in either
-tool, so there's a ladder — and moving up *or down* changes which agent you
-point at a block and nothing else. Nothing gets uninstalled from your repo;
-your queue, state files, and habits survive every move. That reversibility
-is the point.
+You don't buy in at $40 — you wade in. This isn't just a cheap workflow;
+it's a **path into agentic coding**, cut into five levels. Each level up
+adds exactly one new idea (and occasionally one $20 seat), the water gets a
+little deeper, and the cheapness is what makes every step safe to take.
+The protocol lives in repo files, not in either tool, so moving up *or
+down* changes which agent you point at a block and nothing else — nothing
+gets uninstalled, your queue, state files, and habits survive every move.
+**Every level is a place you can stay, not a stage you failed.** Stepping
+back into shallower water is a normal move, and the ladder is honest in
+both directions.
 
 ```mermaid
 flowchart TD
-    R1["🪜 <b>Rung 1 — Solo Claude</b> · $20/mo<br/>one seat, roles split by session"]
-    R2["🎟️ <b>Rung 2 — add the trial</b> · $20/mo + free executor trial<br/>taste the two-seat relay"]
-    R3["🏗️ <b>Rung 3 — full relay</b> · $40/mo<br/>the documented two-seat setup"]
-    R1 -- "single meter pinching?" --> R2
-    R2 -- "your own receipts say yes" --> R3
-    R2 -. "receipts say no — also fine" .-> R1
-    R3 -. "step back down anytime" .-> R1
+    L0["🦶 <b>Level 0 — toes in the water</b> · $0–20/mo<br/>one agent, your project, no protocol yet"]
+    L1["🌊 <b>Level 1 — the shallow end</b> · ~$20/mo<br/>the solo relay: one seat, roles split by session"]
+    L2["🎟️ <b>Level 2 — waist deep</b> · ~$20/mo + free executor trial<br/>taste the two-seat relay"]
+    L3["🏊 <b>Level 3 — the deep end</b> · ~$40/mo<br/>the documented two-seat relay"]
+    L4["🚤 <b>Level 4 — open water</b> · ~$40/mo<br/>the loop drives itself; you keep the gates"]
+    L0 -- "want a review gate and structure?" --> L1
+    L1 -- "single meter pinching?" --> L2
+    L2 -- "your own receipts say yes" --> L3
+    L3 -- "the loop got boring" --> L4
+    L2 -. "receipts say no — also fine" .-> L1
+    L4 -. "step back anytime, mid-wave if needed" .-> L3
 ```
 
-| Rung | Cost | How it runs | The catch (stated, not softened) |
+| Level | Cost | How it runs / what you learn | The catch (stated, not softened) |
 | --- | --- | --- | --- |
-| **1 — Solo Claude** | ~$20/mo | One tool plays all three roles, split by *session* instead of seat: planner sessions author blocks into the queue, a fresh mid-tier session implements one block and stops, a reviewer session audits and commits. | All three roles share **one usage meter** — executor tokens compete with planner tokens, so rationing pressure is highest here. The fresh-context second look survives; the cross-vendor second opinion doesn't. |
-| **2 — Claude + executor trial** | ~$20/mo + $0 | Keep rung 1's setup; add the executor via Cursor's free Pro trial. Route your token-heaviest real units to it and keep mini-receipts (units shipped, review catches, planner tokens freed). | The trial expires, and the post-trial free tier is **not** a viable executor seat. Trial terms are community-reported and unstable — verify at [cursor.com/pricing](https://cursor.com/pricing) before you count on it. *(As of July 2026.)* |
-| **3 — Full relay** | ~$40/mo | The documented two-seat setup: frontier planner rented by the session, resident mid-tier reviewer, dedicated executor seat. Upgrading from rung 2 means paying Cursor and changing nothing else. | The $40 can creep: frontier-model usage burns the executor's included allowance fast. The per-block `MODEL:` header is the mitigation — the price only holds if mechanical work actually routes to cheap models. |
+| **0 — Toes in the water** | $0–20/mo | One agent in your project, no protocol at all: install Claude Code (or [Codex CLI](#on-chatgpt-instead-of-claude)), open it in a repo, ship one tiny real change. You learn what an agent mode actually is. Nothing from this repo is generated yet. | No review gate, no state files — you're trusting one context's claim about its own work. Fine for a taste; the first time it confidently breaks something is the argument for Level 1. *(Cost note, as of July 2026: ChatGPT's Free tier includes some Codex usage; Claude Code needs a $20 Pro seat — re-verify, plan terms move.)* |
+| **1 — The shallow end** | ~$20/mo | The solo relay: one tool plays all three roles, split by *session* instead of seat — planner sessions author blocks into the queue, a fresh mid-tier session implements one block and stops, a reviewer session audits and commits. You learn the protocol itself: task blocks, delivery reports, fresh-context review, one committer. | All three roles share **one usage meter** — executor tokens compete with planner tokens, so rationing pressure is highest here. The fresh-context second look survives; the cross-vendor second opinion doesn't. |
+| **2 — Waist deep** | ~$20/mo + $0 | Keep Level 1's setup; add the executor via Cursor's free Pro trial. Route your token-heaviest real units to it and keep mini-receipts (units shipped, review catches, planner tokens freed). You learn what a second seat actually buys. | The trial expires, and the post-trial free tier is **not** a viable executor seat. Trial terms are community-reported and unstable — verify at [cursor.com/pricing](https://cursor.com/pricing) before you count on it. *(As of July 2026.)* |
+| **3 — The deep end** | ~$40/mo | The documented two-seat setup: frontier planner rented by the session, resident mid-tier reviewer, dedicated executor seat. Upgrading from Level 2 means paying Cursor and changing nothing else. You learn the economics: `MODEL:` routing, meter anchoring, waves. | The $40 can creep: frontier-model usage burns the executor's included allowance fast. The per-block `MODEL:` header is the mitigation — the price only holds if mechanical work actually routes to cheap models. |
+| **4 — Open water** | ~$40/mo | The [autonomous relay](#rather-not-run-the-loop-yourself-the-autonomous-relay): the resident reviewer seat dispatches queued blocks itself, audits, lands, repeats — one session per wave. You learn to supervise instead of relay: go-aheads, smoke sign-off, and the gates are what's left of your job. | The youngest receipts in the repo (seven landed units vs ~six weeks of manual receipts) — and you can't steer a loop you've never driven, so the levels below aren't a formality, they're the prerequisite. The gate never dispatches itself, at any level. |
 
-Honest note on rung 2, because you'd spot it anyway: **it is sequenced to
+And when the [usage tracker](templates/usage-tracker.md) says you're
+hitting caps weekly even at Level 3–4, the honest answer is a Max seat —
+this path openly ends with **outgrowing this repo**, and that's a
+graduation, not a defeat.
+
+Honest note on Level 2, because you'd spot it anyway: **it is sequenced to
 convert you.** A week or two solo teaches the protocol and makes the
 single-meter squeeze *felt*; the trial then removes exactly that pain. What's
 being sold is the second seat — the relay — not Cursor the brand (any agent
-executor qualifies at rung 3). And if your own mini-receipts don't justify
-the second seat, rung 1 is a fully supported destination, not a failure
+executor qualifies at Level 3). And if your own mini-receipts don't justify
+the second seat, Level 1 is a fully supported destination, not a failure
 state. [checklists/trial-playbook.md](checklists/trial-playbook.md) is the
 playbook for spending the trial well;
 [templates/usage-tracker.md](templates/usage-tracker.md) is the instrument
-that tells you which rung you actually need.
+that tells you which level you actually need.
 
 ## Quickstart: one paste
 
@@ -211,7 +271,7 @@ steps:
    Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/blob/main/SETUP.md and set me up.
    ```
 
-The agent takes it from there: tooling, the rung question, a defaults-first
+The agent takes it from there: tooling, the level question, a defaults-first
 setup manifest it fills in *from your repo's actual evidence* (you confirm
 once — no interrogation), generation of your repo's workflow files, and a
 ~15-minute "hello, relay" first lap so you've run the full loop once before
@@ -222,7 +282,10 @@ is reproducible and upgrading later is the same paste.
 app](https://claude.com/product/claude-code) — same agent, same paste, no
 terminal; or a [claude.ai/code](https://claude.ai/code) web session pointed
 at your GitHub repo — a zero-install taste, though the daily loop wants to
-live locally.
+live locally. On ChatGPT? [Install Codex CLI
+instead](#on-chatgpt-instead-of-claude) and paste the same prompt — the
+setup contract is agent-facing markdown, not a Claude feature (untested by
+us on Codex; the honesty note above applies).
 
 Prefer to read before you run anything an agent wrote? The manual path is
 the same content: [docs/setup.md](docs/setup.md).
@@ -410,8 +473,8 @@ No code, no CLI, no framework — documents you point your own agent at.
 | | |
 | --- | --- |
 | [`SETUP.md`](SETUP.md) | The agent-facing setup contract behind the one-paste quickstart |
-| [`docs/setup.md`](docs/setup.md) | Seats, accounts, and one-time setup per rung — plus the ~15-min first-loop walkthrough |
-| [`docs/protocol.md`](docs/protocol.md) | The relay loop in full: statuses, modes, the rung-1 session mapping |
+| [`docs/setup.md`](docs/setup.md) | Seats, accounts, and one-time setup per level — plus the ~15-min first-loop walkthrough |
+| [`docs/protocol.md`](docs/protocol.md) | The relay loop in full: statuses, modes, the Level-1 session mapping |
 | [`docs/autonomous.md`](docs/autonomous.md) | The opt-in autonomous relay: dispatch channels, the fallback ladder, the hard stops |
 | [`docs/steering.md`](docs/steering.md) | Keep-the-human-on-task and anti-loop mechanisms |
 | [`docs/economics.md`](docs/economics.md) | Cost model, meter literacy, window anchoring, where the $40 creeps |
