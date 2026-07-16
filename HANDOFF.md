@@ -169,7 +169,17 @@ young, still disclose. Docs-wave impact: `docs/autonomous.md` and the
 loop-cheat-sheet autonomous block should consume section 5, and the
 README's decision-16 teaser can now say "including a six-unit wave run
 end-to-end by the loop" instead of leaning on one unit. Re-verify items
-unchanged.
+unchanged. **Same session, later: the PR #1 pre-merge refresh LANDED**
+(`2f85ae5` on `readme-onramp`, browser-verified render): numbers
+updated to the traceable 37-units/10-days figures, the decision-16
+autonomous teaser + a v5 evolution entry added, both mermaid diagrams
+flipped vertical (the LR originals rendered ~180px tall - illegible;
+TD renders ~1000px, verified), GitHub `[!IMPORTANT]` alert banner,
+jump-to nav (all 26 in-page anchors verified resolving), "three roles,
+two seats" clarifier under the relay diagram, "v4 setup" jargon
+removed from the rung table, repo map gained the `docs/autonomous.md`
+row. PR #1 is ready for Seth's review; PR #2's decision-16 gap
+(driving-mode manifest question + dispatch-ritual.md) still stands.
 
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
