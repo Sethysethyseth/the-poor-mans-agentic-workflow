@@ -27,6 +27,18 @@ have (Claude *or* ChatGPT — [the protocol doesn't care
 which](#on-chatgpt-instead-of-claude)), and each level up adds exactly one
 new idea and, sometimes, one $20 seat. Every level is a place you can stay.
 
+> [!TIP]
+> **Don't want to read all this? You don't have to.** Paste this into
+> whatever AI you already use (ChatGPT, Claude, anything that reads links):
+>
+> ```
+> Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow and give me the short version: what it is, what it costs, and which level I should start at.
+> ```
+>
+> That's not a gimmick — this whole repo is agent-facing markdown by
+> design. The same move runs the entire setup when you're ready:
+> [the quickstart is one paste](#quickstart-one-paste).
+
 To be clear about what this is: it is **not "Max for $40."** It is
 Max-quality *results* for $40, paid for in wall-clock time, your attention,
 and rationing discipline. This repo is the whole workflow — the templates,
