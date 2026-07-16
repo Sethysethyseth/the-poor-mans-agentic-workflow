@@ -1,24 +1,38 @@
 # The Poor Man's Agentic Workflow
 
-> **Status: buildout in progress.** This README is the first PR of the public
-> buildout. The docs, templates, and checklists it links to land in the next
-> PRs, and this banner comes off on the pre-publish pass.
+> [!IMPORTANT]
+> **Buildout in progress.** This README is the first PR of the public buildout.
+> The docs, templates, and checklists it links to land in the next PRs — until
+> then those links 404. This banner comes off on the pre-publish pass.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![No code, just workflow](https://img.shields.io/badge/ships-docs%2C%20not%20a%20framework-blue.svg)](#whats-in-this-repo)
+[![Runs on](https://img.shields.io/badge/runs%20on-%2420--40%2Fmo-brightgreen.svg)](#why-it-works-pay-for-judgment-not-typing)
 
 Want to get into agentic coding, but don't want to spend $100+ a month on
 what the top people tell you is the only real setup? I built a "poor man's"
 version that runs on two $20 seats — a **planner/reviewer**, an **executor**,
 and **you as the message bus** — so you can dip your foot in without
-committing hundreds a month. It shipped a real production app: **~24 units in
-6 days, zero bounced deliveries, two prod-breaking bugs caught before
-deploy** ([receipts below](#the-receipts)).
+committing hundreds a month. It shipped a real production app: **37 units in
+10 days, zero bounced deliveries, two prod-breaking bugs caught before
+deploy** ([receipts below](#the-receipts)). And once the loop got boring, it
+learned to run itself: the newest addition is an opt-in autonomous mode that
+recently ran a six-unit wave end-to-end while the human kept only the
+sign-offs.
 
 To be clear about what this is: it is **not "Max for $40."** It is
 Max-quality *results* for $40, paid for in wall-clock time, your attention,
 and rationing discipline. This repo is the whole workflow — the templates,
 the checklists, the setup — including the honest list of what you give up.
+
+**Jump to:**
+[Why it works](#why-it-works-pay-for-judgment-not-typing) ·
+[The relay](#how-it-works-the-relay) ·
+[Autonomous mode](#rather-not-run-the-loop-yourself-the-autonomous-relay) ·
+[Pick your rung](#pick-your-rung) ·
+[Quickstart](#quickstart-one-paste) ·
+[Receipts](#the-receipts) ·
+[The honest trade](#the-honest-trade)
 
 ---
 
@@ -58,18 +72,22 @@ You are the message bus. Tasks travel between the agents as **files in the
 repo**, so your entire job is one pasted pointer line per hop:
 
 ```mermaid
-flowchart LR
-    P["<b>Planner</b><br/>frontier model, short sessions<br/><i>authors contract-first task blocks</i>"]
-    Q["<b>The queue</b><br/>docs/tasks/*.md<br/><i>files are the API</i>"]
-    X["<b>Executor</b><br/>agent mode, cheap tokens<br/><i>implements, self-verifies, stops</i>"]
-    D["<b>Delivery report</b><br/><i>the executor's claim:<br/>files touched, test output, evidence</i>"]
-    R["<b>Reviewer</b><br/>resident mid-tier model<br/><i>audits the claim, re-runs checks,<br/>commits, updates state</i>"]
-    P -->|writes blocks into| Q
-    Q -->|"you: “read the block and execute it”"| X
-    X -->|writes| D
-    D -->|"you: “it stopped — audit it”"| R
-    R -->|dispatches next block from| Q
+flowchart TD
+    P["🧠 <b>Planner</b> — frontier model, short sessions<br/><i>authors contract-first task blocks</i>"]
+    Q["🗂️ <b>The queue</b> — docs/tasks/*.md<br/><i>files are the API</i>"]
+    X["⚙️ <b>Executor</b> — agent mode, cheap tokens<br/><i>implements, self-verifies, stops</i>"]
+    D["📄 <b>Delivery report</b> — the executor's claim<br/><i>files touched, test output, evidence</i>"]
+    R["🔍 <b>Reviewer</b> — resident mid-tier model<br/><i>audits the claim, re-runs checks, commits</i>"]
+    P -- "writes blocks into" --> Q
+    Q -- "🧍 you: point the executor at a block" --> X
+    X -- "writes" --> D
+    D -- "🧍 you: say it stopped" --> R
+    R -- "dispatches the next block from the queue" --> Q
 ```
+
+Three roles, **two seats**: the planner and the reviewer share the $20
+Claude seat — frontier judgment rented in short sessions, a mid-tier
+resident model running the daily loop. The executor is the second seat.
 
 One loop, five steps:
 
@@ -109,6 +127,26 @@ that's the worked example, not a requirement: for a CLI, a library, or a docs
 project, what changes is which check commands prove your work and which
 dangerous operations get gated — nothing else.
 
+### Rather not run the loop yourself? The autonomous relay
+
+The manual relay above is the default and the beginner path — every hop is
+visible, and you learn where the quality comes from. Once the loop is
+boring, there's an opt-in power mode: the resident reviewer seat dispatches
+queued blocks to the executor's headless CLI itself, watches the run, audits
+the delivery, lands it, and picks up the next block — one session per wave.
+You keep exactly the judgment surface: authoring go-aheads, bug reports, one
+consolidated smoke pass at wave end, and every gated command. **The gate
+never dispatches itself** — releases, migrations, and anything destructive
+stay human-run, in both modes.
+
+Honesty first: this mode is days old. It has seven landed units behind it —
+including one six-unit wave run end-to-end in a single session — against
+~six weeks of manual-relay receipts. Switching up is one setup answer
+re-pasted; switching down is just pointing at blocks by hand again. Both
+modes execute the same block files verbatim, so nothing is uninstalled
+either way. Details, dispatch channels, and the hard stops:
+[docs/autonomous.md](docs/autonomous.md).
+
 ## Pick your rung
 
 You don't buy in at $40. The protocol lives in repo files, not in either
@@ -118,21 +156,21 @@ your queue, state files, and habits survive every move. That reversibility
 is the point.
 
 ```mermaid
-flowchart LR
-    R1["<b>Rung 1 — Solo Claude</b><br/>$20/mo<br/>one seat, roles split by session"]
-    R2["<b>Rung 2 — add the trial</b><br/>$20/mo + free executor trial<br/>taste the two-seat relay"]
-    R3["<b>Rung 3 — full relay</b><br/>$40/mo<br/>the documented setup"]
-    R1 -->|"single meter pinching?"| R2
-    R2 -->|"your own receipts say yes"| R3
-    R2 -.->|"receipts say no — also fine"| R1
-    R3 -.->|"step back down anytime"| R1
+flowchart TD
+    R1["🪜 <b>Rung 1 — Solo Claude</b> · $20/mo<br/>one seat, roles split by session"]
+    R2["🎟️ <b>Rung 2 — add the trial</b> · $20/mo + free executor trial<br/>taste the two-seat relay"]
+    R3["🏗️ <b>Rung 3 — full relay</b> · $40/mo<br/>the documented two-seat setup"]
+    R1 -- "single meter pinching?" --> R2
+    R2 -- "your own receipts say yes" --> R3
+    R2 -. "receipts say no — also fine" .-> R1
+    R3 -. "step back down anytime" .-> R1
 ```
 
 | Rung | Cost | How it runs | The catch (stated, not softened) |
 | --- | --- | --- | --- |
-| **1 — Solo Claude** | ~$20/mo | One tool plays all three roles, separated by *session* instead of seat: a planner session authors blocks into the queue, a fresh executor session (switched to a mid-tier model) implements one block and stops, a reviewer session audits and commits. Every load-bearing rule survives with "seat" mapped to "session." | All three roles share **one usage meter**, so executor tokens compete with planner tokens — rationing pressure is highest here. Review keeps the fresh-context second look but loses the cross-vendor second opinion. |
-| **2 — Claude + executor trial** | ~$20/mo + $0 | Keep rung 1's setup; add the executor via Cursor's free Pro trial for new accounts. Route your token-heaviest real units to it — the ones that hurt most on rung 1 — and keep mini-receipts (units shipped, review catches, planner tokens freed). | The trial expires, and the post-trial free tier is **not** a viable executor seat — the exits are up to $40 or back to rung 1, never "free forever." Trial terms are community-reported and unstable (14 days historically; recent reports say shorter or changed) — verify at [cursor.com/pricing](https://cursor.com/pricing) before you count on it. *(As of July 2026.)* |
-| **3 — Full relay** | ~$40/mo | The documented v4 setup: frontier planner rented by the session, resident mid-tier reviewer, dedicated executor seat. Upgrading from rung 2 means paying Cursor and changing nothing else. | The $40 can creep: frontier-model usage burns the executor's included allowance fast. The per-block `MODEL:` header is the mitigation — the price only holds if mechanical work actually routes to cheap models. |
+| **1 — Solo Claude** | ~$20/mo | One tool plays all three roles, split by *session* instead of seat: planner sessions author blocks into the queue, a fresh mid-tier session implements one block and stops, a reviewer session audits and commits. | All three roles share **one usage meter** — executor tokens compete with planner tokens, so rationing pressure is highest here. The fresh-context second look survives; the cross-vendor second opinion doesn't. |
+| **2 — Claude + executor trial** | ~$20/mo + $0 | Keep rung 1's setup; add the executor via Cursor's free Pro trial. Route your token-heaviest real units to it and keep mini-receipts (units shipped, review catches, planner tokens freed). | The trial expires, and the post-trial free tier is **not** a viable executor seat. Trial terms are community-reported and unstable — verify at [cursor.com/pricing](https://cursor.com/pricing) before you count on it. *(As of July 2026.)* |
+| **3 — Full relay** | ~$40/mo | The documented two-seat setup: frontier planner rented by the session, resident mid-tier reviewer, dedicated executor seat. Upgrading from rung 2 means paying Cursor and changing nothing else. | The $40 can creep: frontier-model usage burns the executor's included allowance fast. The per-block `MODEL:` header is the mitigation — the price only holds if mechanical work actually routes to cheap models. |
 
 Honest note on rung 2, because you'd spot it anyway: **it is sequenced to
 convert you.** A week or two solo teaches the protocol and makes the
@@ -192,15 +230,15 @@ the same content: [docs/setup.md](docs/setup.md).
 ## The receipts
 
 This workflow wasn't designed on a whiteboard — it was extracted from a live
-pilot. The numbers below are measured, July 2–7, 2026, on one $20 planner
+pilot. The numbers below are measured, July 2–11, 2026, on one $20 planner
 seat and one $20 executor seat. The source project is LogChamp, a production
 fitness tracker — named only so the numbers have a source; this repo
 documents the workflow, not the app.
 
 **The headline numbers:**
 
-- **~24 units landed in 6 days** — whole roadmap units (schema + migration
-  work, analytics, UI overhauls), not one-line fixes.
+- **37 units landed in 10 days** (35 commits) — whole roadmap units (schema +
+  migration work, analytics, UI overhauls), not one-line fixes.
 - **Zero formal bounces** — no unit failed review outright and returned to
   the queue. (Read honestly: the blocks were well-specified, and the current
   protocol deliberately trades a slightly higher expected bounce rate for
@@ -213,10 +251,14 @@ documents the workflow, not the app.
 - **1 escalation up-tier instead of a guess-loop:** the resident reviewer hit
   a real ambiguity, paused dispatch, and escalated on a standing trigger —
   resolution by design session, not thrash.
+- **After the measured window (July 16):** a six-unit wave — four code
+  units, two no-code diagnosis units — dispatched, audited, and landed
+  end-to-end by the autonomous relay in one resident session. The human's
+  inputs: one consolidated smoke pass and the gates.
 
 **The unflattering numbers (published on purpose):**
 
-- **~5 of ~24 units were planner-direct implementations** — the measured
+- **~8 of 37 units were planner-direct implementations** — the measured
   ~20% leak rate of the seat split. It holds ~80% of the time and leaks
   under pressure at exactly the seams it names (escalation outcomes, stated
   direct-fix exceptions, one token-expiry scramble).
@@ -261,10 +303,13 @@ router, you get Max-quality results. If not, read on.
 ### Where Max wins (no softening)
 
 1. **Throughput and your time.** Max buys autonomy — one agent grinds a unit
-   end-to-end unattended. Here every unit costs you a dispatch, an "it
-   stopped," and a "review it," and the default mode is strictly serialized.
-   Part of the $160/mo saved is paid back in attention. Right trade if
-   you're time-rich and cash-poor; inverts for anyone billing hourly.
+   end-to-end unattended. In the default manual mode, every unit costs you a
+   dispatch, an "it stopped," and a "review it," and the loop is strictly
+   serialized. The autonomous relay closes most of that dispatch labor — but
+   it's the newest, least-proven part of the workflow, and Max is still more
+   hands-off. Part of the $160/mo saved is paid back in attention; right
+   trade if you're time-rich and cash-poor, inverts for anyone billing
+   hourly.
 2. **Pro-tier limits are real friction, not theoretical.** Documented scar:
    a session where the planner built two units itself because its tokens
    were expiring mid-plan. Long debugging sessions and big review diffs hit
@@ -326,7 +371,7 @@ for the agent, and no silent step around either.* Full mechanism list:
 ## How the workflow evolved
 
 The two-seat idea survived contact with a real project by changing shape
-three times — and the log of *stated* trade-offs is itself one of the most
+four times — and the log of *stated* trade-offs is itself one of the most
 transferable things here. Every refinement wrote its accepted downside into
 the shared contract so nobody could "fix" it back silently:
 
@@ -345,6 +390,14 @@ the shared contract so nobody could "fix" it back silently:
   *Stated trade-off:* contract-first blocks slightly raise the expected
   bounce rate — the price of moving implementation thinking off the
   frontier seat.
+- **v5 — the loop drives itself (opt-in).** The resident reviewer seat
+  dispatches queued blocks to the executor's headless CLI, monitors, audits,
+  and lands them — one session per wave; the human's attention batches to
+  wave scale (one smoke pass, one gate) while every machine checkpoint stays
+  per-unit. *Stated trade-off:* fewer human touchpoints mid-wave means a
+  drifting wave is caught at the wave boundary, not mid-unit — which is why
+  the gate never dispatches itself and migration- or release-touching blocks
+  refuse autonomous dispatch outright.
 
 The full story, with the incidents that forced each change:
 [docs/protocol.md](docs/protocol.md) and
@@ -359,10 +412,11 @@ No code, no CLI, no framework — documents you point your own agent at.
 | [`SETUP.md`](SETUP.md) | The agent-facing setup contract behind the one-paste quickstart |
 | [`docs/setup.md`](docs/setup.md) | Seats, accounts, and one-time setup per rung — plus the ~15-min first-loop walkthrough |
 | [`docs/protocol.md`](docs/protocol.md) | The relay loop in full: statuses, modes, the rung-1 session mapping |
+| [`docs/autonomous.md`](docs/autonomous.md) | The opt-in autonomous relay: dispatch channels, the fallback ladder, the hard stops |
 | [`docs/steering.md`](docs/steering.md) | Keep-the-human-on-task and anti-loop mechanisms |
 | [`docs/economics.md`](docs/economics.md) | Cost model, meter literacy, window anchoring, where the $40 creeps |
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | The hard-won rules and the incidents behind them |
-| [`templates/`](templates/) | The setup manifest, agent contract, task-block format, state files, command gate, usage tracker |
+| [`templates/`](templates/) | The setup manifest, agent contract, task-block format, state files, command gate, usage tracker, dispatch ritual |
 | [`checklists/`](checklists/) | The loop cheat sheet, reviewer checklist, worktree ritual, trial playbook |
 
 ## License
