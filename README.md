@@ -4,17 +4,17 @@
 > published.** Do not flip this repo to public; that is the owner's call.
 
 This repo will document a real two-seat agentic coding workflow that runs at
-$20-40/month (a planner/reviewer seat + an executor seat, with the human as
+$0-40/month (a planner/reviewer seat + an executor seat, with the human as
 the message bus) as an honest alternative to $200/month single-seat agentic
-coding. It ships as a three-rung on-ramp: solo Claude ($20), Claude + a free
-Cursor trial to evaluate the two-seat relay ($20), the full two-seat setup
-($40) - with rung changes in either direction requiring zero repo changes.
-It also ships two driving modes: the manual relay (default - the human
-runs the loop) and an opt-in autonomous relay (the planner seat
-dispatches, audits, and lands units itself; the human keeps the gates),
-switchable both ways with zero protocol-file edits.
-It was extracted from a live project where the workflow shipped real
-features and caught real bugs.
+coding. It ships as a five-level on-ramp into agentic coding (decision 17):
+Level 0 - one agent, no protocol ($0-20); Level 1 - the solo relay, roles
+split by session ($20); Level 2 - add a free executor trial; Level 3 - the
+full two-seat relay ($40); Level 4 - the opt-in autonomous relay (the
+planner seat dispatches, audits, and lands units itself; the human keeps
+the gates). Level moves in either direction require zero repo changes, and
+the planner seat runs on Claude (Claude Code) or ChatGPT (Codex CLI) -
+decision 18. It was extracted from a live project where the workflow
+shipped real features and caught real bugs.
 
 ## State of this repo
 

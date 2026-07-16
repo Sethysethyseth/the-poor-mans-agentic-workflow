@@ -119,7 +119,11 @@ Recorded 2026-07-07, decided by Seth in session:
    decision 16); it ships as the OPTIONAL second driving mode and
    extends the evolution log (v2→v3→v4→v5), never replaces the
    beginner-facing v4 pitch.
-7. **Entry ladder: three rungs, one protocol** (recorded 2026-07-09).
+7. **Entry ladder: three rungs, one protocol** (recorded 2026-07-09;
+   PRESENTATION superseded by decision 17 — the same ladder now ships as
+   Levels 1–3 of a five-level path, and "level" is the only public word.
+   Every catch, sequencing rule, and honesty requirement below still
+   binds verbatim).
    The README and setup doc present the workflow as an on-ramp you climb
    (and can climb back down), not a $40 buy-in:
    - **Rung 1 — Solo Claude (~$20/mo, Claude Pro only).** One tool plays
@@ -536,11 +540,113 @@ Recorded 2026-07-07, decided by Seth in session:
       Use "driving modes" (manual relay / autonomous relay) everywhere
       for this decision; never number them.
 
+17. **The five-level on-ramp: levels are the identity, not a pricing
+    section** (recorded 2026-07-16, Seth's call — greenlit, implemented
+    same day in README commit `c3a5ba1` on `readme-onramp`). The repo's
+    organizing frame is now a PROGRESSION PATH into agentic coding, not
+    only a cheap workflow: five levels, each defined by three things —
+    what it costs, WHAT YOU LEARN there, and the honest catch that tells
+    you when to move (either direction). The levels must be visible in
+    the README before any download/setup — the ladder is the storefront.
+    - **The path:** Level 0 — toes in the water ($0–20: one agent, your
+      project, NO protocol; ship one tiny change; new content, below the
+      old rung 1). Level 1 — the shallow end (former rung 1, solo relay,
+      roles by session; learn the protocol). Level 2 — waist deep
+      (former rung 2, the conversion rung, unchanged; learn what a
+      second seat buys). Level 3 — the deep end (former rung 3, the
+      documented relay; learn the economics). Level 4 — open water
+      (decision 16's autonomous relay recast as the top level; learn to
+      supervise instead of relay). A closing GRADUATION beat, not a
+      level: hitting caps weekly at Level 3–4 means the honest answer is
+      Max — the path openly ends with outgrowing the repo (this was
+      already decision 8's tracker language; now it's a named beat).
+    - **Metaphor: wading in / water depth** — toes, shallow end, waist
+      deep, deep end, open water. Chosen because it means exactly what a
+      progression metaphor must (enter gradually, every depth is safe to
+      stay at, stepping back to shallower water is normal, deeper ≠
+      better for everyone) and it is already native to the repo's tone
+      (decision 5's "dip your foot in"). A gym/progressive-overload
+      metaphor was considered and REJECTED by Seth — do not reintroduce
+      it. Flavor stays light-touch: level names, the ladder diagram, one
+      framing paragraph; the credibility engine remains receipts and
+      honesty, never theme cosplay.
+    - **Vocabulary rule:** "level" is the ONE public word for this axis.
+      "Rung" is legacy internal vocabulary — wherever this brief or the
+      source material says "rung N", read "Level N" (numbering is
+      unchanged; 0 and 4 are additions at the ends); nothing published
+      ships the word "rung". The decision-16 terminology guard (driving
+      modes never numbered as modes) and the Mode 1/Mode 2 axis are
+      unaffected.
+    - **What this resolves:** decision 16's README tension ("never the
+      lead pitch" vs real content) is now satisfied STRUCTURALLY —
+      autonomous is simply the top level, which pushes it late in the
+      page and junior in the pitch without hiding it. The age
+      disclosure, hard stops, and manual-default requirements are
+      untouched.
+    - **Level 0 honesty:** it has no review gate and no state files —
+      say so (the catch is "you're trusting one context's claim about
+      its own work"). Its cost claim ($0 entry via ChatGPT Free's
+      included Codex usage; Claude Code needs Pro) is timestamped
+      2026-07-16 and on the buildout re-verify list.
+    - **Zero-file-change law extends:** level moves, like rung moves and
+      driving-mode moves before them, change which agent you point at a
+      block and nothing else. Level 0 generates nothing; the manifest
+      run happens on entering Level 1. Section-4's tier-honesty and
+      roles-not-tools requirements apply per level, unchanged.
+    - **Docs-wave impact:** setup.md, the manifest ("which level?"),
+      the loop cheat sheet's per-level vocabulary, economics.md's
+      per-level cost profiles, and the trial playbook all ship in level
+      vocabulary. Section 3's structure descriptions predate this
+      decision — apply the rung→level mapping when building them.
+
+18. **The second vendor door: ChatGPT + Codex CLI as the planner seat**
+    (recorded 2026-07-16, Seth's call — greenlit, implemented same day
+    in the same README commit). The planner seat generalizes exactly
+    like the executor seat, and saying so out loud vastly broadens the
+    audience: a ChatGPT subscriber can run the whole ladder with
+    OpenAI's Codex CLI (the direct Claude Code analogue — terminal
+    agent, signs in with the ChatGPT plan, no API key) in the planner
+    seat.
+    - **Verified 2026-07-16** (re-verify at buildout, timestamps per
+      decision 3): Codex CLI signs in with ChatGPT plans (Plus / Pro /
+      Business; OpenAI's help center says Codex is included across
+      plans INCLUDING Free with some usage); per-OS install one-liners
+      live at chatgpt.com/codex (`install.sh` / `install.ps1`); docs at
+      developers.openai.com/codex.
+    - **Positioning guard — decision 3 stands.** Claude Code + Cursor
+      remains the named, priced, receipted worked example. The Codex
+      door ships as ONE first-class section ("On ChatGPT instead of
+      Claude?") plus a nav link, a cost-table note, and a quickstart
+      line — never a forked parallel README, never a chooser matrix
+      (decision 12's door rule applies).
+    - **Receipts honesty is non-negotiable here:** every receipt in the
+      repo was earned on the Claude+Cursor pair. The executor-side swap
+      has a live receipt (the substitution event, decision 15); the
+      planner-side swap is UNTESTED BY US and ships labeled as such,
+      with the adopter's own usage-tracker mini-receipts named as the
+      proof that matters.
+    - **SETUP.md consequence (docs wave, load-bearing):** the setup
+      contract must be written AGENT-AGNOSTIC — plain agent-facing
+      markdown a Codex session can execute from the same paste; step-0
+      tooling parameterizes on which planner the adopter runs; no
+      Claude-only mechanism may be load-bearing (if one is ever needed,
+      it must degrade gracefully with a stated manual step). This is
+      the "one source, two drivers" requirement gaining a third driver.
+    - **New buildout re-verify items:** Codex plan-inclusion limits per
+      tier (especially Free-tier limits — Level 0's $0 claim depends on
+      them); the install one-liners; and whether Codex CLI has a
+      model-selection mechanism equivalent to `/model` (Level 1's solo
+      relay needs cheap-session vs frontier-session routing — until
+      verified, Level 1 Codex guidance stays generic: "use your tool's
+      model selector").
+
 ## 3. Target structure
 
 ```
-README.md                     the on-ramp pitch, the three-rung ladder
-                              (pick your rung up front), cost model,
+README.md                     the on-ramp pitch, the five-level ladder
+                              (decision 17 - the levels visible before
+                              any download), the ChatGPT/Codex door
+                              (decision 18), cost model,
                               receipts, honest positioning,
                               who-should-not-use-this, and the one-paste
                               quickstart (decision 12): install Claude

@@ -181,6 +181,35 @@ removed from the rung table, repo map gained the `docs/autonomous.md`
 row. PR #1 is ready for Seth's review; PR #2's decision-16 gap
 (driving-mode manifest question + dispatch-ritual.md) still stands.
 
+**Updated: 2026-07-16 (Fable, workout-db session, later same day): BRIEF
+gained settled decisions 17-18, both greenlit AND implemented same day.**
+Decision 17 - THE FIVE-LEVEL ON-RAMP: the levels frame is now the repo's
+identity (a progression path into agentic coding, each level = cost +
+what-you-learn + the catch), not just a pricing ladder. Level 0 (one
+agent, no protocol, $0-20) is new below the old rung 1; Levels 1-3 are
+the former rungs verbatim; Level 4 is decision 16's autonomous relay
+recast as the top level (which structurally resolves its
+"never-the-lead" README tension); a graduation beat names outgrowing the
+repo to Max as the honest exit. Metaphor: WADING IN / water depth (toes
+/ shallow end / waist deep / deep end / open water) - a gym metaphor was
+considered and REJECTED by Seth; "level" is the ONE public word, "rung"
+never ships. Decision 18 - THE SECOND VENDOR DOOR: ChatGPT + Codex CLI
+as planner seat (verified 2026-07-16: signs in with ChatGPT plans incl.
+Free-with-some-usage; install one-liners at chatgpt.com/codex); Claude
+Code + Cursor stays the receipted worked example per decision 3; the
+planner-side swap ships LABELED UNTESTED (all receipts are
+Claude+Cursor); SETUP.md must be written agent-agnostic (one source,
+now three drivers); new re-verify items (Codex tier limits - Level 0's
+$0 claim depends on them - and Codex model-selection mechanics for
+Level 1 guidance). IMPLEMENTED: README v3 on `readme-onramp`
+(`c3a5ba1`, pushed): five-level ladder diagram + table with
+what-you-learn column, Level 0/4 rows, graduation paragraph, "On
+ChatGPT instead of Claude?" section with verified installs + honesty
+note, all rung vocabulary replaced. Shell README on main updated to
+match. Docs-wave impact: everything ships in level vocabulary; PR #2's
+decision-16 gap still stands and now also wants the manifest's "which
+level?" wording.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
