@@ -6,7 +6,10 @@ below with light scrubbing (GitHub org/repo and Windows usernames ->
 placeholders; nothing else altered), plus the v5 receipts. NOTE: the
 source project's skills are under active revision by another agent as of
 this snapshot date - re-snapshot before the docs wave consumes this if
-more than a few days pass.
+more than a few days pass. **RE-SNAPSHOT DONE 2026-07-16 - see section
+5 (the addendum) for everything that changed since `f809494`: the v5.1
+amendment, the skills alignment pass, and the MW-wave receipts that
+SUPERSEDE section 4's age disclosure.**
 
 This file is the ground truth for BRIEF decision 16 (the two driving
 modes). Trace-or-die applies: every published claim about autonomous
@@ -233,4 +236,119 @@ queue entry.
   ritual the same day.
 - **Age disclosure:** as of this snapshot the autonomous mode has ONE
   landed unit and one validated probe behind it, vs ~5 weeks and 37+
-  units for the manual relay. Publish that plainly.
+  units for the manual relay. Publish that plainly. **(SUPERSEDED
+  2026-07-16 - see section 5.5; the count is now seven autonomous
+  units including a six-unit single-session wave.)**
+
+---
+
+## 5. Re-snapshot addendum (2026-07-16, at source commit `c45e0c2`)
+
+Delta since `f809494` across the spec, the three relay skills, and the
+task-queue README (source commits `00dda65`, `c473e21`, `1b9174b`,
+`627c520`). Same scrubbing rules. This addendum is ground truth for the
+docs wave alongside sections 1-4; where it conflicts with them, the
+addendum wins.
+
+### 5.1 The v5.1 amendment (July 15) - one resident session per wave
+
+The spec's relay loop gained a stated norm: **ONE resident mid-tier
+session owns the whole wave** - dispatch -> monitor (scheduled wakeups
+while the executor runs, never spinning) -> audit-and-land ->
+dispatch-next, tick after tick, from "run the relay" until a stop
+condition. Opening a fresh session per unit is the degraded fallback
+(session crash, hand-relay), not the design. Two guard rails written
+into the amendment so it can't be "extended" silently:
+
+- What batches at wave scale is THE HUMAN'S attention (one smoke
+  sign-off, one release gate per wave), never the machine checkpoints -
+  per-unit audit, one commit per unit, and bisectable history are
+  unchanged. Do not stretch this into batching executor runs across
+  units.
+- Skills/rituals load fresh at execution time, so a long resident
+  session still runs the exact audit/dispatch checklists, not a
+  degraded memory of them.
+
+Smoke sign-off correspondingly moved to ONE consolidated checklist per
+wave: the resident session writes each landed unit's smoke items into
+the state file and carries them forward, handing the human the full
+list at wave end. A hand-relayed or single-unit session still gives its
+list immediately. (Precedent: the NT-wave sign-off, two units smoked
+together against one four-item list.)
+
+### 5.2 Skills alignment pass (the v4 remnants swept)
+
+- **The audit ritual now names three delivery paths:** lane worktree
+  (the v5 backbone - uncommitted changes + report in the lane, audit
+  and re-run lanes THERE), local relay (hand-relay fallback, the
+  reviewer's own tree), cloud branch (Channel A exception, PR-body
+  report). Lane-worktree landings: commit in the lane on its
+  `cursor/<unit>` branch, ff-merge onto the wave branch (rebase first
+  if the wave moved), push from the main tree - one commit per unit
+  still holds.
+- **The MODEL header is now explicitly the dispatch-routing lever** as
+  well as the cost lever: `auto` -> the free CLI rung, named tier ->
+  plan credit. The authoring ritual says so.
+- **MODE (relay vs worktree) governs only the hand-relay fallback** -
+  autonomous dispatch always runs in the lane worktree regardless.
+- **Blocks assume the DB-free check lanes only** (unit tests + client
+  build) - no dispatch channel can run the DB-backed integration lane
+  (no env secrets in the lane worktree or the cloud). A block that
+  genuinely needs it is flagged for hand relay in the block itself.
+- **Channel B bookkeeping parity:** the dispatch ritual flips the unit
+  DISPATCHED in the queue index (channel, rung, model in the notes)
+  before the run, same as Channel A.
+
+### 5.3 Relay legibility additions (July 15-16, owner's standing asks)
+
+Directly relevant to BRIEF decision 10 (you-are-here cues) and the
+loop cheat sheet's autonomous variant:
+
+- **Wave progress messaging:** at dispatch, "the executor is working
+  on <unit> (n/N)"; after each landing, a one-line "n/N - <result>"
+  summary; the final landing says "N/N complete" and hands over the
+  consolidated smoke checklist. N = the wave's total block count in
+  the queue index; renumber once, out loud, if the wave changes size.
+- **A zero-token local watch dashboard:** the source project added a
+  small local fs/git watcher (no LLM anywhere in it) that the dispatch
+  ritual pops open in the browser at dispatch time, so the human gets
+  visual confirmation the moment the executor starts writing files.
+  NOTE for the buildout: this is source-project CODE - the public
+  repo's no-code rule stands; publish it as an optional pattern
+  ("any file-watcher pointed at the lane worktree works"), not as a
+  shipped tool.
+
+### 5.4 New re-verify item
+
+None added; the two from decision 16 stand (executor-trial headless
+CLI access; CLI install one-liner + hang-bug status).
+
+### 5.5 Receipts: the MW wave (July 16) - autonomy at wave scale
+
+These SUPERSEDE section 4's age disclosure:
+
+- **Six of a seven-unit wave dispatched AND landed in ONE resident
+  session** (source commits `c005c2a`, `87d6b37`, `f9a6dfd`, `859f3d3`,
+  `9511e8f`, `b6c885f`), all over Channel B - four code units and two
+  no-code DIAGNOSIS units. The seventh was DRAFT, gated on product
+  rulings only the human + frontier tier could settle - the loop
+  correctly did not touch it. Every landing ran the full audit ritual:
+  lanes re-run fresh in the lane worktree each time, full diffs read,
+  claims spot-checked, integration tests the executor could not run
+  (no DB in the lane) run at land time in the main tree.
+- **Deliberate ladder descent as a human call, logged:** the named-model
+  rung was exhausted mid-cycle, and rather than wait for the reset the
+  owner ruled mid-session "run them on auto and you will review them
+  as opus" - frontier-tier audit as the stated compensating control
+  for cheaper execution. Descents are routine, logged per unit in the
+  queue notes, and the model-quality call stayed with the human.
+- **DIAGNOSIS blocks run autonomously too:** two audit-scale diagnosis
+  units (root cause + evidence, zero code changes, findings preserved
+  as committed files) went over the same channel and produced the
+  product-ruling questions the human then settled - the
+  diagnosis-before-fix rule survived autonomy unchanged.
+- **Updated age disclosure for publication:** as of 2026-07-16 the
+  autonomous mode has SEVEN landed units (one pilot + a six-unit wave;
+  five code, two diagnosis) across two waves and one validated pricing
+  probe, vs ~6 weeks and 40+ units for the manual relay. Still young;
+  still publish the asymmetry plainly.

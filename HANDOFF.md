@@ -147,6 +147,30 @@ now needs the one-paragraph autonomous teaser + link (decision 16's
 README treatment) - fold into the same pre-merge refresh decision 15
 already requires.
 
+**Updated: 2026-07-16 (Fable, workout-db session): RE-SNAPSHOT DONE.**
+Decision 16's stale-snapshot warning is discharged:
+`source-material/autonomous-dispatch-2026-07-14.md` gained section 5
+(addendum, snapshotted at source commit `c45e0c2`) covering everything
+since `f809494`: the **v5.1 amendment** (one resident session per wave
+is the norm; human attention batches - one consolidated smoke checklist
++ one gate per wave - machine checkpoints never do), the skills
+alignment pass (three delivery paths in the audit ritual, MODEL header
+as dispatch-routing lever, DB-free-lanes assumption in blocks), relay
+legibility additions (wave progress n/N messaging; a zero-token local
+watch dashboard - source-project CODE, publish as an optional pattern
+only, the no-code rule stands), and the **MW-wave receipts that
+SUPERSEDE the age disclosure**: six of seven units dispatched and
+landed in ONE resident session July 16 (four code + two no-code
+DIAGNOSIS units), a deliberate human-ruled ladder descent with the
+frontier audit as stated compensating control, and the seventh unit
+correctly left alone as DRAFT-gated. New count for publication: SEVEN
+autonomous units across two waves vs ~6 weeks / 40+ manual - still
+young, still disclose. Docs-wave impact: `docs/autonomous.md` and the
+loop-cheat-sheet autonomous block should consume section 5, and the
+README's decision-16 teaser can now say "including a six-unit wave run
+end-to-end by the loop" instead of leaning on one unit. Re-verify items
+unchanged.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
