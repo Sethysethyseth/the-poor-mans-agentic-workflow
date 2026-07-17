@@ -26,13 +26,13 @@ page; there are no hidden fallbacks.
   package.json"), whether the prod/migrations gate items apply - tagging
   each inferred answer with what it saw. You confirm ONCE. You don't need
   to know what a "check lane" is; you can confirm "your tests run with
-  `npm test`" on sight. (On rung 1 this spends part of one usage window -
+  `npm test`" on sight. (At Level 1 this spends part of one usage window -
   a fair one-time cost.)
 
 **The guard either way: the conversation is never the record.** However an
 answer was reached, it lands IN THIS FILE before anything is generated -
-so your choices are versioned, re-consultable when you move rungs, and
-generation is reproducible from this file alone.
+so your choices are versioned, re-consultable when you move levels or
+driving modes, and generation is reproducible from this file alone.
 
 ---
 
@@ -48,16 +48,22 @@ in the generated files.*
   console, older macOS Terminal); if your current terminal already serves
   you, keep it. **Recommended, never required.**
   `Answer: current terminal (agent may offer WezTerm during setup - per-platform install commands in docs/setup.md)`
-- **Executor app** - RUNG-AWARE, and the timing matters:
-  - Rung 2 or 3: install the executor app now.
-  - Rung 1: **WAIT - do not create an executor account yet.** If the
+- **Executor app** - LEVEL-AWARE, and the timing matters:
+  - Level 2, 3, or 4: install the executor app now.
+  - Level 1: **WAIT - do not create an executor account yet.** If the
     trial clock starts at account signup, signing up during your learning
     weeks burns the trial before you can feel the contrast it exists to
     show you (`checklists/trial-playbook.md` says when to pull the
     trigger). *(Trial terms are community-reported and unstable as of
     July 2026 - verify current terms before counting on them.)*
-  `Answer: per my rung (R1 below)`
-- **Git** - required on every rung; the whole protocol lives in a git
+  `Answer: per my level (L1 below)`
+- **Executor CLI** - *(Level 4 / autonomous driving mode only)* - the
+  headless command-line form of the executor app, so the resident seat
+  can dispatch blocks itself. Install + log in once, and create the lane
+  worktree parent directory OUTSIDE cloud-synced folders (measured setup:
+  ~10 minutes total). Skip entirely on manual driving mode.
+  `Answer: n/a (manual mode)`
+- **Git** - required at every level; the whole protocol lives in a git
   repo. `Answer: installed`
 - **Project runtime** - whatever your project needs to run its check
   lanes (Node, Python, Rust, ...). `Answer: <installed / list what's missing>`
@@ -66,24 +72,44 @@ in the generated files.*
   live outside sync - and worktrees MUST.
   `Answer: repo is outside cloud sync (if not: move or exclude it before the first worktree)`
 
-## Section 1 - which rung?
+## Section 1 - which level, which driving mode?
 
 Controls what the generated files call "the executor" in your head (they
 name roles either way), and which vocabulary the loop docs use (sessions
-vs seats). Generated files stay valid unchanged if you move rungs later -
-that's a hard property, not luck.
+vs seats). Generated files stay valid unchanged if you move levels or
+driving modes later - that's a hard property, not luck.
 
-- **R1. Rung** - 1 = solo planner-seat, roles separated by session;
-  2 = rung 1 + executor trial; 3 = full two-seat relay.
-  **Default: rung 1** (cheapest, teaches the protocol, and the ladder is
+*(Level 0 - one agent, no protocol - generates nothing; you run this
+manifest when you enter Level 1.)*
+
+- **L1. Level** - 1 = the shallow end: solo planner-seat, roles separated
+  by session; 2 = waist deep: Level 1 + executor trial; 3 = the deep end:
+  the full two-seat relay; 4 = open water: Level 3 driven autonomously
+  (see D1).
+  **Default: Level 1** (cheapest, teaches the protocol, and the ladder is
   designed to be climbed from here).
-  `Answer: rung 1`
-- **R2. Model-tier vocabulary** - task blocks carry a `MODEL:` header so
+  `Answer: Level 1`
+- **L2. Model-tier vocabulary** - task blocks carry a `MODEL:` header so
   the dispatch decision is one glance. Name your tiers.
-  **Default:** `frontier | mid | cheap` (rung 1: your seat's model picker,
-  e.g. frontier for planning sessions, mid for executor sessions; rungs
-  2-3: the executor app's model selection).
+  **Default:** `frontier | mid | cheap` (Level 1: your seat's model picker,
+  e.g. frontier for planning sessions, mid for executor sessions; Levels
+  2-4: the executor app's model selection).
   `Answer: frontier | mid | cheap`
+- **D1. Driving mode** - MANUAL = you are the message bus: one pointer
+  line dispatches each block, one line sends it to review. AUTONOMOUS =
+  the resident planner seat dispatches blocks itself via the executor's
+  headless CLI, monitors, audits, lands, and dispatches the next; you
+  keep authoring go-ahead, bug reports, smoke sign-off, and every gate
+  item. Answering `autonomous` adds `templates/dispatch-ritual.md` to the
+  generated set and the executor-CLI items to Section 0 - and nothing
+  else changes: both modes execute the same block files verbatim, so
+  switching DOWN later needs no regeneration (stop dispatching and point
+  by hand, mid-wave if you like), and switching UP is one re-run of this
+  manifest with this answer flipped. Requires the full two-seat stack
+  (Level 4 = Level 3 + this answer); it is also the youngest part of the
+  workflow - drive the loop manually first.
+  **Default: MANUAL.**
+  `Answer: manual`
 
 ## Section 2 - project shape + check lanes
 
@@ -209,7 +235,13 @@ manifest. Rules, in order:
    - `<S4>/README.md`, `<S4>/_TEMPLATE.md`, `<S4>/QUEUE.md` (from
      `templates/tasks-README.md` + `templates/task-block.md`) - the
      queue, with the standing footer verbatim and MODEL: vocabulary from
-     R2.
+     L2.
+   - *(Only if D1 = autonomous)* the dispatch ritual (from
+     `templates/dispatch-ritual.md`) - the ONE generated file that
+     carries the executor's concrete CLI invocation, parameterized from
+     the Section 0 executor answers. Changing executors later
+     regenerates this one file; the protocol files (blocks, queue,
+     state, reports) still need zero edits.
    - `<S4>/u0-hello-relay.md` - a trivial starter block (e.g. add one
      line to the project README) sized for the ~15-minute first lap in
      `docs/setup.md`.
@@ -235,5 +267,7 @@ manifest. Rules, in order:
 
 **Templates name roles, not tools** - if you find yourself writing a
 product name into a generated file, stop; that's a bug against the
-rung-mobility guarantee. Tool names live only in Section 0 and
-`docs/setup.md`.
+level-mobility guarantee. Tool names live only in Section 0 and
+`docs/setup.md` - with exactly one stated carve-out: the generated
+dispatch ritual necessarily carries the executor's concrete CLI
+invocation (it IS the pointer the human used to be).

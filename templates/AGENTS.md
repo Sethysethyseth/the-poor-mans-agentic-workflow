@@ -1,6 +1,6 @@
 # AGENTS.md - shared agent contract (template, SINGLE SOURCE)
 
-> Read by ALL agents, every session, at every rung. Shared conventions, the
+> Read by ALL agents, every session, at every level. Shared conventions, the
 > division of labor, and the command-running gate live HERE and ONLY here -
 > do not duplicate them into tool-specific config files (point those here
 > instead, e.g. a CLAUDE.md that imports this file). Current work-state
@@ -9,7 +9,7 @@
 > Template notes, deleted at generation: `<angle-bracket>` placeholders are
 > filled from your setup manifest. Role names are deliberate - "the
 > executor" is whatever agent you point at a block, so changing tools (or
-> rungs) requires zero edits here. Sections marked *(project)* are yours to
+> levels) requires zero edits here. Sections marked *(project)* are yours to
 > fill with your project's facts; keep them short - this file is a
 > contract, not documentation.
 

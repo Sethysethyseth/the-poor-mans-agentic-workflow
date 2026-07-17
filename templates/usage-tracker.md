@@ -13,11 +13,11 @@ Why it earns its place, twice over:
   "anchor" prompt at a chosen time puts the reset where your life needs it.
   Planning windows is the whole discipline; this file is where the plan
   lives. (Full meter mechanics: `docs/economics.md`.)
-- **It's the rung instrument.** Your own four weeks of rows answer the
-  only question that matters: which rung do you actually need? The honest
+- **It's the level instrument.** Your own four weeks of rows answer the
+  only question that matters: which level do you actually need? The honest
   reads are at the bottom, including the one where the answer is "buy Max."
 
-On rung 2 this same file is the trial's mini-receipts sheet - the
+At Level 2 this same file is the trial's mini-receipts sheet - the
 `units` / `bounces` / `review catches` columns are the evidence you'll use
 at the trial-end decision point (`checklists/trial-playbook.md`). One
 tracker, two jobs; don't keep two.
@@ -49,22 +49,22 @@ wave right after it>`
 
 - Windows used vs planned: `__ / __`
 - Units landed per window: `__`
-- Executor $ used of monthly allowance: `$__ / $20` *(rungs 2-3; from the
+- Executor $ used of monthly allowance: `$__ / $20` *(Levels 2-4; from the
   executor's usage dashboard)*
 - Cap hits this week: `__` (which seat, doing what?)
 - One sentence - what would I route differently next week?
 
 ---
 
-## Reading the tracker (the rung instrument)
+## Reading the tracker (the level instrument)
 
 After 2-4 honest weeks:
 
-- **Never hitting caps, windows half-used?** Rung 1 suffices. Don't pay
+- **Never hitting caps, windows half-used?** Level 1 suffices. Don't pay
   for headroom you can't use - that's the same mistake at $40 that this
   workflow calls out at $200.
 - **The single meter pinching while finished blocks queue up waiting for
-  tokens?** That's the exact pain the executor trial removes - rung 2 will
+  tokens?** That's the exact pain the executor trial removes - Level 2 will
   pay for itself. Take the tracker's numbers into the trial as your
   baseline.
 - **Cap hits weekly even on the full $40 stack, with the `MODEL:` header

@@ -7,7 +7,7 @@ pointer line, the executor reads the file and executes. `QUEUE.md` is the
 index, `_TEMPLATE.md` is the block format (from `task-block.md`).
 
 Why files and not chat: a block in the repo is versioned, self-contained,
-re-readable by any seat at any rung, and survives every tool swap - the
+re-readable by any seat at any level, and survives every tool swap - the
 protocol lives in the files, not in either agent.
 
 ---
@@ -64,7 +64,7 @@ directory - the same single-writer rule as the work-state file.
 
 **Mode 1 - serialized file relay (start here).** One working tree, one
 agent active at a time. No new risk: the two-agents-one-tree accident class
-can't trigger because activity is serialized. On rung 1 (one tool, roles
+can't trigger because activity is serialized. At Level 1 (one tool, roles
 as sessions) this is also the only mode that makes sense.
 
 **Mode 2 - parallel worktrees (graduate after ~3 clean Mode 1 units).**
