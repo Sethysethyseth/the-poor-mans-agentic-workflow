@@ -1,4 +1,79 @@
-# HANDOFF - roadmap-setup session state (for the next chat)
+# HANDOFF - buildout session state (for the next chat)
+
+**Read this + BRIEF.md first.** BRIEF is the settled decision record
+(decisions 1-18) and needs no re-interviewing; this file is session
+state, NOT publishable content - it goes on the pre-publish deletion
+checklist along with `source-material/`. History of how each decision
+landed: the dated log at the bottom, newest entries last.
+
+---
+
+## Current state (as of 2026-07-17)
+
+**ALL CONTENT WAVES ARE AUTHORED.** The repo is feature-complete
+pending Seth's review; nothing is in flight.
+
+- **Merged:** PR #1 - the five-level on-ramp README (merge `893bbe4`,
+  2026-07-16) is the repo front page.
+- **Awaiting Seth's review, STACKED, merge strictly in order:**
+  - **PR #2** `templates-wave` - all 8 templates/ files (7 originals +
+    dispatch-ritual.md; decision-16/17 gaps closed 2026-07-16/17:
+    level sweep, D1 driving-mode question, executor-CLI step-0 item).
+    https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/pull/2
+  - **PR #3** `docs-wave` - the six docs/ pages + root SETUP.md.
+    https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/pull/3
+  - **PR #4** `checklists-wave` - the four checklists/ rituals; merging
+    it closes the README's last known 404s.
+    https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/pull/4
+  - Each retargets automatically as its base merges. Combined preview
+    of everything: the `checklists-wave` branch tree.
+- **Remaining build work after PRs land:** ONLY the pre-publish PR -
+  LICENSE (MIT per decision 2), final scrub pass, delete
+  `source-material/` + this file. It waits for Seth's publish decision
+  (his call alone; never flip visibility agent-side).
+
+## Next action (human)
+
+**Next action (human):** review/land PR #2, then #3, then #4 (links
+above). Bounce anything by commenting on the PR and telling the next
+session to apply the feedback. After all three land: say the word on
+publish when ready, and the next session runs the pre-publish PR.
+
+## Carried context for the next session
+
+- **Calls flagged for Seth's ruling at review** (fine to land as-is;
+  listed so they're conscious): SETUP.md names `docs/setup-manifest.md`
+  as the manifest's conventional home in adopter repos (no prior
+  decision specified placement); the trial playbook names
+  cursor.com/pricing once as "the worked example" (same pattern
+  docs/setup.md uses).
+- **Standing re-verify list** (anything published from it is
+  timestamped; refresh at pre-publish): Cursor trial terms + trial
+  clock start (still unverifiable as of 2026-07-11); whether a trial
+  account includes headless-CLI/cheap-tier access (gates Level 4
+  guidance; docs scope autonomous to Levels 3-4 because of it); Codex
+  plan-inclusion limits per ChatGPT tier (Level 0's $0 claim) + install
+  one-liners + model-selection mechanics; Claude Code install
+  one-liners + web-session capabilities; all economics.md meter numbers
+  (last verified 2026-07-16).
+- **Open Seth decisions:** charts placement/format (decision 15); when
+  to flip the repo public.
+- **Formerly-open questions, now addressed in shipped content** (review
+  confirms rather than reopens): minimum viable public gate ->
+  templates/command-gate.md (G4/G5 non-deletable); Mode 1 vs Mode 2
+  payoff -> published honestly (receipts lean Mode 1; the serialization
+  violation is a named scar).
+
+## Pointers
+
+- Source project: `C:\Users\Sethy\OneDrive\Desktop\Cursor\workout-db`
+  (extraction source: `docs/specs/poor-mans-agentic-workflow.md`).
+- This clone lives outside OneDrive deliberately (cloud-sync file
+  locks - see the scar in the tracking doc). Keep it that way.
+
+---
+
+## Session log (verbatim history, oldest first)
 
 **Written:** 2026-07-07, by the planner seat (Fable, workout-db session).
 **Updated:** 2026-07-09 (Fable): BRIEF gained settled decision 7 - the
@@ -80,6 +155,19 @@ existing manifest and presents a diff first) - the one-paste path is
 also the upgrade path; the loop cheat sheet gains 3-5 "when it goes
 sideways" rows so no failure state strands the adopter without a next
 move.
+**Updated: 2026-07-11 (buildout seat, local Claude Code session):
+BUILDOUT STARTED.** Two PRs opened off main: PR #1 (`readme-onramp`,
+8f84c3a) - README v1, the full public on-ramp page. Verified at
+buildout: name-collision check CLEAR; install one-liners + Claude
+prices confirmed 2026-07-11; Cursor trial terms UNVERIFIABLE
+(cursor.com/pricing silent; community reports conflict: 14d / 7d /
+removed) - README hedges them; the trial-playbook must hedge the same
+way. PR #2 (`templates-wave`, e27aa2f) - all seven templates/ files;
+roles-not-tools verified by grep. Buildout-seat calls flagged at
+review: root SETUP.md deferred to the docs/ PR (one-source-two-drivers
+needs docs/setup.md first); +50% weekly-promo numbers kept OUT of the
+README; command-gate.md's deliberate duplication of the AGENTS.md gate
+section is stated in both files.
 **Updated: 2026-07-12/13 (Fable, workout-db cross-pollination session):
 BRIEF gained settled decisions 14-15.** Decision 14: the tools/ waiver -
 `tools/token-tracker/` (Seth's uncommitted tracker.js, now completed:
@@ -101,16 +189,12 @@ tier refinement (Fable withheld for gate/skeletons/escalations, Opus
 audits execution units - economics.md), and two new steering receipts
 (post-push smoke checklist caught two bugs a clean 11-criterion audit
 missed; a second recorded process deviation). Newer numbers SUPERSEDE
-the "~24 units in 6 days" figures - README PR #1 shipped with the old
-ones and needs a refresh line before merge or in the docs wave. Still
-OPEN (Seth): whether/where the suggested charts ship and in what format.
-Source-project backports agreed in the same session but NOT yet applied
-(workout-db's tree was live with another agent): the standing
-"Next action (human):" HANDOFF line, a reviewer-checklist file, a filled
-usage-tracker updated at session close, and the tracking-doc section-10
-log catch-up for the addendum's events - until that catch-up lands, the
-addendum here is the traceable record.
-
+the "~24 units in 6 days" figures. Source-project backports agreed but
+NOT yet applied (workout-db's tree was live with another agent): the
+standing "Next action (human):" HANDOFF line, a reviewer-checklist
+file, a filled usage-tracker at session close, and the tracking-doc
+section-10 log catch-up - until that lands, the addendum here is the
+traceable record.
 **Updated: 2026-07-14 (Fable, workout-db session): BRIEF gained settled
 decision 16 - TWO DRIVING MODES.** The source project adopted relay v5
 the same day (autonomous dispatch: the resident seat dispatches blocks
@@ -123,261 +207,84 @@ every gate item). Switching = the decision-13 re-paste with one manifest
 answer flipped (up) or simply stop-dispatching-and-point-by-hand (down,
 no regeneration) - both modes execute the same block files verbatim.
 Decision 6 amended (story = v4 baseline + v5 as the evolution's ceiling,
-never the lead pitch - age disclosure required: one landed unit vs ~5
-weeks of manual receipts). Target structure gained `docs/autonomous.md`
-+ `templates/dispatch-ritual.md` (the ONE generated file allowed to
-carry a concrete executor CLI invocation - stated carve-out added to the
-roles-not-tools hard requirement); manifest gains a driving-mode
-question (default MANUAL); loop-cheat-sheet gains an autonomous variant
-block; economics.md gains the autonomous cost profile. Two new hard
-requirements: manual-default/reversibility, and autonomy-claims-honest +
-the-gate-never-dispatches-itself (migrations/prod blocks REFUSE
-autonomous dispatch; two-bounce stop; wave end hands to the frontier
-gate, never the loop). New source file the buildout MUST consume:
-`source-material/autonomous-dispatch-2026-07-14.md` (scrubbed spec +
-dispatch ritual + probe results + v5 receipts; note inside: the source
-project's skills are under live revision by another agent - re-snapshot
-if the docs wave starts more than a few days after 2026-07-14). NEW
-re-verify items for the buildout: whether an executor trial account
-includes headless-CLI/auto-model access (gates any rung-2 autonomous
-guidance; if unverifiable, say so and scope autonomous to rung 3), and
-the executor CLI install one-liner + hang-bug status. README PR #1
-impact: the pitch line "human as the message bus" stays the headline but
-now needs the one-paragraph autonomous teaser + link (decision 16's
-README treatment) - fold into the same pre-merge refresh decision 15
-already requires.
-
+never the lead pitch - age disclosure required). Target structure gained
+`docs/autonomous.md` + `templates/dispatch-ritual.md` (the ONE generated
+file allowed to carry a concrete executor CLI invocation - stated
+carve-out added to the roles-not-tools hard requirement); manifest gains
+a driving-mode question (default MANUAL); loop-cheat-sheet gains an
+autonomous variant block; economics.md gains the autonomous cost
+profile. Two new hard requirements: manual-default/reversibility, and
+autonomy-claims-honest + the-gate-never-dispatches-itself
+(migrations/prod blocks REFUSE autonomous dispatch; two-bounce stop;
+wave end hands to the frontier gate, never the loop). New source file:
+`source-material/autonomous-dispatch-2026-07-14.md`. New re-verify
+items: whether an executor trial account includes headless-CLI/auto
+access, and the executor CLI install one-liner + hang-bug status.
 **Updated: 2026-07-16 (Fable, workout-db session): RE-SNAPSHOT DONE.**
-Decision 16's stale-snapshot warning is discharged:
 `source-material/autonomous-dispatch-2026-07-14.md` gained section 5
-(addendum, snapshotted at source commit `c45e0c2`) covering everything
-since `f809494`: the **v5.1 amendment** (one resident session per wave
-is the norm; human attention batches - one consolidated smoke checklist
-+ one gate per wave - machine checkpoints never do), the skills
-alignment pass (three delivery paths in the audit ritual, MODEL header
-as dispatch-routing lever, DB-free-lanes assumption in blocks), relay
-legibility additions (wave progress n/N messaging; a zero-token local
-watch dashboard - source-project CODE, publish as an optional pattern
-only, the no-code rule stands), and the **MW-wave receipts that
-SUPERSEDE the age disclosure**: six of seven units dispatched and
-landed in ONE resident session July 16 (four code + two no-code
-DIAGNOSIS units), a deliberate human-ruled ladder descent with the
-frontier audit as stated compensating control, and the seventh unit
-correctly left alone as DRAFT-gated. New count for publication: SEVEN
-autonomous units across two waves vs ~6 weeks / 40+ manual - still
-young, still disclose. Docs-wave impact: `docs/autonomous.md` and the
-loop-cheat-sheet autonomous block should consume section 5, and the
-README's decision-16 teaser can now say "including a six-unit wave run
-end-to-end by the loop" instead of leaning on one unit. Re-verify items
-unchanged. **Same session, later: the PR #1 pre-merge refresh LANDED**
+(addendum, snapshotted at source commit `c45e0c2`): the v5.1 amendment
+(one resident session per wave; human attention batches - one
+consolidated smoke checklist + one gate per wave - machine checkpoints
+never do), the skills alignment pass (three delivery paths in the audit
+ritual, MODEL header as dispatch-routing lever), relay legibility
+additions (wave progress n/N messaging; a zero-token local watch
+dashboard - source-project CODE, publish as an optional pattern only),
+and the MW-wave receipts that SUPERSEDE the age disclosure: six of
+seven units dispatched and landed in ONE resident session July 16, a
+deliberate human-ruled ladder descent with the frontier audit as stated
+compensating control. New count for publication: SEVEN autonomous units
+across two waves vs ~6 weeks / 40+ manual - still young, still
+disclose. Same session, later: the PR #1 pre-merge refresh LANDED
 (`2f85ae5` on `readme-onramp`, browser-verified render): numbers
 updated to the traceable 37-units/10-days figures, the decision-16
 autonomous teaser + a v5 evolution entry added, both mermaid diagrams
-flipped vertical (the LR originals rendered ~180px tall - illegible;
-TD renders ~1000px, verified), GitHub `[!IMPORTANT]` alert banner,
-jump-to nav (all 26 in-page anchors verified resolving), "three roles,
-two seats" clarifier under the relay diagram, "v4 setup" jargon
-removed from the rung table, repo map gained the `docs/autonomous.md`
-row. PR #1 is ready for Seth's review; PR #2's decision-16 gap
-(driving-mode manifest question + dispatch-ritual.md) still stands.
-
-**Updated: 2026-07-16 (Fable, workout-db session, later same day): BRIEF
-gained settled decisions 17-18, both greenlit AND implemented same day.**
-Decision 17 - THE FIVE-LEVEL ON-RAMP: the levels frame is now the repo's
-identity (a progression path into agentic coding, each level = cost +
-what-you-learn + the catch), not just a pricing ladder. Level 0 (one
-agent, no protocol, $0-20) is new below the old rung 1; Levels 1-3 are
-the former rungs verbatim; Level 4 is decision 16's autonomous relay
-recast as the top level (which structurally resolves its
-"never-the-lead" README tension); a graduation beat names outgrowing the
-repo to Max as the honest exit. Metaphor: WADING IN / water depth (toes
-/ shallow end / waist deep / deep end / open water) - a gym metaphor was
-considered and REJECTED by Seth; "level" is the ONE public word, "rung"
-never ships. Decision 18 - THE SECOND VENDOR DOOR: ChatGPT + Codex CLI
-as planner seat (verified 2026-07-16: signs in with ChatGPT plans incl.
-Free-with-some-usage; install one-liners at chatgpt.com/codex); Claude
-Code + Cursor stays the receipted worked example per decision 3; the
-planner-side swap ships LABELED UNTESTED (all receipts are
-Claude+Cursor); SETUP.md must be written agent-agnostic (one source,
-now three drivers); new re-verify items (Codex tier limits - Level 0's
-$0 claim depends on them - and Codex model-selection mechanics for
-Level 1 guidance). IMPLEMENTED: README v3 on `readme-onramp`
-(`c3a5ba1`, pushed): five-level ladder diagram + table with
-what-you-learn column, Level 0/4 rows, graduation paragraph, "On
-ChatGPT instead of Claude?" section with verified installs + honesty
-note, all rung vocabulary replaced. Shell README on main updated to
-match. Docs-wave impact: everything ships in level vocabulary; PR #2's
-decision-16 gap still stands and now also wants the manifest's "which
-level?" wording.
-
-**Updated: 2026-07-16 (Fable, same session, final): PR #1 MERGED to main
-per Seth** (merge commit `893bbe4`; GitHub shows PR #1 MERGED) - the
-five-level on-ramp README is now the repo's front page, replacing the
-shell README. Pre-merge addition (`f4b2505`): a top-of-page [!TIP] -
-"paste this repo link into whatever AI you use for the short version +
-which level to start at" - Seth's call, emphasizing that nobody has to
-read the whole page; it mirrors decision 12's one-paste ethos at the
-reading layer. Note for the docs wave: the README's links to docs/,
-templates/, checklists/ still 404 until those PRs land (the
-buildout-in-progress banner covers this). PR #2 (templates-wave)
-remains the only open PR, its decision-16/17 gaps unchanged.
-
+flipped vertical, GitHub alert banner, jump-to nav, "three roles, two
+seats" clarifier.
+**Updated: 2026-07-16 (later same day): BRIEF gained settled decisions
+17-18, both greenlit AND implemented same day.** Decision 17 - THE
+FIVE-LEVEL ON-RAMP is the repo's identity: Level 0 (one agent, no
+protocol, $0-20, new), Levels 1-3 (the former rungs verbatim), Level 4
+(autonomous relay as the top level), plus a "graduation to Max"
+honest-exit beat. Metaphor is WADING IN / water depth; Seth REJECTED a
+gym metaphor - never reintroduce it; "level" is the one public word,
+"rung" never ships. Decision 18 - ChatGPT + Codex CLI as a first-class
+planner-seat door (verified 2026-07-16); Claude Code + Cursor stays the
+receipted worked example; planner-side swap ships LABELED UNTESTED;
+SETUP.md must be agent-agnostic. README v3 carries all of it + the
+top-of-page paste-this-repo-into-any-AI TIP (Seth's call).
+**Updated: 2026-07-16 (same session, final): PR #1 MERGED to main per
+Seth** (merge `893bbe4`) - the five-level README is the repo front
+page. Note: README links to docs/, templates/, checklists/ 404 until
+those waves land (the in-progress banner covers it).
 **Updated: 2026-07-17 (Fable, workout-db seat): PR #2 GAPS CLOSED +
-DOCS WAVE SHIPPED as PR #3.** Two sessions' work is now on the remote.
-(1) PR #2's decision-16/17 gaps were already fixed on `templates-wave`
-by a prior session (commits `6e07d98` + `8dd2093`, pushed): level
+DOCS WAVE SHIPPED as PR #3.** (1) PR #2's decision-16/17 gaps fixed on
+`templates-wave` (commits `6e07d98` + `8dd2093`, pushed): level
 vocabulary sweep, driving-mode manifest question D1 + executor-CLI
 step-0 item, new `templates/dispatch-ritual.md` (the stated
-roles-not-tools carve-out; its ladder wording uses "step" so "level"
-owns the ladder vocabulary). PR #2 is updated and still awaiting Seth.
-(2) The docs wave: five pages (setup, protocol, steering, economics,
-autonomous) were found drafted-but-uncommitted from that same prior
-session; this session verified them against decisions 8-18, authored
-the two missing files - `docs/scar-tissue.md` (17-entry incident
-ledger, incl. the required July 4 review skip + July 7 wrong-belief
-correction; one defensive scar labeled as not-ours) and root
-`SETUP.md` (decision-12 agent-facing contract, agent-agnostic per
-decision 18, upgrade-as-diff, orchestrates-by-pointing) - fixed one
-broken anchor in setup.md, and landed it all as **PR #3
-(`docs-wave`, commits `834466e` + `f1889e4`), STACKED on PR #2**
-(review shows only the 7 new files; merge #2 first). Calls flagged in
-the PR body: manifest's conventional home named as
-`docs/setup-manifest.md` (no prior decision specified placement);
-checklists/ links 404 until the next wave. Rung-grep on docs/ +
-SETUP.md: zero hits. Remaining after PR #2 + #3: the checklists/ wave
-(loop-cheat-sheet w/ autonomous block + when-it-goes-sideways rows,
-reviewer-checklist, worktree-ritual, trial-playbook - hedged
-identically to the README on trial terms), then the pre-publish PR.
-Open Seth decisions unchanged: charts placement/format; when to flip
-public.
-
+roles-not-tools carve-out; ladder wording uses "step" so "level" owns
+the ladder vocabulary). (2) The docs wave: five pages (setup, protocol,
+steering, economics, autonomous) found drafted-but-uncommitted from a
+prior session, verified against decisions 8-18; two missing files
+authored - `docs/scar-tissue.md` (17-entry incident ledger incl. the
+required July 4 review skip + July 7 wrong-belief correction; one
+defensive scar labeled as not-ours) and root `SETUP.md` (decision-12
+agent-facing contract, agent-agnostic per decision 18, upgrade-as-diff,
+orchestrates-by-pointing); one broken anchor fixed in setup.md; landed
+as PR #3 (`docs-wave`, commits `834466e` + `f1889e4`), STACKED on
+PR #2. Flagged: manifest's conventional home named as
+`docs/setup-manifest.md`. Rung-grep on docs/ + SETUP.md: zero hits.
 **Updated: 2026-07-17 (same session, later): CHECKLISTS WAVE SHIPPED as
-PR #4** (`checklists-wave`, commit `3c46816`, STACKED on PR #3 - merge
-order is #2 -> #3 -> #4, each retargets automatically). Four files:
-`loop-cheat-sheet.md` (decision-10 you-see-X-do-Y table + decision-13
-sideways rows + decision-16 Level 4 block w/ switch-back row),
-`reviewer-checklist.md` (audit ritual, three delivery paths normalized,
-verify-before-trust, and the executor-committed recovery note decision
-13 references - forward-only, revert commits, never destructive git),
-`worktree-ritual.md` (Mode 2 genericized from the source runbook;
---ff-only refusal framed as a disjointness tripwire), and
-`trial-playbook.md` (decision-7 conversion playbook, intent stated in
-sentence one, terms hedged identically to the README, "never free
-forever", trial-CLI-for-Level-4 disclosed unverified). Rung-grep zero
-across checklists/; anchors hand-checked. Merging #4 closes the last of
-the README's known 404s. **ALL CONTENT WAVES ARE NOW AUTHORED** - after
-Seth lands PRs 2/3/4, the only remaining build work is the pre-publish
-PR (LICENSE, final scrub pass, delete `source-material/` + this file),
-which waits for Seth's publish decision per BRIEF section 5.
-
-**Read this + BRIEF.md first.** This file is session state, NOT publishable
-content - it goes on the pre-publish deletion checklist along with
-`source-material/`.
-
-**Updated: 2026-07-11 (buildout seat, local Claude Code session): BUILDOUT
-STARTED.** Two PRs open, both off main, independent of each other:
-
-- **PR #1 (`readme-onramp`, 8f84c3a):** README v1 - the full public
-  on-ramp page (pitch, cost model, relay loop + rung ladder as mermaid
-  diagrams, one-paste quickstart, receipts incl. unflattering, full honest
-  positioning, steering summary, v2->v4 evolution, repo map, MIT).
-  Verified at buildout: name-collision check CLEAR (title stands);
-  install one-liners + Claude prices confirmed 2026-07-11; **Cursor trial
-  terms UNVERIFIABLE** (cursor.com/pricing silent; community reports
-  conflict: 14d / 7d / removed) - README hedges them as
-  community-reported + unstable; the trial-playbook must hedge the same
-  way.
-- **PR #2 (`templates-wave`, e27aa2f):** all seven templates/ files -
-  task-block (both scales, verbatim footer, delivery report w/ fixed
-  next-action footer, diagnosis variant), tasks-README (queue protocol),
-  command-gate (G4/G5 non-deletable), AGENTS.md, HANDOFF (capped +
-  archive + never-empty next-action line), usage-tracker (decision 8),
-  setup-interview (decision-9 defaults-first manifest + generation
-  contract: stamps, receipt spec, upgrade-as-diff, hello-relay starter
-  block in the generated set). Roles-not-tools verified by grep.
-
-Decisions made by the buildout seat, flaggable at review: root SETUP.md
-deferred to the docs/ PR (one-source-two-drivers needs docs/setup.md to
-exist first); +50% weekly-promo numbers kept OUT of the README
-(economics.md re-verifies fresh - promo expires 2026-07-13, past by the
-time that PR is written); command-gate.md's deliberate duplication of the
-AGENTS.md gate section is stated in both files.
-
-**Next (rewritten 2026-07-16, end of the decisions-17/18 session):**
-
-- **DONE: PR #1 is MERGED** (merge `893bbe4`; branch `readme-onramp` can
-  be deleted or left). The five-level README with the AI-summary TIP is
-  the repo front page. Its links to docs/ + templates/ + checklists/
-   404 until those waves land - the in-progress banner covers it.
-- **PR #2 (`templates-wave`) is the ONLY open PR.** Known gaps to fix at
-  review or as a follow-up: (a) decision 16 - the manifest's
-  driving-mode question + templates/dispatch-ritual.md; (b) decision 17
-  - the manifest's rung question becomes "which level?" (Levels 0-4),
-  and the templates need a "rung" -> "level" vocabulary sweep (they
-  were written pre-rename; grep for "rung" before landing).
-- **Then the docs/ wave, written in LEVEL vocabulary throughout:**
-  setup.md (per level, incl. Level 0's no-protocol page), protocol.md,
-  steering.md, economics.md (re-verify ALL meter numbers fresh),
-  autonomous.md (decisions 16 + the section-5 addendum receipts),
-  scar-tissue.md, and root SETUP.md - which per decision 18 must be
-  AGENT-AGNOSTIC (a Codex session must be able to execute the same
-  paste; no Claude-only mechanism load-bearing).
-- **Buildout re-verify list (current):** Codex plan-inclusion limits
-  per ChatGPT tier (Level 0's $0 claim depends on the Free tier - as
-  of 2026-07-16 per OpenAI help center); Codex install one-liners
-  (chatgpt.com/codex); Codex model-selection mechanics (gates Level 1
-  Codex guidance); Cursor trial terms (still unverifiable as of
-  2026-07-11); Claude Code install one-liners + web capabilities.
-- **Open Seth decisions:** charts placement/format (decision 15);
-  when to flip the repo public (his call alone, pre-publish PR last).
-- Then checklists/, then the pre-publish PR (LICENSE, final scrub,
-  delete source-material/ + this file).
-
-## Status: BUILDOUT IN PROGRESS (was: ready for buildout)
-
-All three blockers from the 2026-07-04 handoff are resolved:
-
-1. **`source-material/` refreshed (2026-07-07):** every copy re-snapshotted
-   from workout-db at its relay-v4 state, re-scrubbed (infra IDs + smoke
-   creds -> placeholders, verified by grep). Two files ADDED:
-   `queue-snapshot.md` + `handoff-archive.md` - the ground truth behind the
-   tracking doc's new receipts section.
-2. **BRIEF.md rewritten to the v4 story** and expanded: the steering layer
-   (keep-human-on-task + anti-loop) and the setup interview are now
-   first-class required content; the receipts section (measured July 2-7
-   pilot numbers) is required README content with a trace-or-die rule.
-3. **The batched decisions are SETTLED and written into BRIEF section 2:**
-   MIT everything; named-tools-first framing with timestamped prices;
-   receipts provenance-only (LogChamp named as evidence source ONLY - hard
-   no-shilling rule); tone = accessible on-ramp ("dip your foot in",
-   first person, then numbers); story = v4. Only the repo-name GitHub
-   collision check remains, delegated to the buildout agent.
-
-Source-project side (workout-db): the tracking doc gained sections 6
-(steering layer), 7 (setup interview), 8 (receipts); old 6/7 renumbered to
-9/10. Committed there same session.
-
-## Next step (for Seth)
-
-**Next action (human):** review/land the stacked PRs in order - #2
-(`templates-wave`) -> #3 (`docs-wave`) -> #4 (`checklists-wave`).
-That's the whole remaining review queue; all content waves are
-authored. After they land, the only build work left is the
-pre-publish PR (LICENSE, final scrub, delete `source-material/` +
-this file), which waits on your publish decision - plus your two open
-calls: charts placement/format, and when to flip the repo public. Any
-agent picking this up: read the 2026-07-17 updates above + BRIEF
-decisions 16-18 first; BRIEF is the settled record and needs no
-re-interviewing.
-
-Open items the buildout carries (not blockers): Mode 1 vs Mode 2 payoff
-data (the receipts lean Mode 1 - the one serialization violation produced
-the messiest session on record), minimum viable command gate for a public
-template.
-
-## Pointers
-
-- Source project: `C:\Users\Sethy\OneDrive\Desktop\Cursor\workout-db`
-  (extraction source: `docs/specs/poor-mans-agentic-workflow.md`).
-- This clone lives outside OneDrive deliberately (cloud-sync file locks -
-  see the scar in the tracking doc). Keep it that way.
+PR #4** (`checklists-wave`, commit `3c46816`, STACKED on PR #3). Four
+files: `loop-cheat-sheet.md` (decision-10 you-see-X-do-Y table +
+decision-13 sideways rows + decision-16 Level 4 block w/ switch-back
+row), `reviewer-checklist.md` (audit ritual, three delivery paths
+normalized, verify-before-trust, and the executor-committed recovery
+note decision 13 references - forward-only, revert commits, never
+destructive git), `worktree-ritual.md` (Mode 2 genericized from the
+source runbook; --ff-only refusal framed as a disjointness tripwire),
+and `trial-playbook.md` (decision-7 conversion playbook, intent stated
+in sentence one, terms hedged identically to the README, "never free
+forever", trial-CLI-for-Level-4 disclosed unverified). Rung-grep zero;
+anchors hand-checked. ALL CONTENT WAVES NOW AUTHORED; HANDOFF
+restructured same session (current-state block on top, this log moved
+below, superseded planning sections folded into it).
