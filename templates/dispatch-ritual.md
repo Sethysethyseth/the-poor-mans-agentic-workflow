@@ -48,8 +48,8 @@
    channel can run lanes needing env secrets or a database. A block
    that genuinely needs them is flagged for hand relay in the block
    itself.
-5. The block's MODEL header routes the rung: cheap/auto tier -> the
-   free CLI rung; named tier -> plan credit. Never silently downgrade a
+5. The block's MODEL header routes the ladder step: cheap/auto tier ->
+   the free CLI step; named tier -> plan credit. Never silently downgrade a
    block whose MODEL header was a deliberate quality call - if the
    ladder forces a descent, note it in the queue entry.
 
@@ -87,8 +87,8 @@ project, July 2026):
 
 Immediately after dispatch, BEFORE the run finishes:
 
-- Flip the unit `DISPATCHED` in `QUEUE.md`, noting channel, rung, and
-  model - the audit needs to know who actually delivered (the
+- Flip the unit `DISPATCHED` in `QUEUE.md`, noting channel, ladder
+  step, and model - the audit needs to know who actually delivered (the
   executor-substitution receipt is why).
 - Tell the human: "the executor is working on `<unit>` (n/N)" - wave
   progress messaging is part of the ritual, not a courtesy. N is the
@@ -112,15 +112,15 @@ decision has been made.)*
 ```
 cloud channel, named model    (usage-based credit ONLY - refuses cleanly at $0)
 CLI, named model              (plan included credit)
-CLI, cheap/auto tier          (included at no extra cost - the backbone rung)
-STOP: page the human          (auth broken / all rungs refused)
+CLI, cheap/auto tier          (included at no extra cost - the backbone step)
+STOP: page the human          (auth broken / every step refused)
 ```
 
 Descend when: a pre-dispatch health check fails; a quota/payment error
 (402/429 family); a run terminates with a quota message; the CLI exits
 with an auth/quota error. Mid-unit death is safe - blocks are
 self-contained contracts, so the unit re-dispatches from scratch on the
-next rung. Log every descent in the queue notes.
+next step down. Log every descent in the queue notes.
 
 ## The loop tick (one resident session owns the whole wave)
 
