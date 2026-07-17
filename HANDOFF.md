@@ -255,14 +255,35 @@ exist first); +50% weekly-promo numbers kept OUT of the README
 time that PR is written); command-gate.md's deliberate duplication of the
 AGENTS.md gate section is stated in both files.
 
-**Next: Seth reviews PRs #1-#2** (or lets them ride and says "keep going" -
-his stated preference today was volume before critique). PR #2's
-templates wave predates decision 16 - the manifest needs the
-driving-mode question and templates/ needs dispatch-ritual.md added,
-either as a review fix or a follow-up PR. Then the docs/ wave: setup.md,
-protocol.md, steering.md, economics.md (re-verify ALL meter numbers
-fresh), autonomous.md (decision 16), scar-tissue.md, root SETUP.md.
-Then checklists/, then the pre-publish PR.
+**Next (rewritten 2026-07-16, end of the decisions-17/18 session):**
+
+- **DONE: PR #1 is MERGED** (merge `893bbe4`; branch `readme-onramp` can
+  be deleted or left). The five-level README with the AI-summary TIP is
+  the repo front page. Its links to docs/ + templates/ + checklists/
+   404 until those waves land - the in-progress banner covers it.
+- **PR #2 (`templates-wave`) is the ONLY open PR.** Known gaps to fix at
+  review or as a follow-up: (a) decision 16 - the manifest's
+  driving-mode question + templates/dispatch-ritual.md; (b) decision 17
+  - the manifest's rung question becomes "which level?" (Levels 0-4),
+  and the templates need a "rung" -> "level" vocabulary sweep (they
+  were written pre-rename; grep for "rung" before landing).
+- **Then the docs/ wave, written in LEVEL vocabulary throughout:**
+  setup.md (per level, incl. Level 0's no-protocol page), protocol.md,
+  steering.md, economics.md (re-verify ALL meter numbers fresh),
+  autonomous.md (decisions 16 + the section-5 addendum receipts),
+  scar-tissue.md, and root SETUP.md - which per decision 18 must be
+  AGENT-AGNOSTIC (a Codex session must be able to execute the same
+  paste; no Claude-only mechanism load-bearing).
+- **Buildout re-verify list (current):** Codex plan-inclusion limits
+  per ChatGPT tier (Level 0's $0 claim depends on the Free tier - as
+  of 2026-07-16 per OpenAI help center); Codex install one-liners
+  (chatgpt.com/codex); Codex model-selection mechanics (gates Level 1
+  Codex guidance); Cursor trial terms (still unverifiable as of
+  2026-07-11); Claude Code install one-liners + web capabilities.
+- **Open Seth decisions:** charts placement/format (decision 15);
+  when to flip the repo public (his call alone, pre-publish PR last).
+- Then checklists/, then the pre-publish PR (LICENSE, final scrub,
+  delete source-material/ + this file).
 
 ## Status: BUILDOUT IN PROGRESS (was: ready for buildout)
 
@@ -290,10 +311,11 @@ Source-project side (workout-db): the tracking doc gained sections 6
 
 ## Next step (for Seth)
 
-Point a Claude Code web session (claude.ai/code) at this repo with:
-*"Read BRIEF.md and follow it."* It should NOT need to interview you - if
-it asks questions BRIEF section 2 already answers, tell it to re-read
-section 2. Expect several reviewable PRs (README first).
+**Next action (human):** review/land PR #2 (`templates-wave`) - or say
+"keep going" and the next session fixes PR #2's decision-16/17 gaps and
+starts the docs/ wave. Any agent picking this up: read this file's
+"Next (rewritten 2026-07-16)" list above + BRIEF decisions 16-18 first;
+BRIEF is the settled record and needs no re-interviewing.
 
 Open items the buildout carries (not blockers): Mode 1 vs Mode 2 payoff
 data (the receipts lean Mode 1 - the one serialization violation produced
