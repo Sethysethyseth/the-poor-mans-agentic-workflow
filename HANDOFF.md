@@ -251,6 +251,25 @@ identically to the README on trial terms), then the pre-publish PR.
 Open Seth decisions unchanged: charts placement/format; when to flip
 public.
 
+**Updated: 2026-07-17 (same session, later): CHECKLISTS WAVE SHIPPED as
+PR #4** (`checklists-wave`, commit `3c46816`, STACKED on PR #3 - merge
+order is #2 -> #3 -> #4, each retargets automatically). Four files:
+`loop-cheat-sheet.md` (decision-10 you-see-X-do-Y table + decision-13
+sideways rows + decision-16 Level 4 block w/ switch-back row),
+`reviewer-checklist.md` (audit ritual, three delivery paths normalized,
+verify-before-trust, and the executor-committed recovery note decision
+13 references - forward-only, revert commits, never destructive git),
+`worktree-ritual.md` (Mode 2 genericized from the source runbook;
+--ff-only refusal framed as a disjointness tripwire), and
+`trial-playbook.md` (decision-7 conversion playbook, intent stated in
+sentence one, terms hedged identically to the README, "never free
+forever", trial-CLI-for-Level-4 disclosed unverified). Rung-grep zero
+across checklists/; anchors hand-checked. Merging #4 closes the last of
+the README's known 404s. **ALL CONTENT WAVES ARE NOW AUTHORED** - after
+Seth lands PRs 2/3/4, the only remaining build work is the pre-publish
+PR (LICENSE, final scrub pass, delete `source-material/` + this file),
+which waits for Seth's publish decision per BRIEF section 5.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
@@ -340,13 +359,16 @@ Source-project side (workout-db): the tracking doc gained sections 6
 
 ## Next step (for Seth)
 
-**Next action (human):** review/land PR #2 (`templates-wave`), then
-PR #3 (`docs-wave`, stacked on #2 - merge in that order) - or say
-"keep going" and the next session writes the checklists/ wave
-(loop-cheat-sheet, reviewer-checklist, worktree-ritual,
-trial-playbook) while the PRs wait. Any agent picking this up: read
-the 2026-07-17 update above + BRIEF decisions 16-18 first; BRIEF is
-the settled record and needs no re-interviewing.
+**Next action (human):** review/land the stacked PRs in order - #2
+(`templates-wave`) -> #3 (`docs-wave`) -> #4 (`checklists-wave`).
+That's the whole remaining review queue; all content waves are
+authored. After they land, the only build work left is the
+pre-publish PR (LICENSE, final scrub, delete `source-material/` +
+this file), which waits on your publish decision - plus your two open
+calls: charts placement/format, and when to flip the repo public. Any
+agent picking this up: read the 2026-07-17 updates above + BRIEF
+decisions 16-18 first; BRIEF is the settled record and needs no
+re-interviewing.
 
 Open items the buildout carries (not blockers): Mode 1 vs Mode 2 payoff
 data (the receipts lean Mode 1 - the one serialization violation produced
