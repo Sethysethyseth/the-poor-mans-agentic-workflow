@@ -222,6 +222,35 @@ templates/, checklists/ still 404 until those PRs land (the
 buildout-in-progress banner covers this). PR #2 (templates-wave)
 remains the only open PR, its decision-16/17 gaps unchanged.
 
+**Updated: 2026-07-17 (Fable, workout-db seat): PR #2 GAPS CLOSED +
+DOCS WAVE SHIPPED as PR #3.** Two sessions' work is now on the remote.
+(1) PR #2's decision-16/17 gaps were already fixed on `templates-wave`
+by a prior session (commits `6e07d98` + `8dd2093`, pushed): level
+vocabulary sweep, driving-mode manifest question D1 + executor-CLI
+step-0 item, new `templates/dispatch-ritual.md` (the stated
+roles-not-tools carve-out; its ladder wording uses "step" so "level"
+owns the ladder vocabulary). PR #2 is updated and still awaiting Seth.
+(2) The docs wave: five pages (setup, protocol, steering, economics,
+autonomous) were found drafted-but-uncommitted from that same prior
+session; this session verified them against decisions 8-18, authored
+the two missing files - `docs/scar-tissue.md` (17-entry incident
+ledger, incl. the required July 4 review skip + July 7 wrong-belief
+correction; one defensive scar labeled as not-ours) and root
+`SETUP.md` (decision-12 agent-facing contract, agent-agnostic per
+decision 18, upgrade-as-diff, orchestrates-by-pointing) - fixed one
+broken anchor in setup.md, and landed it all as **PR #3
+(`docs-wave`, commits `834466e` + `f1889e4`), STACKED on PR #2**
+(review shows only the 7 new files; merge #2 first). Calls flagged in
+the PR body: manifest's conventional home named as
+`docs/setup-manifest.md` (no prior decision specified placement);
+checklists/ links 404 until the next wave. Rung-grep on docs/ +
+SETUP.md: zero hits. Remaining after PR #2 + #3: the checklists/ wave
+(loop-cheat-sheet w/ autonomous block + when-it-goes-sideways rows,
+reviewer-checklist, worktree-ritual, trial-playbook - hedged
+identically to the README on trial terms), then the pre-publish PR.
+Open Seth decisions unchanged: charts placement/format; when to flip
+public.
+
 **Read this + BRIEF.md first.** This file is session state, NOT publishable
 content - it goes on the pre-publish deletion checklist along with
 `source-material/`.
@@ -311,11 +340,13 @@ Source-project side (workout-db): the tracking doc gained sections 6
 
 ## Next step (for Seth)
 
-**Next action (human):** review/land PR #2 (`templates-wave`) - or say
-"keep going" and the next session fixes PR #2's decision-16/17 gaps and
-starts the docs/ wave. Any agent picking this up: read this file's
-"Next (rewritten 2026-07-16)" list above + BRIEF decisions 16-18 first;
-BRIEF is the settled record and needs no re-interviewing.
+**Next action (human):** review/land PR #2 (`templates-wave`), then
+PR #3 (`docs-wave`, stacked on #2 - merge in that order) - or say
+"keep going" and the next session writes the checklists/ wave
+(loop-cheat-sheet, reviewer-checklist, worktree-ritual,
+trial-playbook) while the PRs wait. Any agent picking this up: read
+the 2026-07-17 update above + BRIEF decisions 16-18 first; BRIEF is
+the settled record and needs no re-interviewing.
 
 Open items the buildout carries (not blockers): Mode 1 vs Mode 2 payoff
 data (the receipts lean Mode 1 - the one serialization violation produced
