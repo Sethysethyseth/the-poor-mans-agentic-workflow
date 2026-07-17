@@ -45,7 +45,12 @@ a single $20 Claude seat, add Cursor for free via its trial to evaluate
 the two-seat relay, upgrade to the full $40 setup — or step back down —
 without changing a single file in your repo. The protocol-is-files
 property is what makes that true, and section 4 makes keeping it true a
-hard requirement.
+hard requirement. The same property now buys a SECOND axis (settled
+decision 16): two driving modes — the manual relay (default: the human
+is the message bus) and an opt-in autonomous relay (the resident seat
+dispatches, monitors, audits, and lands units itself; the human keeps
+the gates) — switchable in both directions with zero protocol-file
+edits.
 
 Beyond the seats and the relay, the repo ships two more first-class layers,
 both now specified in the tracking doc:
@@ -105,11 +110,20 @@ Recorded 2026-07-07, decided by Seth in session:
    > and rationing discipline. This repo is the whole workflow, including
    > the honest list of what you give up.
 
-6. **Story version: v4** (three roles + two-tier state channel), told as
-   the refinement of the two-seat idea, with the v2→v3→v4 evolution kept
-   as content — the log of stated trade-offs is itself one of the repo's
-   most transferable ideas.
-7. **Entry ladder: three rungs, one protocol** (recorded 2026-07-09).
+6. **Story version: v4 baseline, v5 as the opt-in ceiling** (amended
+   2026-07-14). The headline story stays v4 (three roles + two-tier
+   state channel), told as the refinement of the two-seat idea, with
+   the v2→v3→v4 evolution kept as content — the log of stated
+   trade-offs is itself one of the repo's most transferable ideas. The
+   source project has since adopted relay v5 (autonomous dispatch —
+   decision 16); it ships as the OPTIONAL second driving mode and
+   extends the evolution log (v2→v3→v4→v5), never replaces the
+   beginner-facing v4 pitch.
+7. **Entry ladder: three rungs, one protocol** (recorded 2026-07-09;
+   PRESENTATION superseded by decision 17 — the same ladder now ships as
+   Levels 1–3 of a five-level path, and "level" is the only public word.
+   Every catch, sequencing rule, and honesty requirement below still
+   binds verbatim).
    The README and setup doc present the workflow as an on-ramp you climb
    (and can climb back down), not a $40 buy-in:
    - **Rung 1 — Solo Claude (~$20/mo, Claude Pro only).** One tool plays
@@ -412,11 +426,227 @@ Recorded 2026-07-07, decided by Seth in session:
       beginner without a next move (the no-dangling-next-action
       requirement, extended to failure states).
 
+14. **tools/ waiver: the token tracker** (recorded 2026-07-12, Seth's
+    call). Section 3's "no code, no CLI" rule is waived for exactly one
+    tool: `tools/token-tracker/` - a zero-dependency, single-file Node
+    script (plus a PowerShell anchor-ping wrapper, example config, and
+    README) that automates the decision-8 disciplines locally. It
+    reconstructs the adopter's 5-hour windows from the Claude Code
+    transcripts already on their disk, estimates a window budget ONLY
+    from lockouts actually observed (no lockouts seen = no percentage
+    printed, ever), computes the anchor-ping plan from the adopter's
+    weekly schedule, and offers a statusline readout. Constraints that
+    keep it inside the repo's character: zero dependencies, no network
+    calls, nothing leaves the machine, generated data/config gitignored,
+    and the HONESTY NOTE in the script header is load-bearing - every
+    figure it prints is an unofficial local estimate, and the "meter
+    numbers stay honest" hard requirement applies to code output exactly
+    as to prose. Positioning: an optional companion to
+    `templates/usage-tracker.md`, referenced from economics.md; it
+    complements ccusage (token/cost readouts) rather than replacing it -
+    the differentiators are window reconstruction, lockout calibration,
+    and the anchor-plan calculator. The paper tracker stays the primary
+    published instrument.
+
+15. **Receipts refresh through 2026-07-11 + post-snapshot events**
+    (recorded 2026-07-12). `source-material/` gained three files the
+    buildout MUST consume: `cursor-token-savings-stats.md` +
+    `cursor-token-savings-data.json` (measured delivery-route split -
+    78.4/21.6 by units, 80.7/19.3 by bytes, 37 units / 35 commits over
+    July 2-11 - plus a two-layer token-savings estimate whose layers and
+    caveats publish together or not at all) and
+    `receipts-addendum-2026-07-12.md` (the executor-substitution
+    receipt: Cursor ran out of Opus allowance mid-wave and a DIFFERENT
+    executor delivered the wave's biggest unit from the same block file
+    with zero repo changes - decision 7's roles-not-tools claim proven
+    live; the cloud-dispatch delivery variant - pushed blocks, delivery
+    report in a PR body, own-clone execution - which protocol.md carries
+    as a second delivery channel, not a third mode; the planner-seat
+    internal tier refinement for economics.md; and two new
+    steering-layer receipts including a second recorded process
+    deviation). Where these numbers overlap older receipts ("~24 units
+    in 6 days"), the new files supersede - the README PR (#1) shipped
+    with the older numbers and should be refreshed before merge or in
+    the docs wave. Still OPEN (Seth decision, do not decide it in the
+    buildout): whether/where the stats file's suggested charts ship
+    (README vs economics.md) and their format - flag it, don't render it
+    unprompted.
+
+16. **Two driving modes: manual relay (default) and autonomous relay**
+    (recorded 2026-07-14, from the source project's relay-v5 adoption —
+    source: `source-material/autonomous-dispatch-2026-07-14.md`). The
+    repo now offers the workflow at two levels of automation, chosen in
+    the manifest, switchable at any time:
+    - **Manual relay — the DEFAULT and the beginner path.** Exactly the
+      v4 story already specified: the human is the message bus (one
+      pointer line per unit, one "executor stopped" ping to the
+      reviewer). Zero setup beyond the seats. All three rungs. Every
+      existing decision applies unchanged. An adopter who never reads
+      the autonomous docs has a complete workflow — the autonomous
+      content must be ADDITIVE, quarantined in its own doc and one
+      manifest question, never a fork of the beginner path.
+    - **Autonomous relay — the opt-in power mode.** The resident
+      planner seat dispatches blocks itself: headless executor CLI in
+      a dedicated lane worktree outside cloud-synced folders (the
+      backbone channel), or the executor's cloud-agents API (the gated
+      exception — it requires usage-based billing the adopter must
+      deliberately enable; it refuses cleanly at $0 otherwise). The
+      resident polls, audits each delivery with the SAME per-unit
+      ritual, lands it, and dispatches the next. Quota refusals descend
+      a fallback ladder (named model on plan credit -> auto model free
+      -> STOP, page the human) and are routine, not incidents. The
+      human's remaining touchpoints are exactly the judgment surface:
+      authoring go-ahead, bug reports, smoke sign-off, and every gate
+      item. Extra setup is real but small (~10 min measured): executor
+      CLI install + login, lane worktree, optional API key.
+    - **Switching modes is the decision-13 paste, in both directions.**
+      Upgrading = flip the manifest's driving-mode answer and re-run
+      the SETUP.md paste; the agent adds the dispatch ritual and the
+      autonomous cheat-sheet rows and NOTHING else changes — both modes
+      execute the same block files verbatim, so the queue, blocks,
+      state files, and delivery reports need zero edits. Downgrading is
+      even cheaper: stop dispatching and point the executor at blocks
+      by hand — mid-wave, per-unit, no regeneration needed (the manual
+      path is always live underneath the autonomous one; the
+      executor-substitution receipt generalizes). Say this reversibility
+      explicitly — it is the same selling point as the rung ladder, on
+      a second axis.
+    - **Rung interaction.** Autonomous mode is documented and receipted
+      for the full two-seat stack (rung 3) only. Whether an executor
+      trial account includes headless-CLI/auto-model access is
+      UNVERIFIED — buildout checks and timestamps it before writing
+      rung-2 guidance. A solo-Claude autonomous variant (rung 1) has
+      zero receipts and does not ship; at most one honest line naming
+      it untested.
+    - **README treatment.** The manual relay stays the headline pitch —
+      the accessible on-ramp tone (decision 5) and the
+      human-as-message-bus framing survive as the default story. The
+      autonomous relay appears as a short late section ("when you're
+      ready to take your hands off the loop"): one paragraph, the
+      honest catches, a link to `docs/autonomous.md`. It is never the
+      lead — it has the youngest receipts (one landed unit + one probe
+      day vs ~5 weeks manual) and the greenest adopters can't steer
+      what they haven't driven. Publish the age disclosure plainly.
+    - **What stays human even in autonomous mode (non-negotiable, from
+      the source spec):** the command gate never dispatches itself —
+      migration-carrying or prod-touching blocks REFUSE autonomous
+      dispatch; merges to main stay behind the trigger phrase; two
+      bounces on one unit stops the machine and pages the human; wave
+      completion hands to the frontier review gate, never to the loop.
+      These hard stops are load-bearing and survive genericization
+      exactly like the section-4 rules.
+    - **Terminology guard:** the serial/parallel "Mode 1 / Mode 2"
+      vocabulary already in the source material is a DIFFERENT axis.
+      Use "driving modes" (manual relay / autonomous relay) everywhere
+      for this decision; never number them.
+
+17. **The five-level on-ramp: levels are the identity, not a pricing
+    section** (recorded 2026-07-16, Seth's call — greenlit, implemented
+    same day in README commit `c3a5ba1` on `readme-onramp`). The repo's
+    organizing frame is now a PROGRESSION PATH into agentic coding, not
+    only a cheap workflow: five levels, each defined by three things —
+    what it costs, WHAT YOU LEARN there, and the honest catch that tells
+    you when to move (either direction). The levels must be visible in
+    the README before any download/setup — the ladder is the storefront.
+    - **The path:** Level 0 — toes in the water ($0–20: one agent, your
+      project, NO protocol; ship one tiny change; new content, below the
+      old rung 1). Level 1 — the shallow end (former rung 1, solo relay,
+      roles by session; learn the protocol). Level 2 — waist deep
+      (former rung 2, the conversion rung, unchanged; learn what a
+      second seat buys). Level 3 — the deep end (former rung 3, the
+      documented relay; learn the economics). Level 4 — open water
+      (decision 16's autonomous relay recast as the top level; learn to
+      supervise instead of relay). A closing GRADUATION beat, not a
+      level: hitting caps weekly at Level 3–4 means the honest answer is
+      Max — the path openly ends with outgrowing the repo (this was
+      already decision 8's tracker language; now it's a named beat).
+    - **Metaphor: wading in / water depth** — toes, shallow end, waist
+      deep, deep end, open water. Chosen because it means exactly what a
+      progression metaphor must (enter gradually, every depth is safe to
+      stay at, stepping back to shallower water is normal, deeper ≠
+      better for everyone) and it is already native to the repo's tone
+      (decision 5's "dip your foot in"). A gym/progressive-overload
+      metaphor was considered and REJECTED by Seth — do not reintroduce
+      it. Flavor stays light-touch: level names, the ladder diagram, one
+      framing paragraph; the credibility engine remains receipts and
+      honesty, never theme cosplay.
+    - **Vocabulary rule:** "level" is the ONE public word for this axis.
+      "Rung" is legacy internal vocabulary — wherever this brief or the
+      source material says "rung N", read "Level N" (numbering is
+      unchanged; 0 and 4 are additions at the ends); nothing published
+      ships the word "rung". The decision-16 terminology guard (driving
+      modes never numbered as modes) and the Mode 1/Mode 2 axis are
+      unaffected.
+    - **What this resolves:** decision 16's README tension ("never the
+      lead pitch" vs real content) is now satisfied STRUCTURALLY —
+      autonomous is simply the top level, which pushes it late in the
+      page and junior in the pitch without hiding it. The age
+      disclosure, hard stops, and manual-default requirements are
+      untouched.
+    - **Level 0 honesty:** it has no review gate and no state files —
+      say so (the catch is "you're trusting one context's claim about
+      its own work"). Its cost claim ($0 entry via ChatGPT Free's
+      included Codex usage; Claude Code needs Pro) is timestamped
+      2026-07-16 and on the buildout re-verify list.
+    - **Zero-file-change law extends:** level moves, like rung moves and
+      driving-mode moves before them, change which agent you point at a
+      block and nothing else. Level 0 generates nothing; the manifest
+      run happens on entering Level 1. Section-4's tier-honesty and
+      roles-not-tools requirements apply per level, unchanged.
+    - **Docs-wave impact:** setup.md, the manifest ("which level?"),
+      the loop cheat sheet's per-level vocabulary, economics.md's
+      per-level cost profiles, and the trial playbook all ship in level
+      vocabulary. Section 3's structure descriptions predate this
+      decision — apply the rung→level mapping when building them.
+
+18. **The second vendor door: ChatGPT + Codex CLI as the planner seat**
+    (recorded 2026-07-16, Seth's call — greenlit, implemented same day
+    in the same README commit). The planner seat generalizes exactly
+    like the executor seat, and saying so out loud vastly broadens the
+    audience: a ChatGPT subscriber can run the whole ladder with
+    OpenAI's Codex CLI (the direct Claude Code analogue — terminal
+    agent, signs in with the ChatGPT plan, no API key) in the planner
+    seat.
+    - **Verified 2026-07-16** (re-verify at buildout, timestamps per
+      decision 3): Codex CLI signs in with ChatGPT plans (Plus / Pro /
+      Business; OpenAI's help center says Codex is included across
+      plans INCLUDING Free with some usage); per-OS install one-liners
+      live at chatgpt.com/codex (`install.sh` / `install.ps1`); docs at
+      developers.openai.com/codex.
+    - **Positioning guard — decision 3 stands.** Claude Code + Cursor
+      remains the named, priced, receipted worked example. The Codex
+      door ships as ONE first-class section ("On ChatGPT instead of
+      Claude?") plus a nav link, a cost-table note, and a quickstart
+      line — never a forked parallel README, never a chooser matrix
+      (decision 12's door rule applies).
+    - **Receipts honesty is non-negotiable here:** every receipt in the
+      repo was earned on the Claude+Cursor pair. The executor-side swap
+      has a live receipt (the substitution event, decision 15); the
+      planner-side swap is UNTESTED BY US and ships labeled as such,
+      with the adopter's own usage-tracker mini-receipts named as the
+      proof that matters.
+    - **SETUP.md consequence (docs wave, load-bearing):** the setup
+      contract must be written AGENT-AGNOSTIC — plain agent-facing
+      markdown a Codex session can execute from the same paste; step-0
+      tooling parameterizes on which planner the adopter runs; no
+      Claude-only mechanism may be load-bearing (if one is ever needed,
+      it must degrade gracefully with a stated manual step). This is
+      the "one source, two drivers" requirement gaining a third driver.
+    - **New buildout re-verify items:** Codex plan-inclusion limits per
+      tier (especially Free-tier limits — Level 0's $0 claim depends on
+      them); the install one-liners; and whether Codex CLI has a
+      model-selection mechanism equivalent to `/model` (Level 1's solo
+      relay needs cheap-session vs frontier-session routing — until
+      verified, Level 1 Codex guidance stays generic: "use your tool's
+      model selector").
+
 ## 3. Target structure
 
 ```
-README.md                     the on-ramp pitch, the three-rung ladder
-                              (pick your rung up front), cost model,
+README.md                     the on-ramp pitch, the five-level ladder
+                              (decision 17 - the levels visible before
+                              any download), the ChatGPT/Codex door
+                              (decision 18), cost model,
                               receipts, honest positioning,
                               who-should-not-use-this, and the one-paste
                               quickstart (decision 12): install Claude
@@ -443,7 +673,26 @@ docs/
   protocol.md                 the loop: author -> dispatch -> execute ->
                               review -> land; statuses; the two modes;
                               the rung-1 mapping (roles = sessions, not
-                              seats)
+                              seats). The dispatch step names both
+                              drivers: the human points the executor at
+                              the block (manual, default) or the
+                              resident dispatches it (autonomous,
+                              decision 16 - one pointer line into
+                              docs/autonomous.md, no forked flow)
+  autonomous.md               the opt-in autonomous relay (decision 16):
+                              the two dispatch channels (headless CLI in
+                              a lane worktree = backbone; cloud API =
+                              gated behind a deliberate usage-based
+                              billing choice), the fallback ladder, the
+                              resident's loop tick, the hard stops (gate
+                              items never self-dispatch; two-bounce
+                              stop), extra setup (~10 min), the honest
+                              catches (young receipts, CLI hang bug +
+                              timeout discipline, named-pool sharing
+                              with IDE usage, resident windows spent on
+                              polling/audit), and the switch-back
+                              paragraph (stop dispatching; point by
+                              hand - nothing to uninstall)
   steering.md                 the steering layer: keep-the-human-on-task
                               mechanisms + anti-loop mechanisms, framed
                               "erosion-resistant, not foolproof"
@@ -456,7 +705,17 @@ docs/
                               comparison table (Pro / $40 stack /
                               Max 5x / Max 20x, provenance-labeled),
                               the two-kinds-of-meter explainer, and
-                              window anchoring
+                              window anchoring; plus the autonomous-mode
+                              cost profile (decision 16): the auto-model
+                              rung is the free backbone, named-model
+                              dispatch shares the plan pool with the
+                              adopter's own IDE usage, the cloud channel
+                              is usage-based-only (real overage money,
+                              OFF by default), and the resident's
+                              polling/audit spends planner-seat windows
+                              - autonomy shifts the bookkeeping tax from
+                              human time to resident tokens, it does not
+                              erase it
   scar-tissue.md              the hard-won rules and the incidents behind
                               them (include the recorded review skip and
                               the wrong-belief correction — process erosion
@@ -472,12 +731,16 @@ templates/
                               AGENTS.md / gate / HANDOFF / steering
                               rules. Sections: step-0 tooling, "which
                               rung?" (parameterizes executor name +
-                              MODEL: vocabulary), project shape + check
-                              lanes (decision 11), gate items, state
-                              files. Also carries the generation-receipt
-                              spec for the consuming agent (decision 9).
-                              Generated files must remain valid unchanged
-                              if the adopter later moves rungs
+                              MODEL: vocabulary), "which driving mode?"
+                              (decision 16 - default MANUAL; answering
+                              autonomous adds the dispatch ritual to the
+                              generated set and the CLI items to step
+                              0), project shape + check lanes (decision
+                              11), gate items, state files. Also carries
+                              the generation-receipt spec for the
+                              consuming agent (decision 9). Generated
+                              files must remain valid unchanged if the
+                              adopter later moves rungs OR driving modes
   AGENTS.md                   generic shared agent contract
   HANDOFF.md                  work-state channel template + single-writer
                               rule + the cap/archive two-tier split
@@ -487,6 +750,19 @@ templates/
                               docs/tasks/ of a target repo)
   command-gate.md             generic ask-first gate (merge / deploy /
                               migrations / destructive / dependencies)
+  dispatch-ritual.md          the autonomous-mode dispatch ritual
+                              (decision 16), generated ONLY when the
+                              manifest says autonomous: preconditions
+                              (block queued + serialization allows +
+                              lane worktree clean), the dispatch
+                              command, monitor-with-timeout, the
+                              fallback ladder, the hard stops. This is
+                              the ONE generated file allowed to carry
+                              the executor's concrete CLI invocation
+                              (see the roles-not-tools carve-out in
+                              section 4); ships as a loadable ritual
+                              for the resident seat (a Claude Code
+                              skill in the worked example)
   usage-tracker.md            the decision-8 weekly meter tracker:
                               weekly window plan, per-session log
                               (anchor time, seat, units shipped,
@@ -499,7 +775,11 @@ checklists/
                               human, loop diagram, per-rung vocabulary,
                               the three most-broken rules (decision 10),
                               plus 3-5 "when it goes sideways" rows
-                              (decision 13)
+                              (decision 13), plus a short autonomous
+                              variant block (decision 16): what the
+                              human sees/does when the resident is
+                              driving (mostly: nothing, until a page),
+                              and the switch-back row
   reviewer-checklist.md       the per-unit audit ritual + verify-before-trust
   worktree-ritual.md          parallel Mode 2 isolation ritual
   trial-playbook.md           the rung-2 conversion playbook: how to spend
@@ -508,12 +788,20 @@ checklists/
                               Mode 2 taste in week two, which
                               mini-receipts to keep, the decision point
                               at trial end)
+tools/
+  token-tracker/              the decision-14 waiver: single-file local
+                              window tracker + anchor-plan calculator +
+                              statusline (tracker.js, anchor-ping.ps1,
+                              config.example.json, README); optional
+                              companion to the usage-tracker template,
+                              linked from economics.md
 ```
 
 Keep it lean. This repo sells a workflow, not a framework: no code, no CLI,
-no build tooling, no GitHub Actions, unless Seth explicitly asks. The
-setup interview is a document an adopter points their own agent at — not a
-script.
+no build tooling, no GitHub Actions, unless Seth explicitly asks (he has
+asked exactly once - decision 14's token tracker; that waiver extends to
+nothing else). The setup interview is a document an adopter points their
+own agent at — not a script.
 
 ## 4. Hard requirements (non-negotiable, from the source project)
 
@@ -530,8 +818,12 @@ script.
   the limit and the guarantee. Never publish "foolproof."
 - **Receipts trace or die.** Every number in the receipts section must
   trace to `queue-snapshot.md` / `handoff-archive.md` /
-  `tracking-doc.md` section 8. If it isn't there, ask Seth or leave it out.
-  Provenance-only rule from section 2 applies everywhere.
+  `tracking-doc.md` section 8 / `cursor-token-savings-stats.md` +
+  `-data.json` / `receipts-addendum-2026-07-12.md` /
+  `autonomous-dispatch-2026-07-14.md`. If it isn't there,
+  ask Seth or leave it out. Where the newer files overlap the older ones,
+  the newer supersede (decision 15). Provenance-only rule from section 2
+  applies everywhere.
 - **The load-bearing rules survive genericization.** Whatever the templates
   look like, they must carry: single committer; single state-file writer;
   executor never commits; blocks fully self-contained (executor gets zero
@@ -572,7 +864,38 @@ script.
   decision-9 tooling step does not weaken this: install recommendations
   (WezTerm, Cursor, terminals) live in setup.md and the manifest's step-0
   section ONLY, timestamped per decision 3, and never leak into generated
-  templates.
+  templates. ONE stated carve-out (decision 16): the generated
+  dispatch ritual necessarily carries the executor's concrete CLI
+  invocation — it IS the pointer the human used to be. It is
+  parameterized from the manifest's executor answer, and changing
+  executors regenerates that one file while the protocol files
+  (blocks, queue, state, reports) still need zero edits — which is the
+  testable form of the rung-move claim, now extended to driving-mode
+  moves.
+- **Manual is the default; autonomous is opt-in and reversible.** The
+  manifest's driving-mode question defaults to MANUAL; an adopter who
+  ignores the autonomous content entirely has a complete, first-class
+  workflow. Switching up is the decision-13 re-paste (one manifest
+  answer flipped); switching down requires NO regeneration — stop
+  dispatching and point by hand, mid-wave if needed. If any generated
+  protocol file would need editing to change driving modes, that's a
+  bug against this requirement.
+- **Autonomy claims stay honest, and the gate never dispatches
+  itself.** The autonomous docs ship with their catches attached: the
+  age disclosure (one landed unit + one probe day at snapshot time, vs
+  ~5 weeks of manual receipts), the headless-CLI hang bug and the
+  timeout-and-retry discipline, named-model pool sharing with the
+  adopter's own IDE usage (a refusal is routine ladder descent, not an
+  incident), the cloud channel's usage-based-billing requirement
+  (refuses cleanly at $0 when disabled; enabling it is the adopter's
+  deliberate billing decision, never the agent's), and the resident's
+  window spend on polling/audit. Non-negotiable hard stops survive
+  genericization: migration-carrying and prod-touching blocks refuse
+  autonomous dispatch; release merges stay behind the human trigger
+  phrase; two bounces on one unit stops the machine and pages the
+  human; wave completion hands to the frontier review gate, never back
+  to the loop. Sources: `autonomous-dispatch-2026-07-14.md`
+  (trace-or-die applies).
 - **Meter numbers stay honest.** In the decision-8 content, official
   facts (the plan multipliers, window/weekly mechanics, Cursor's
   published dollar amounts) and community estimates (prompts-per-window
