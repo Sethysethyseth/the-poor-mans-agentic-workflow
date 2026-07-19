@@ -640,6 +640,42 @@ Recorded 2026-07-07, decided by Seth in session:
       verified, Level 1 Codex guidance stays generic: "use your tool's
       model selector").
 
+19. **Level 2 is the PAID TEST MONTH** (recorded 2026-07-18, Seth's
+    ruling; AMENDS decisions 7 and 17 wherever they describe Level 2 as
+    the free-Pro-trial level). Trigger: a live re-verify sweep
+    (2026-07-18) found Cursor's free Pro trial REMOVED system-wide -
+    staff-confirmed on the official forum 2026-07-03 - making Level 2's
+    "~$20 + $0" cost claim wrong. New story: Level 2 keeps Level 1's
+    setup and adds the executor seat for ONE deliberately-planned paid
+    month of Cursor Pro (~$20, cancel anytime; ~$40 total that month).
+    Route the token-heaviest real units through it, keep mini-receipts,
+    and hit a cancel-or-continue decision gate at month's end - continue
+    is Level 3 (the subscription just keeps going), cancel drops back to
+    Level 1 with zero repo-file changes. The conversion INTENT is
+    unchanged and still ships stated openly (the month is sequenced
+    after Level 1 so the felt contrast can sell the second seat;
+    canceling is a designed outcome, not a failure). "Never free
+    forever" is now literally true. The trial-removal fact ships dated;
+    Hobby is named honestly as a taste of the editor, not an executor
+    seat; if a trial ever returns, it's a free test month - same
+    playbook. `checklists/trial-playbook.md` is renamed
+    `checklists/test-month-playbook.md`. Level 4's "trial CLI
+    unverified" disclosure collapses to: Level 4 requires a paid
+    executor plan.
+
+20. **Receipts evidence page + charts settlement** (recorded 2026-07-18;
+    settles decision 15's open charts question - flagged for Seth's
+    ratification at PR #5 review, prompted by his ask for "actual data
+    in a document" for launch). `docs/receipts.md` is the full public
+    paper trail: pilot methodology, headline tables, the two-layer token
+    estimate (floor + labeled extrapolation), post-snapshot and
+    autonomous receipts, ALL stats-file caveats. Charts are
+    GitHub-native mermaid inside that page (two pies, cumulative-volume
+    line, units-per-wave bar) - no image assets. The raw per-commit
+    dataset ships publicly as `docs/receipts-data.json` so the page
+    depends on nothing deleted at pre-publish. README's receipts section
+    and economics.md carry one-line "full paper trail" links.
+
 ## 3. Target structure
 
 ```

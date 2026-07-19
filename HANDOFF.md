@@ -1,68 +1,148 @@
-# HANDOFF - buildout session state (for the next chat)
+# HANDOFF - launch-prep state (for the next session: the Opus seat)
 
 **Read this + BRIEF.md first.** BRIEF is the settled decision record
-(decisions 1-18) and needs no re-interviewing; this file is session
+(decisions 1-20) and needs no re-interviewing; this file is session
 state, NOT publishable content - it goes on the pre-publish deletion
 checklist along with `source-material/`. History of how each decision
 landed: the dated log at the bottom, newest entries last.
 
+**Seat change (2026-07-18): Fable has departed.** Opus is the frontier
+seat for this repo now - planning, review-feedback application, the
+pre-publish PR, everything. Nothing remaining needs re-deciding; BRIEF
+decisions 1-20 are settled, and the operator's guide below carries
+every ritual this repo uses.
+
 ---
 
-## Current state (as of 2026-07-17)
+## Current state (as of 2026-07-18)
 
-**ALL CONTENT WAVES ARE AUTHORED.** The repo is feature-complete
-pending Seth's review; nothing is in flight.
+**ALL CONTENT IS AUTHORED, including the launch evidence page and the
+launch-blocker fixes.** Nothing is in flight. The repo is
+review-complete pending Seth.
 
-- **Merged:** PR #1 - the five-level on-ramp README (merge `893bbe4`,
-  2026-07-16) is the repo front page.
-- **Awaiting Seth's review, STACKED, merge strictly in order:**
-  - **PR #2** `templates-wave` - all 8 templates/ files (7 originals +
-    dispatch-ritual.md; decision-16/17 gaps closed 2026-07-16/17:
-    level sweep, D1 driving-mode question, executor-CLI step-0 item).
-    https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/pull/2
+- **Merged:** PR #1 - the five-level on-ramp README (merge `893bbe4`).
+- **Awaiting Seth's review, STACKED, merge strictly in order
+  #2 -> #3 -> #4 -> #5 -> #6:**
+  - **PR #2** `templates-wave` - all 8 templates/ files.
   - **PR #3** `docs-wave` - the six docs/ pages + root SETUP.md.
-    https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/pull/3
-  - **PR #4** `checklists-wave` - the four checklists/ rituals; merging
-    it closes the README's last known 404s.
-    https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/pull/4
-  - Each retargets automatically as its base merges. Combined preview
-    of everything: the `checklists-wave` branch tree.
-- **Remaining build work after PRs land:** ONLY the pre-publish PR -
-  LICENSE (MIT per decision 2), final scrub pass, delete
-  `source-material/` + this file. It waits for Seth's publish decision
-  (his call alone; never flip visibility agent-side).
+  - **PR #4** `checklists-wave` - the four checklists/ rituals.
+  - **PR #5** `receipts-wave` (commit `d9f327d`) - `docs/receipts.md`,
+    the launch evidence page: pilot data inlined, four mermaid charts,
+    the two-layer token estimate, every caveat; plus
+    `docs/receipts-data.json` (the raw per-commit dataset, public so
+    nothing depends on files deleted at pre-publish) and one-line
+    paper-trail links from README + economics.md. Settles decision 15's
+    charts question (recorded as decision 20) - Seth ratifies at review.
+  - **PR #6** `level2-test-month` - Level 2 rewritten to the PAID TEST
+    MONTH (decision 19: the Cursor Pro trial is REMOVED system-wide,
+    staff-confirmed 2026-07-03) + every EDIT-grade fix from the
+    2026-07-18 verify sweep and pre-publish audit: +50%-promo date
+    corrected, README buildout banner removed, autonomous wave-math
+    wording fixed, "resident reviewer" naming unified, missing as-of
+    stamps added, template dead paths fixed,
+    `checklists/trial-playbook.md` renamed
+    `checklists/test-month-playbook.md`.
+- **2026-07-18 reports (read before the pre-publish PR), preserved at
+  `source-material/verify-report-2026-07-18.md` and
+  `source-material/audit-report-2026-07-18.md`:**
+  - Re-verify sweep - every third-party fact checked live with URLs;
+    the trial-removal BLOCKER (fixed by PR #6); all else CONFIRMED
+    fresh.
+  - Pre-publish audit - tree-wide consistency audit; all EDIT+
+    findings fixed by PR #6 except LICENSE (a pre-publish item by
+    design).
+- **Remaining build work after PRs land: ONLY the pre-publish PR** -
+  LICENSE (MIT, decision 2), final scrub, delete `source-material/` +
+  this file + stray TASK/DELIVERY/report files, same-day re-verify
+  refresh. Waits for Seth's publish decision (his call alone; never
+  flip visibility agent-side).
 
 ## Next action (human)
 
-**Next action (human):** review/land PR #2, then #3, then #4 (links
-above). Bounce anything by commenting on the PR and telling the next
-session to apply the feedback. After all three land: say the word on
-publish when ready, and the next session runs the pre-publish PR.
+Review/land PR #2 -> #3 -> #4 -> #5 -> #6 in order (each retargets as
+its base merges; combined preview of everything = the
+`level2-test-month` branch tree). Bounce anything by commenting on the
+PR and telling the next session to apply the feedback. After all five
+land: say the word on publish, and the next session runs the
+pre-publish PR.
+
+## Launch checklist (the definition of "ready to flip public")
+
+1. PRs #2-#6 merged in order (Seth).
+2. Decision-20 ratification at PR #5 review: the receipts page IS the
+   charts settlement (placement + mermaid format). Bounce with format
+   feedback if not.
+3. Pre-publish PR (next session, only after Seth says publish):
+   LICENSE (MIT); SAME-DAY re-verify sweep re-run (prices move; the
+   +50% weekly promo lapsed 2026-07-19 - confirm economics.md reads
+   correctly by then); final scrub (delete `source-material/` +
+   `HANDOFF.md`; grep the public tree for BRIEF/HANDOFF/source-material
+   references, "rung", stray TASK/DELIVERY/AUDIT/VERIFY files); confirm
+   the GitHub render of README + receipts.md (mermaid charts included).
+4. Seth flips the repo public - manual, his act, never agent-side.
+5. Post-launch candidate (Seth-gated): the fan-out dispatch pattern -
+   `source-material/fan-out-dispatch-2026-07-18.md` holds the design
+   intuition + the first receipt. Seth has an unshared integration
+   idea: ASK HIM FIRST, then design against that note.
+
+## Operator's guide (running this repo's loop without Fable)
+
+The workflow eats its own dog food: Cursor executes, Claude Code
+audits and lands. Proven here 2026-07-18 with four units, three of
+them in parallel.
+
+- **Dispatch:** one agent per worktree, ALWAYS outside OneDrive
+  (`git worktree add C:\dev\worktrees\<name> -b <branch> <base>` from
+  this clone). Contract-first `TASK.md` at the worktree root (goal,
+  sources to read, hard rules, acceptance criteria with grep-proof
+  demands, STOP CONDITION footer; report-only lanes state "NO repo
+  file edits"). Run headless as a BACKGROUND task, never
+  foreground-wait (known hang bug): read the key inline via
+  `[Environment]::GetEnvironmentVariable('CURSOR_API_KEY','User')`,
+  invoke by full path -
+  `C:\Users\Sethy\AppData\Local\cursor-agent\cursor-agent.ps1 -p "Read
+  TASK.md in this directory and execute it exactly. Write the delivery
+  report to DELIVERY.md in this directory and make NO git operations."
+  --force --model <opus|auto> --output-format text` with cwd = the
+  worktree. ALWAYS pass `--model` explicitly (flagless silently
+  inherits the previous run's model). Judgment/content units -> opus
+  tier; mechanical/report units -> auto. Quota refusal descends
+  named -> auto -> do it yourself (every unit here is docs-scale).
+- **Parallel fan-out:** content lanes parallelize only when their
+  files-to-touch are disjoint (in doubt = collide = serialize);
+  report-only lanes (audits, verify sweeps, research) parallelize
+  freely - they can't collide by construction. Many hands, ONE gate:
+  auditing/committing/landing stays single-file through this seat.
+- **Landing:** never trust the delivery report - re-verify yourself
+  (recompute any numbers from source data, grep banned vocab -
+  "rung", gym metaphors - check links and level-price consistency).
+  Remove TASK.md/DELIVERY.md before staging. Stage files individually
+  (never `git add .`), ASCII-only commit messages, SHA check via
+  `git log --oneline`, push, `gh pr create` against the correct
+  stacked base, confirm the branch reached origin.
+- **Guardrails:** PRs are Seth's to merge - never merge for him.
+  Never flip visibility. BRIEF changes get a numbered decision with a
+  dated rationale. This file is rewritten every session: state on
+  top, log below verbatim, newest entries last.
 
 ## Carried context for the next session
 
-- **Calls flagged for Seth's ruling at review** (fine to land as-is;
-  listed so they're conscious): SETUP.md names `docs/setup-manifest.md`
-  as the manifest's conventional home in adopter repos (no prior
-  decision specified placement); the trial playbook names
-  cursor.com/pricing once as "the worked example" (same pattern
-  docs/setup.md uses).
-- **Standing re-verify list** (anything published from it is
-  timestamped; refresh at pre-publish): Cursor trial terms + trial
-  clock start (still unverifiable as of 2026-07-11); whether a trial
-  account includes headless-CLI/cheap-tier access (gates Level 4
-  guidance; docs scope autonomous to Levels 3-4 because of it); Codex
-  plan-inclusion limits per ChatGPT tier (Level 0's $0 claim) + install
-  one-liners + model-selection mechanics; Claude Code install
-  one-liners + web-session capabilities; all economics.md meter numbers
-  (last verified 2026-07-16).
-- **Open Seth decisions:** charts placement/format (decision 15); when
-  to flip the repo public.
-- **Formerly-open questions, now addressed in shipped content** (review
-  confirms rather than reopens): minimum viable public gate ->
-  templates/command-gate.md (G4/G5 non-deletable); Mode 1 vs Mode 2
-  payoff -> published honestly (receipts lean Mode 1; the serialization
-  violation is a named scar).
+- The re-verify list is FRESH as of 2026-07-18 (VERIFY-REPORT.md has
+  URLs + verdicts per item); only the same-day pre-publish refresh
+  remains. The older standing list in previous log entries is
+  superseded.
+- Flagged for Seth's ruling at review: decision-20 ratification
+  (PR #5); SETUP.md naming `docs/setup-manifest.md` as the manifest's
+  adopter-repo home (from 07-17); the test-month playbook keeping
+  cursor.com/pricing as the worked example (confirm the pattern
+  survived the PR #6 rewrite).
+- Open Seth items: when to flip public; his Cursor/fan-out
+  integration idea (unshared - ask him).
+- Worktrees left in place under `C:\dev\worktrees\`: `pmaw-verify` +
+  `pmaw-audit` (report lanes, reports now copied into
+  source-material/) and `pmaw-evidence` (the content lane; branches
+  `receipts-wave` + `level2-test-month` landed from it). Safe to
+  `git worktree remove` any of them at next session start.
 
 ## Pointers
 
@@ -70,6 +150,9 @@ publish when ready, and the next session runs the pre-publish PR.
   (extraction source: `docs/specs/poor-mans-agentic-workflow.md`).
 - This clone lives outside OneDrive deliberately (cloud-sync file
   locks - see the scar in the tracking doc). Keep it that way.
+- Claude Code memory (workout-db project scope):
+  `poor-mans-agentic-workflow.md` + `fable-withheld-opus-executes.md`
+  both updated 2026-07-18 with this state and the seat change.
 
 ---
 
@@ -259,16 +342,16 @@ those waves land (the in-progress banner covers it).
 **Updated: 2026-07-17 (Fable, workout-db seat): PR #2 GAPS CLOSED +
 DOCS WAVE SHIPPED as PR #3.** (1) PR #2's decision-16/17 gaps fixed on
 `templates-wave` (commits `6e07d98` + `8dd2093`, pushed): level
-vocabulary sweep, driving-mode manifest question D1 + executor-CLI
-step-0 item, new `templates/dispatch-ritual.md` (the stated
-roles-not-tools carve-out; ladder wording uses "step" so "level" owns
-the ladder vocabulary). (2) The docs wave: five pages (setup, protocol,
-steering, economics, autonomous) found drafted-but-uncommitted from a
-prior session, verified against decisions 8-18; two missing files
-authored - `docs/scar-tissue.md` (17-entry incident ledger incl. the
-required July 4 review skip + July 7 wrong-belief correction; one
-defensive scar labeled as not-ours) and root `SETUP.md` (decision-12
-agent-facing contract, agent-agnostic per decision 18, upgrade-as-diff,
+vocabulary sweep, D1 driving-mode question, executor-CLI step-0 item,
+new `templates/dispatch-ritual.md` (the stated roles-not-tools
+carve-out; ladder wording uses "step" so "level" owns the ladder
+vocabulary). (2) The docs wave: five pages (setup, protocol, steering,
+economics, autonomous) found drafted-but-uncommitted from a prior
+session, verified against decisions 8-18; two missing files authored -
+`docs/scar-tissue.md` (17-entry incident ledger incl. the required
+July 4 review skip + July 7 wrong-belief correction; one defensive
+scar labeled as not-ours) and root `SETUP.md` (decision-12 agent-facing
+contract, agent-agnostic per decision 18, upgrade-as-diff,
 orchestrates-by-pointing); one broken anchor fixed in setup.md; landed
 as PR #3 (`docs-wave`, commits `834466e` + `f1889e4`), STACKED on
 PR #2. Flagged: manifest's conventional home named as
@@ -288,3 +371,27 @@ forever", trial-CLI-for-Level-4 disclosed unverified). Rung-grep zero;
 anchors hand-checked. ALL CONTENT WAVES NOW AUTHORED; HANDOFF
 restructured same session (current-state block on top, this log moved
 below, superseded planning sections folded into it).
+**Updated: 2026-07-18 (Fable, workout-db seat - FABLE'S LAST SESSION):
+LAUNCH-PREP FAN-OUT.** Four Cursor agents dispatched from one frontier
+session against this repo - three parallel worktree lanes + one
+serialized behind the first landing: (A) the evidence page ->
+`docs/receipts.md` + `docs/receipts-data.json`, landed as PR #5
+(`receipts-wave`, `d9f327d`; recorded as decision 20, settles
+decision 15's charts question pending Seth's ratification); (B) a live
+web re-verify sweep -> `VERIFY-REPORT.md` (pmaw-verify worktree):
+Cursor's Pro trial REMOVED system-wide (staff-confirmed 2026-07-03) =
+Level 2 cost-claim BLOCKER; +50% weekly promo actually EXTENDED to
+2026-07-19 (repo said expired 07-13); everything else confirmed fresh
+with URLs; (C) a pre-publish tree audit -> `AUDIT-REPORT.md`
+(pmaw-audit worktree): LICENSE missing (planned), stale README
+buildout banner (BLOCKER at launch), autonomous wave-math ambiguity,
+resident-naming split, missing stamps, template dead paths; tree
+otherwise clean on links/vocab/provenance/PII; (D) Seth ruled mid-
+session "go with your recommendation" -> Level 2 rewritten to the PAID
+TEST MONTH (decision 19) + all EDIT+ audit/verify fixes, landed as
+PR #6 (`level2-test-month`, stacked on #5). BRIEF gained decisions
+19-20. Fan-out design intuition + first receipt captured in
+`source-material/fan-out-dispatch-2026-07-18.md`; Seth has an unshared
+Cursor-integration idea - next session asks him first. Seat handover:
+Fable departs; Opus continues with the operator's guide above; memory
+files updated.
