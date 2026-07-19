@@ -94,13 +94,32 @@ page of its own. Age disclosure required: as of 2026-07-18 the receipts
 are ONE session (four units: evidence page, verify sweep, tree audit,
 Level 2 rewrite). Do not oversell.
 
-## Seth's integration idea - placeholder
+## Seth's integration idea - CAPTURED AND SHIPPED (same day)
 
-Seth stated he has an idea for integrating Cursor into this multi-agent
-picture beyond what's captured here. Not yet specified. Candidate shapes
-to explore when he shares it (guesses, not his words): Cursor as a
-standing pool the resident reviewer fans out to; per-lane cloud agents
-(Channel A) once usage-based pricing economics make sense; mixed fleets
-(Claude subagents for report lanes, Cursor for content lanes). The next
-session should get the idea from Seth FIRST, then reconcile it with the
-grain above.
+Seth shared it hours after this note was written: use Cursor more
+frequently across ALL aspects of the build process - including the two
+rituals the frontier seat had kept entirely to itself, skeleton design
+and pre-main review - with the frontier seat running multiple Cursor
+agents to aid its own work and conserve frontier tokens. Not a
+standing pool or a fleet topology: an extension of WHERE fan-out
+applies. Report lanes feed the frontier seat's own rituals:
+
+- **Authoring support:** before authoring a wave, dispatch report
+  lanes for the grounding the frontier seat would otherwise grep out
+  itself (NOW-state recon with file:line evidence, web research,
+  spec-input sweeps); author the contracts FROM the reports. Judgment
+  never delegates; only the search does.
+- **Gate support:** while the gate seat reads the pre-main diff,
+  parallel report lanes produce gate fuel - per-unit diff-vs-contract
+  coverage reports, fresh verification runs, cross-doc consistency
+  sweeps. Verify-before-trust governs: reports compress search, never
+  judgment; the ruling itself never fans out.
+
+Adopted into the main project the same day as relay v5.2 (workout-db:
+`docs/specs/autonomous-cursor-dispatch.md`, section "Fan-out (relay
+v5.2)", plus matching skill amendments) - and the adoption session was
+its own receipt: two report lanes (a CLI-concurrency research sweep +
+a consistency audit of the amendment itself) ran concurrently in
+dedicated worktrees while a third worktree held another unit's
+unlanded delivery untouched. When this pattern ships publicly, that
+gives it two same-day receipts across two repos.
