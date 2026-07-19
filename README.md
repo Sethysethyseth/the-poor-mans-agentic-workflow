@@ -304,6 +304,8 @@ the same content: [docs/setup.md](docs/setup.md).
 
 ## The receipts
 
+Full paper trail: [docs/receipts.md](docs/receipts.md).
+
 This workflow wasn't designed on a whiteboard — it was extracted from a live
 pilot. The numbers below are measured, July 2–11, 2026, on one $20 planner
 seat and one $20 executor seat. The source project is LogChamp, a production
