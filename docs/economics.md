@@ -28,9 +28,10 @@ on Max 5x, ~900 on Max 20x - useful for intuition, worthless as a
 guarantee. Two dated official mechanics worth knowing: the 5-hour limits
 were permanently DOUBLED on 2026-05-06 (and peak-hour throttling
 removed), and a +50% weekly-limit promotion ran 2026-05-13 through
-2026-07-19 PT (after which it lapses - re-check /usage). The repo
-hard-codes no weekly numbers because they move. Both weekly caps
-(all-models and a separate mid-tier-only cap on Max) still apply.
+2026-07-19 PT - it has since LAPSED, so weekly caps are back to their
+standard level (check /usage for yours). The repo hard-codes no weekly
+numbers because they move. Both weekly caps (all-models and a separate
+mid-tier-only cap on Max) still apply.
 
 On ChatGPT instead? The same table shape works with ChatGPT plans in the
 planner row (Free includes limited Codex usage; Plus $20; Pro $100/5x
