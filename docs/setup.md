@@ -50,19 +50,20 @@ path walks you through the same list.
   powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
   ```
 
+  *(Fallback if the served install script fails: `npm i -g @openai/codex` or Homebrew per OpenAI docs - a July 2026 report found the CDN script lagging the repo.)*
+
   Log in with your existing subscription either way - no API key. The
   README's [honesty note](../README.md#on-chatgpt-instead-of-claude)
   applies: our receipts are all from the Claude Code + Cursor pair.
 - **The executor app - LEVEL-AWARE, and the timing matters.**
-  - Level 2, 3, or 4: install it now (worked example: Cursor, from
-    [cursor.com](https://cursor.com)).
-  - Level 0 or 1: **wait.** Do not create an executor account yet - if
-    the trial clock starts at signup, creating the account during your
-    learning weeks burns the trial before you can feel the contrast it
-    exists to show you. [The trial playbook](../checklists/trial-playbook.md)
-    says when to pull the trigger. *(Trial terms are community-reported
-    and unstable as of July 2026 - verify at
-    [cursor.com/pricing](https://cursor.com/pricing).)*
+  - Level 2, 3, or 4: install and subscribe now (worked example: Cursor
+    Pro ~$20/mo, from [cursor.com](https://cursor.com)).
+  - Level 0 or 1: **wait.** Do not subscribe yet - the test month's value
+    comes from feeling the Level 1 squeeze first.
+    [The test-month playbook](../checklists/test-month-playbook.md) says
+    when to pull the trigger. *(As of 2026-07-18, the free Pro trial is
+    removed - staff-confirmed 2026-07-03; the free Hobby tier is a taste
+    of the editor, not a viable executor seat.)*
 - **Git**, and whatever runtime your project's checks need.
 - **Repo location.** Cloud-synced folders (OneDrive / Dropbox / Drive)
   cause file-lock hangs and stale reads - a documented scar
@@ -84,7 +85,8 @@ seat. Plan terms move - re-verify.)*
 
 ## Level 1 - the shallow end (the solo relay)
 
-**Accounts:** one planner-seat subscription (~$20/mo). Nothing else.
+**Accounts:** one planner-seat subscription (~$20/mo, as of 2026-07-18).
+Nothing else.
 
 **Setup:** run the manifest. Either paste the
 [quickstart prompt](../SETUP.md) at your agent (recommended - it fills
@@ -110,11 +112,17 @@ is your only lever.
 Keep [the usage tracker](../templates/usage-tracker.md) from week one;
 its rows are how you'll know whether Level 2 is worth it.
 
-## Level 2 - waist deep (add the executor trial)
+## Level 2 - waist deep (the paid test month)
 
-**Accounts:** Level 1 + a NEW executor account, created when
-[the trial playbook](../checklists/trial-playbook.md) says to - not
-before. $0.
+**Accounts:** Level 1 + a NEW executor subscription (Cursor Pro, ~$20/mo,
+cancel anytime), created when
+[the test-month playbook](../checklists/test-month-playbook.md) says to - not
+before. ~$40 total for the test month (as of 2026-07-18).
+
+**The trial-removal fact, dated:** as of 2026-07-18, the free Pro trial has
+been removed system-wide - staff-confirmed on the official forum 2026-07-03.
+The free Hobby tier is a taste of the editor, NOT a viable executor seat. If
+a trial ever returns, treat it as a free test month - same playbook.
 
 **Setup delta: none.** Your generated files already name roles, not
 tools - "the executor" simply stops meaning "my cheap session" and
@@ -122,10 +130,11 @@ starts meaning "the agent app I point at the block." Re-run the manifest
 paste only if you want the records updated (`Answer: Level 2`); nothing
 generated changes.
 
-**What to do with the trial:** the playbook, in one line - route your
-token-heaviest REAL units to the executor, taste parallelism in week
-two, keep mini-receipts in the usage tracker. At trial end your own
-numbers make the Level 3 call.
+**What to do with the test month:** the playbook, in one line - route your
+token-heaviest REAL units to the executor, taste parallelism in week two,
+keep mini-receipts in the usage tracker. At month's end your own numbers make
+the call: continue to Level 3 (subscription keeps going), or cancel and drop
+back to Level 1.
 
 ## Level 3 - the deep end (the documented two-seat relay)
 

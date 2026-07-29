@@ -2,15 +2,16 @@
 
 The manual relay is the default and the beginner path; nothing in this
 repo requires reading this page. This is the power mode for when the
-loop is boring: the resident planner-seat session dispatches queued
+loop is boring: the resident reviewer-seat session dispatches queued
 blocks to the executor itself, monitors the run, audits the delivery
 with the SAME per-unit ritual, lands it, and picks up the next block.
 You keep exactly the judgment surface: authoring go-aheads, bug reports,
 one consolidated smoke pass per wave, and every gated command.
 
 **The age disclosure, first:** as of 2026-07-16 this mode has SEVEN
-landed units behind it (one pilot unit + a six-unit wave: five code,
-two diagnosis) across two waves and one validated pricing probe - vs
+landed units behind it - one code pilot unit, then a six-unit wave of
+four code and two no-code diagnosis units (seven total = five code +
+two diagnosis) - across two waves and one validated pricing probe, vs
 ~six weeks and 40+ units for the manual relay. It works; it is young.
 Drive the manual loop first: you can't steer a loop you've never driven.
 
@@ -112,11 +113,10 @@ concretely, because it IS the pointer line you used to be.
   state upkeep spend planner-seat tokens. Autonomy shifts the
   bookkeeping tax from your time to resident tokens - it does not erase
   it ([economics](economics.md#the-autonomous-cost-profile)).
-- **Trial accounts: unverified.** Whether an executor TRIAL includes
-  headless-CLI/cheap-tier access is unverified as of 2026-07-16, so
-  autonomous mode is documented for the full two-seat stack (Levels
-  3→4) only. A solo-seat autonomous variant has zero receipts and does
-  not ship.
+- **Level 4 requires a paid executor plan.** As of 2026-07-18, the free
+  Pro trial is removed (staff-confirmed 2026-07-03), and autonomous mode
+  is documented for the full two-seat stack (Levels 3→4) only. A
+  solo-seat autonomous variant has zero receipts and does not ship.
 
 ## Switching back (the paragraph that makes this safe to try)
 

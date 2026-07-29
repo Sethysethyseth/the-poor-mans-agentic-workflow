@@ -65,10 +65,10 @@ reason). Three points of judgment:
   relaunching into the new terminal mid-setup is fine; this contract is
   a file, so a fresh session resumes by re-reading it and continuing
   from the manifest's recorded state.
-- **Executor app timing is level-aware:** do NOT have the human create
-  an executor account before the level question (step 3) is answered -
-  at the lower levels, signing up early can burn a trial clock the
-  playbook wants preserved.
+- **Executor app timing is level-aware:** do NOT have the human subscribe
+  to the executor before the level question (step 3) is answered - at the
+  lower levels, signing up early starts paying before the playbook's
+  timing.
 - **Repo location:** if the project sits inside a cloud-synced folder,
   surface the scar ([docs/scar-tissue.md](docs/scar-tissue.md)) and
   offer the move/exclude now - before any worktree ever exists.

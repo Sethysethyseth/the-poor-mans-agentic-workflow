@@ -28,9 +28,9 @@ on Max 5x, ~900 on Max 20x - useful for intuition, worthless as a
 guarantee. Two dated official mechanics worth knowing: the 5-hour limits
 were permanently DOUBLED on 2026-05-06 (and peak-hour throttling
 removed), and a +50% weekly-limit promotion ran 2026-05-13 through
-2026-07-13 - expired as this page was written, which is why no weekly
-numbers appear here. Both weekly caps (all-models and a separate
-mid-tier-only cap on Max) still apply.
+2026-07-19 PT (after which it lapses - re-check /usage). The repo
+hard-codes no weekly numbers because they move. Both weekly caps
+(all-models and a separate mid-tier-only cap on Max) still apply.
 
 On ChatGPT instead? The same table shape works with ChatGPT plans in the
 planner row (Free includes limited Codex usage; Plus $20; Pro $100/5x
@@ -43,11 +43,11 @@ not token quotas.
 - **The planner seat is WINDOWED:** a 5-hour rolling window plus a
   weekly cap. Capacity expires whether you use it or not; the unit you
   budget is the window, not the token.
-- **The executor seat is a MONTHLY DOLLAR POOL:** ~$20/mo of agent usage
-  metered at model-provider prices (per the executor's published docs,
-  as of July 2026), plus separate cheap/first-party allowances; monthly
-  reset, no rollover; overflow is opt-in pay-as-you-go that you should
-  leave OFF.
+- **The executor seat is a MONTHLY DOLLAR POOL:** Auto and the first-party
+  model pool have generous included usage on Pro; named frontier models
+  (Claude, GPT, etc.) draw a separate ~$20 API-pool allowance metered at
+  model-provider prices (as of 2026-07-18). Monthly reset, no rollover;
+  overflow is opt-in pay-as-you-go that you should leave OFF.
 
 Two meters that fail independently is itself an argument for the second
 seat: a planner lockout doesn't stop the executor mid-unit, and an
@@ -115,12 +115,14 @@ that consume tens of thousands).
   compete with planner sessions for the same windows; anchor
   deliberately, route mid-tier models for execution sessions, and
   expect the meter to be the thing that teaches you Level 2's value.
-- **Level 2 (~$20 + $0):** the trial month. The executor's pool is
-  free but EXPIRING - spend it on your token-heaviest real units so the
-  contrast is measured, not vibed
-  ([trial playbook](../checklists/trial-playbook.md)). The post-trial
-  free tier is not a viable executor seat; the honest exits are up to
-  $40 or back to Level 1.
+- **Level 2 (~$20 + $20 for one test month):** the paid test month. Keep
+  Level 1; add the executor seat for ONE deliberately-planned month (~$40
+  total). Route your token-heaviest real units through it and keep
+  mini-receipts; at month's end, your numbers make the call: continue to
+  Level 3 or cancel back to Level 1
+  ([test-month playbook](../checklists/test-month-playbook.md)). As of
+  2026-07-18, the free Pro trial is removed (staff-confirmed 2026-07-03);
+  the free Hobby tier is not a viable executor seat.
 - **Level 3 (~$40):** the documented stack. The creep risk below is
   yours now; the `MODEL:` header is where the price holds.
 - **Level 4 (~$40 + discipline):** the autonomous profile, next
@@ -176,7 +178,7 @@ layer 2 is an assumption-driven range, nobody ran the counterfactual;
 the figure excludes the review/audit tokens the planner still spent on
 every delivery; and it excludes executor churn before clean deliveries
 (which, if anything, makes it conservative). Full methodology and raw
-data: the pilot's stats file and per-commit JSON.
+data: [receipts.md](receipts.md) + [receipts-data.json](receipts-data.json).
 
 ## The honest top of the ladder
 

@@ -41,7 +41,7 @@ Bugs enter the queue as DIAGNOSIS blocks first - root cause + evidence +
 proposed fix in `DELIVERY.md`, no code changes; the fix block dispatches
 after the reviewer verifies the reasoning. Two blocks with fully disjoint
 FILES TO TOUCH may run back-to-back before one review session (one commit
-per unit). Details for both: `task-block.md`.
+per unit). Details for both: `_TEMPLATE.md`.
 
 ## Statuses (tracked in QUEUE.md - single writer: the reviewer)
 
@@ -78,8 +78,9 @@ all mandatory:
   lives in.
 - Worktrees live OUTSIDE cloud-synced folders (OneDrive/Dropbox/Drive
   cause sync-lag and file-lock bugs - a documented scar).
-- Only the reviewer merges worktree branches (ritual:
-  `checklists/worktree-ritual.md`).
+- Only the reviewer merges worktree branches (ritual in the workflow
+  repo's `checklists/worktree-ritual.md` - copy it into your repo if you
+  want it local).
 - If in doubt whether two blocks are disjoint, they aren't - serialize.
 
 A warning from the pilot that produced this protocol: the messiest session
