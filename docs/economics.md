@@ -162,6 +162,8 @@ windows. Details: [autonomous.md](autonomous.md).
 
 ## What the split actually moved (measured, with the caveats attached)
 
+Full paper trail: [receipts.md](receipts.md).
+
 From the pilot's 37 units over 10 days (2026-07-02 → 07-11): 78.4% of
 units and 80.7% of diff bytes were executor-delivered - the split isn't
 skewed by unit size. Converting the executor's 534 KB of diff text to
