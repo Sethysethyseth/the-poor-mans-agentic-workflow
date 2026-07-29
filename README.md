@@ -1,10 +1,5 @@
 # The Poor Man's Agentic Workflow
 
-> [!IMPORTANT]
-> **Buildout in progress.** This README is the first PR of the public buildout.
-> The docs, templates, and checklists it links to land in the next PRs — until
-> then those links 404. This banner comes off on the pre-publish pass.
-
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![No code, just workflow](https://img.shields.io/badge/ships-docs%2C%20not%20a%20framework-blue.svg)](#whats-in-this-repo)
 [![Runs on](https://img.shields.io/badge/runs%20on-%2420--40%2Fmo-brightgreen.svg)](#why-it-works-pay-for-judgment-not-typing)
@@ -168,10 +163,12 @@ curl -fsSL https://chatgpt.com/codex/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
 ```
 
+*(Fallback if the served install script fails: `npm i -g @openai/codex` or Homebrew per OpenAI docs - a July 2026 report found the CDN script lagging the repo.)*
+
 Run `codex`, pick *Sign in with ChatGPT*, and the [level
 ladder](#pick-your-level) reads the same with the seat swapped: Levels 0–1
-on ChatGPT Plus (~$20), Level 2 adds the free executor trial, Level 3 is
-the same $40 pair with a different logo on the planner seat.
+on ChatGPT Plus (~$20), Level 2 is the paid test month (~$40 for one month),
+Level 3 is the same $40/mo pair with a different logo on the planner seat.
 
 Honesty, per the house rule: **every receipt in this repo was earned on the
 Claude Code + Cursor pair.** The protocol ports by construction — it's
@@ -220,7 +217,7 @@ both directions.
 flowchart TD
     L0["🦶 <b>Level 0 — toes in the water</b> · $0–20/mo<br/>one agent, your project, no protocol yet"]
     L1["🌊 <b>Level 1 — the shallow end</b> · ~$20/mo<br/>the solo relay: one seat, roles split by session"]
-    L2["🎟️ <b>Level 2 — waist deep</b> · ~$20/mo + free executor trial<br/>taste the two-seat relay"]
+    L2["🎟️ <b>Level 2 — waist deep</b> · ~$20 + $20 for one test month<br/>the paid test month: measure the second seat"]
     L3["🏊 <b>Level 3 — the deep end</b> · ~$40/mo<br/>the documented two-seat relay"]
     L4["🚤 <b>Level 4 — open water</b> · ~$40/mo<br/>the loop drives itself; you keep the gates"]
     L0 -- "want a review gate and structure?" --> L1
@@ -231,12 +228,14 @@ flowchart TD
     L4 -. "step back anytime, mid-wave if needed" .-> L3
 ```
 
+*(Level costs as of 2026-07-18; prices move - re-verify.)*
+
 | Level | Cost | How it runs / what you learn | The catch (stated, not softened) |
 | --- | --- | --- | --- |
 | **0 — Toes in the water** | $0–20/mo | One agent in your project, no protocol at all: install Claude Code (or [Codex CLI](#on-chatgpt-instead-of-claude)), open it in a repo, ship one tiny real change. You learn what an agent mode actually is. Nothing from this repo is generated yet. | No review gate, no state files — you're trusting one context's claim about its own work. Fine for a taste; the first time it confidently breaks something is the argument for Level 1. *(Cost note, as of July 2026: ChatGPT's Free tier includes some Codex usage; Claude Code needs a $20 Pro seat — re-verify, plan terms move.)* |
 | **1 — The shallow end** | ~$20/mo | The solo relay: one tool plays all three roles, split by *session* instead of seat — planner sessions author blocks into the queue, a fresh mid-tier session implements one block and stops, a reviewer session audits and commits. You learn the protocol itself: task blocks, delivery reports, fresh-context review, one committer. | All three roles share **one usage meter** — executor tokens compete with planner tokens, so rationing pressure is highest here. The fresh-context second look survives; the cross-vendor second opinion doesn't. |
-| **2 — Waist deep** | ~$20/mo + $0 | Keep Level 1's setup; add the executor via Cursor's free Pro trial. Route your token-heaviest real units to it and keep mini-receipts (units shipped, review catches, planner tokens freed). You learn what a second seat actually buys. | The trial expires, and the post-trial free tier is **not** a viable executor seat. Trial terms are community-reported and unstable — verify at [cursor.com/pricing](https://cursor.com/pricing) before you count on it. *(As of July 2026.)* |
-| **3 — The deep end** | ~$40/mo | The documented two-seat setup: frontier planner rented by the session, resident mid-tier reviewer, dedicated executor seat. Upgrading from Level 2 means paying Cursor and changing nothing else. You learn the economics: `MODEL:` routing, meter anchoring, waves. | The $40 can creep: frontier-model usage burns the executor's included allowance fast. The per-block `MODEL:` header is the mitigation — the price only holds if mechanical work actually routes to cheap models. |
+| **2 — Waist deep** | ~$20 + $20 for one test month | The paid test month: keep Level 1's setup, add the executor seat for ONE deliberately-planned month of Cursor Pro (~$20, cancel anytime). Route your token-heaviest real units through it and keep mini-receipts (units shipped, review catches, planner tokens freed). At month's end, your receipts make the call: continue to Level 3, or cancel and drop back to Level 1. You learn what a second seat actually buys — measured, not vibed. | The month is designed to convert you — the felt contrast after Level 1's squeeze is the sales pitch. That's stated openly: if your numbers don't justify the second seat, canceling is the designed outcome, not a failure. *(As of 2026-07-18, the free Pro trial is removed — staff-confirmed 2026-07-03; the free Hobby tier is a taste of the editor, not a viable executor seat. If a trial ever returns, treat it as a free test month — same playbook.)* |
+| **3 — The deep end** | ~$40/mo | The documented two-seat setup: frontier planner rented by the session, resident mid-tier reviewer, dedicated executor seat. Upgrading from Level 2 means the subscription keeps going and nothing else changes. You learn the economics: `MODEL:` routing, meter anchoring, waves. | The $40 can creep: frontier-model usage burns the executor's included allowance fast. The per-block `MODEL:` header is the mitigation — the price only holds if mechanical work actually routes to cheap models. |
 | **4 — Open water** | ~$40/mo | The [autonomous relay](#rather-not-run-the-loop-yourself-the-autonomous-relay): the resident reviewer seat dispatches queued blocks itself, audits, lands, repeats — one session per wave. You learn to supervise instead of relay: go-aheads, smoke sign-off, and the gates are what's left of your job. | The youngest receipts in the repo (seven landed units vs ~six weeks of manual receipts) — and you can't steer a loop you've never driven, so the levels below aren't a formality, they're the prerequisite. The gate never dispatches itself, at any level. |
 
 And when the [usage tracker](templates/usage-tracker.md) says you're
@@ -246,14 +245,18 @@ graduation, not a defeat.
 
 Honest note on Level 2, because you'd spot it anyway: **it is sequenced to
 convert you.** A week or two solo teaches the protocol and makes the
-single-meter squeeze *felt*; the trial then removes exactly that pain. What's
-being sold is the second seat — the relay — not Cursor the brand (any agent
-executor qualifies at Level 3). And if your own mini-receipts don't justify
-the second seat, Level 1 is a fully supported destination, not a failure
-state. [checklists/trial-playbook.md](checklists/trial-playbook.md) is the
-playbook for spending the trial well;
+single-meter squeeze *felt*; the paid test month then removes exactly that
+pain. What's being sold is the second seat — the relay — not Cursor the brand
+(any agent executor qualifies at Level 3). And if your own mini-receipts
+don't justify the second seat, canceling and returning to Level 1 is the
+designed outcome, not a failure state.
+[checklists/test-month-playbook.md](checklists/test-month-playbook.md) is the
+playbook for running the test month well;
 [templates/usage-tracker.md](templates/usage-tracker.md) is the instrument
-that tells you which level you actually need.
+that tells you which level you actually need. **Never free forever:** as of
+2026-07-18 the free Pro trial is removed (staff-confirmed 2026-07-03), and
+the free Hobby tier is not a viable executor seat — the honest exits from
+Level 2 are up to $40 or back to Level 1.
 
 ## Quickstart: one paste
 
@@ -304,6 +307,8 @@ the same content: [docs/setup.md](docs/setup.md).
 
 ## The receipts
 
+Full paper trail: [docs/receipts.md](docs/receipts.md).
+
 This workflow wasn't designed on a whiteboard — it was extracted from a live
 pilot. The numbers below are measured, July 2–11, 2026, on one $20 planner
 seat and one $20 executor seat. The source project is LogChamp, a production
@@ -333,10 +338,10 @@ documents the workflow, not the app.
 
 **The unflattering numbers (published on purpose):**
 
-- **~8 of 37 units were planner-direct implementations** — the measured
-  ~20% leak rate of the seat split. It holds ~80% of the time and leaks
-  under pressure at exactly the seams it names (escalation outcomes, stated
-  direct-fix exceptions, one token-expiry scramble).
+- **~8 of 37 units were planner-direct implementations** — about one in
+  five (21.6%) leak rate of the seat split. It holds ~80% of the time and
+  leaks under pressure at exactly the seams it names (escalation outcomes,
+  stated direct-fix exceptions, one token-expiry scramble).
 - **6 reviewer fixes in the one session that violated serialization** —
   three units run in one working tree, against the protocol. The messiest
   session on record is the one that broke the rules, which is the protocol
@@ -401,8 +406,8 @@ router, you get Max-quality results. If not, read on.
    ideal case. Ambiguous "figure out why prod is slow" work doesn't
    decompose into blocks — it lands on the planner seat and eats its limits.
 6. **The seat split leaks under pressure** *(measured during the pilot)*:
-   ~20% of units ended up implemented by the planner directly. The split is
-   a strong default, not a law of physics.
+   about one in five (21.6%) of units ended up implemented by the planner
+   directly. The split is a strong default, not a law of physics.
 7. **Process erosion is real** *(measured during the pilot)*: even with the
    gates in place, the mandated review got skipped once. The system made the
    skip visible and recorded — it did not make it impossible.
@@ -492,7 +497,7 @@ No code, no CLI, no framework — documents you point your own agent at.
 | [`docs/economics.md`](docs/economics.md) | Cost model, meter literacy, window anchoring, where the $40 creeps |
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | The hard-won rules and the incidents behind them |
 | [`templates/`](templates/) | The setup manifest, agent contract, task-block format, state files, command gate, usage tracker, dispatch ritual |
-| [`checklists/`](checklists/) | The loop cheat sheet, reviewer checklist, worktree ritual, trial playbook |
+| [`checklists/`](checklists/) | The loop cheat sheet, reviewer checklist, worktree ritual, test-month playbook |
 
 ## License
 

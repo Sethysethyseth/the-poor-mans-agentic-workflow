@@ -49,13 +49,14 @@ in the generated files.*
   you, keep it. **Recommended, never required.**
   `Answer: current terminal (agent may offer WezTerm during setup - per-platform install commands in docs/setup.md)`
 - **Executor app** - LEVEL-AWARE, and the timing matters:
-  - Level 2, 3, or 4: install the executor app now.
-  - Level 1: **WAIT - do not create an executor account yet.** If the
-    trial clock starts at account signup, signing up during your learning
-    weeks burns the trial before you can feel the contrast it exists to
-    show you (`checklists/trial-playbook.md` says when to pull the
-    trigger). *(Trial terms are community-reported and unstable as of
-    July 2026 - verify current terms before counting on them.)*
+  - Level 2, 3, or 4: install and subscribe to the executor app now
+    (Cursor Pro ~$20/mo, cancel anytime).
+  - Level 1: **WAIT - do not subscribe yet.** The test month's value
+    comes from feeling the Level 1 squeeze first
+    (`checklists/test-month-playbook.md` says when to pull the trigger).
+    *(As of 2026-07-18, the free Pro trial is removed - staff-confirmed
+    2026-07-03; the free Hobby tier is a taste of the editor, not a
+    viable executor seat.)*
   `Answer: per my level (L1 below)`
 - **Executor CLI** - *(Level 4 / autonomous driving mode only)* - the
   headless command-line form of the executor app, so the resident seat
@@ -83,9 +84,9 @@ driving modes later - that's a hard property, not luck.
 manifest when you enter Level 1.)*
 
 - **L1. Level** - 1 = the shallow end: solo planner-seat, roles separated
-  by session; 2 = waist deep: Level 1 + executor trial; 3 = the deep end:
-  the full two-seat relay; 4 = open water: Level 3 driven autonomously
-  (see D1).
+  by session; 2 = waist deep: the paid test month (~$20 + $20 for one
+  month, measure the second seat's value); 3 = the deep end: the full
+  two-seat relay; 4 = open water: Level 3 driven autonomously (see D1).
   **Default: Level 1** (cheapest, teaches the protocol, and the ladder is
   designed to be climbed from here).
   `Answer: Level 1`
@@ -97,7 +98,7 @@ manifest when you enter Level 1.)*
   `Answer: frontier | mid | cheap`
 - **D1. Driving mode** - MANUAL = you are the message bus: one pointer
   line dispatches each block, one line sends it to review. AUTONOMOUS =
-  the resident planner seat dispatches blocks itself via the executor's
+  the resident reviewer seat dispatches blocks itself via the executor's
   headless CLI, monitors, audits, lands, and dispatches the next; you
   keep authoring go-ahead, bug reports, smoke sign-off, and every gate
   item. Answering `autonomous` adds `templates/dispatch-ritual.md` to the

@@ -17,10 +17,10 @@ Why it earns its place, twice over:
   only question that matters: which level do you actually need? The honest
   reads are at the bottom, including the one where the answer is "buy Max."
 
-At Level 2 this same file is the trial's mini-receipts sheet - the
+At Level 2 this same file is the test month's mini-receipts sheet - the
 `units` / `bounces` / `review catches` columns are the evidence you'll use
-at the trial-end decision point (`checklists/trial-playbook.md`). One
-tracker, two jobs; don't keep two.
+at the decision gate (`checklists/test-month-playbook.md`). One tracker, two
+jobs; don't keep two.
 
 ---
 
@@ -62,10 +62,10 @@ After 2-4 honest weeks:
 
 - **Never hitting caps, windows half-used?** Level 1 suffices. Don't pay
   for headroom you can't use - that's the same mistake at $40 that this
-  workflow calls out at $200.
+  workflow calls out at $200 (as of 2026-07-18).
 - **The single meter pinching while finished blocks queue up waiting for
-  tokens?** That's the exact pain the executor trial removes - Level 2 will
-  pay for itself. Take the tracker's numbers into the trial as your
+  tokens?** That's the exact pain the test month removes - Level 2 will
+  pay for itself. Take the tracker's numbers into the test month as your
   baseline.
 - **Cap hits weekly even on the full $40 stack, with the `MODEL:` header
   already routing mechanical work to cheap tiers?** The honest answer is a
