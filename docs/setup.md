@@ -79,9 +79,23 @@ Level 1. When the agent first confidently breaks something and you have
 only its own word for what happened, that's the argument for Level 1,
 and you're ready for it.
 
-*(Cost, as of July 2026: ChatGPT's Free tier includes some Codex usage,
+*(Cost, as of 2026-07-30: ChatGPT's Free tier includes some Codex usage,
 so the ChatGPT door is a genuine $0 entry; Claude Code needs a $20 Pro
 seat. Plan terms move - re-verify.)*
+
+> [!NOTE]
+> **One caveat on the $0 door, checked 2026-07-30.** OpenAI's help center
+> says Codex "is included across ChatGPT plans, including Free and Go,"
+> and its Codex pricing page lists a $0 Free tier ("explore Codex
+> capabilities on quick coding tasks"). But that pricing page publishes
+> per-window limits only for Plus and above - Free gets no published
+> numbers - and the Codex CLI's own README recommends signing in "as part
+> of your Plus, Pro, Business, Edu, or Enterprise plan," a list that omits
+> Free. So: Codex on Free is documented, but whether your Free account
+> gets enough **CLI** usage to run Level 0 comfortably is not something we
+> can promise from OpenAI's published terms. If Codex on Free doesn't
+> stretch, Level 0 still works on a $20 Claude Pro seat, and Level 1 is
+> where the protocol actually starts.
 
 ## Level 1 - the shallow end (the solo relay)
 

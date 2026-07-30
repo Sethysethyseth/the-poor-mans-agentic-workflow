@@ -81,17 +81,28 @@ pie title Diff-byte share (661,804 bytes)
 
 ### Cumulative diff bytes over 10 days
 
-The volume gap widening day over day shows sustained executor throughput, not
-one lucky wave.
+Cumulative thousands of diff bytes by route, July 2-11. The executor leads
+from the first day and finishes at ~4.2x the planner-direct total. The lead is
+not monotonic - planner-direct closes ground on July 9-10 - but it never
+closes, which is the point: sustained executor throughput across the whole
+pilot, not one lucky wave.
 
-```mermaid
-xychart-beta
-    title "Cumulative diff bytes by route (Jul 2-11)"
-    x-axis ["02", "03", "04", "05", "06", "07", "08", "09", "10", "11"]
-    y-axis "Bytes (K)" 0 --> 550
-    line "Executor" [33, 110, 230, 276, 325, 408, 408, 430, 487, 534]
-    line "Planner-direct" [0, 0, 0, 19, 28, 39, 39, 68, 128, 128]
-```
+| Date | Executor (K) | Planner-direct (K) |
+|---|---|---|
+| Jul 02 | 32.7 | 0.0 |
+| Jul 03 | 109.9 | 0.0 |
+| Jul 04 | 229.9 | 0.0 |
+| Jul 05 | 276.4 | 19.4 |
+| Jul 06 | 325.5 | 28.4 |
+| Jul 07 | 407.7 | 39.2 |
+| Jul 09 | 430.0 | 67.9 |
+| Jul 10 | 487.0 | 127.8 |
+| Jul 11 | 534.0 | 127.8 |
+
+*(July 8 is absent because nothing landed that day - the pilot spans 10
+calendar days and 9 landing days. This is a table rather than a chart because
+mermaid's `xychart-beta` renders no legend, so a two-series chart gives you two
+unlabeled lines; the data matters more than the chart type.)*
 
 ### Executor units by wave
 
@@ -102,7 +113,7 @@ xychart-beta
     title "Executor-delivered units per wave"
     x-axis ["B-wave", "U-wave", "Nav", "L-wave", "T-wave", "A-wave", "N-wave", "NT-wave"]
     y-axis "Units" 0 --> 8
-    bar [3, 4, 4, 7, 2, 3, 4, 2]
+    bar [2, 5, 4, 7, 2, 3, 4, 2]
 ```
 
 ---
