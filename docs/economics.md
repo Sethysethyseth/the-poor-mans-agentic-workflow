@@ -35,9 +35,11 @@ mid-tier-only cap on Max) still apply.
 
 On ChatGPT instead? The same table shape works with ChatGPT plans in the
 planner row (Free includes limited Codex usage; Plus $20; Pro $100/5x
-and $200/20x - per OpenAI's published pricing as of 2026-07-16). Same
+and $200/20x - per OpenAI's published pricing as of 2026-07-30). Same
 provenance rule: OpenAI publishes per-window message RANGES by model,
-not token quotas.
+not token quotas - and it publishes those ranges only for Plus and
+above. No per-window numbers are published for Free at all, so treat
+"limited" as genuinely unquantified.
 
 ## Two kinds of meter (the pedagogical point of the $40 stack)
 
@@ -109,9 +111,11 @@ that consume tens of thousands).
 ## Per-level cost profiles
 
 - **Level 0 ($0-20):** ChatGPT Free's included Codex usage makes the
-  door genuinely $0 (as of 2026-07-16, limited, re-verify); Claude Code
-  needs a $20 Pro seat. No protocol overhead because there's no
-  protocol.
+  door genuinely $0 (as of 2026-07-30, limited and unquantified,
+  re-verify - and see the Codex CLI caveat in
+  [setup.md](setup.md#level-0---toes-in-the-water-nothing-to-set-up-from-this-repo));
+  Claude Code needs a $20 Pro seat. No protocol overhead because there's
+  no protocol.
 - **Level 1 (~$20):** the single-meter squeeze. Executor sessions
   compete with planner sessions for the same windows; anchor
   deliberately, route mid-tier models for execution sessions, and

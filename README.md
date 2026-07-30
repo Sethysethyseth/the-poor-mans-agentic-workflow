@@ -148,10 +148,12 @@ dangerous operations get gated — nothing else.
 
 The planner seat swaps the same way the executor does. OpenAI's **Codex
 CLI** is the direct analogue of Claude Code — a terminal agent you sign
-into with your existing ChatGPT plan, no API key required. As of July 2026,
+into with your existing ChatGPT plan, no API key required. As of 2026-07-30,
 Codex is included across ChatGPT plans (per [OpenAI's help
 center](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan),
-even the Free tier includes some usage — re-verify, plan terms move):
+even the Free tier includes some usage — but see the [caveat on what Free
+actually covers](docs/setup.md#level-0---toes-in-the-water-nothing-to-set-up-from-this-repo);
+re-verify, plan terms move):
 
 ```bash
 # macOS / Linux
