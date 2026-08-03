@@ -109,7 +109,14 @@ hand-edit [templates/setup-interview.md](../templates/setup-interview.md)
 and point your agent at it. Answer `Level 1`, driving mode `manual`.
 Generation gives you: an agent contract (AGENTS.md) with the command
 gate, the work-state file + archive, the task queue with its README and
-block template, and a trivial `hello-relay` starter block.
+block template, and a `hello-relay` starter block for the first lap.
+
+**One answer here does more work than the rest: the check lane (P2).**
+It is the command the reviewer re-runs fresh on every unit forever, so
+if your project doesn't have one, the manifest's default is to build the
+smallest lane that can actually fail rather than note its absence and
+move on. You don't need a testing strategy - one command that proves the
+project isn't broken is enough to make every later review real.
 
 **How roles work here:** one tool plays all three roles, separated by
 SESSION instead of seat - a frontier-model session authors blocks into
@@ -195,11 +202,22 @@ execute the same block files verbatim.
 
 ## Hello, relay - the first lap (~15 minutes, every level from 1 up)
 
-One lap through the FULL loop on a trivial change teaches the relay
-better than any docs read - and it doubles as the smoke test that your
-generated files actually work. Setup generated a starter block
-(`u0-hello-relay` in your task queue: add one line to your project's
-README) sized for exactly this.
+One lap through the FULL loop teaches the relay better than any docs
+read - and it doubles as the smoke test that your generated files
+actually work. Setup generated a starter block (`u0-hello-relay` in your
+task queue) sized for exactly this, in one of two shapes depending on
+your P2 answer:
+
+- **Your project already had a check lane:** the block is a trivial
+  change (one line in your README) whose acceptance criteria include
+  running that lane.
+- **Setup is building you one:** the block establishes the lane itself.
+  Its acceptance criteria demand the lane be shown FAILING first - a
+  deliberate trivial break, the lane red, the break reverted, the lane
+  green. A lane nobody has watched fail isn't a check; it's a
+  checkmark.
+
+Either way the lap is the same four steps:
 
 1. **Dispatch.** Open your executor (at Level 1: a fresh mid-tier
    session) and paste: *"Read `docs/tasks/u0-hello-relay.md` and execute
@@ -207,15 +225,20 @@ README) sized for exactly this.
    chat."*
 2. **Watch it stop.** It makes the change, writes `DELIVERY.md`, and
    ends its turn without committing. That stop is the protocol working.
+   (If the lane needs a package installed, it stops and asks - that's
+   the G5 gate item, and you run it.)
 3. **Review.** Tell your reviewer (at Level 1: a fresh session): *"The
    executor stopped - review the delivery."* It audits the report
-   against the tree, re-runs your check lane, commits with SHA
-   verification, and updates the work-state file - including its "Next
+   against the tree, re-runs your check lane - **both halves of the
+   red-then-green proof, if this lap built the lane** - commits with SHA
+   verification, and updates the work-state file, including its "Next
    action (human):" line.
 4. **Look at what just happened.** One block file, three actors, zero
    shared chat context, one commit, and a state file that tells you
    what's next. That's the whole loop; real units are the same lap with
-   bigger blocks.
+   bigger blocks. And if this lap built your lane, you now own the
+   instrument every future review re-runs - built through the loop, on
+   your first unit, which is the cheapest it will ever be to add.
 
 Keep [the loop cheat sheet](../checklists/loop-cheat-sheet.md) open for
 week one - it's the "you see X → you do Y" version of everything above.

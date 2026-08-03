@@ -21,8 +21,14 @@ Three delivery paths normalize to the same three inputs:
 
 The report is never trusted for green checks - "the executor lies about
 done" is a founding scar, not an insult. Re-run the block's check
-lane(s) yourself, now. Laneless projects (the manifest's honest
-degraded mode): re-run the "show it running" evidence commands instead.
+lane(s) yourself, now. Laneless projects (the manifest's degraded escape
+hatch): re-run the "show it running" evidence commands instead.
+
+**If the block created or changed a check lane, re-run BOTH halves of
+its falsifiability proof** - the deliberate break with the lane red, and
+the reverted tree with the lane green. A lane that only ever showed
+green is not proven, and proving it is cheaper now than after it has
+silently passed a hundred units.
 
 ## 2. Audit the report against the tree and the block
 
