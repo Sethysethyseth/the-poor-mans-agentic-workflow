@@ -33,7 +33,9 @@ before trusting another green.
   review can't close, delivery and spec disagreeing in a way the block
   doesn't settle>`.
 - **Executor** implements one block, proves it, writes `DELIVERY.md`, and
-  leaves the tree uncommitted so review sees exactly what changed.
+  leaves the tree uncommitted so review sees exactly what changed. When a
+  criterion can't be met, it stops and says why - retrying without new
+  information is the failure mode this rule exists to prevent.
 - **Reviewer** is the single writer for git and for state: audits the
   delivery, re-runs the lane itself, then lands or bounces.
 
