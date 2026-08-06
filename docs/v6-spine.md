@@ -94,7 +94,7 @@ verb, because separating them invites landing without auditing.
 
 | Skill | Invoked by | Triggered when |
 |---|---|---|
-| `relay-setup` | any | installing or upgrading the workflow in a project |
+| `relay-setup` | any, incl. a cold assistant | installing or upgrading the workflow in a project - **self-contained, see the cold-fetch path below** |
 | `relay-lane` | any | the project has no check lane, or one needs repair |
 
 **Evolution - the part that keeps this current:**
@@ -113,6 +113,40 @@ verb, because separating them invites landing without auditing.
   dates it actually checked. This turns the repo's provenance rule
   ("never bump an as-of date you did not personally re-check") from a
   discipline into a lane.
+
+### The cold-fetch path (a hard constraint on every skill)
+
+Progressive disclosure is designed for an agent sitting *in* the repo
+with skill support. Two entry points have neither, and both must keep
+working:
+
+1. **"Summarize this repo for me."** A reader hands an assistant the
+   README URL and expects an accurate account of what this is.
+2. **"Set this up for me."** The assistant is expected to drive the
+   *entire* install - manifest, generation, adapters, first lap - and it
+   may be a plain chat assistant with no repo clone and no skills.
+
+So three rules, and they are not negotiable by later cleverness:
+
+- **Every `relay-*` skill must read as a standalone document.** A skill
+  is a plain markdown file at a stable URL. An assistant with no skill
+  support gets pointed at that URL and follows it as instructions. Write
+  them so that works - no "as established above," no dependence on
+  trigger context, state the goal and the done-condition in the file.
+- **`relay-setup` is the whole install, in one file.** It does not
+  fragment across five other skills. Setup is the one place where
+  upfront beats progressive, because the reader is a cold assistant
+  running it once.
+- **A single stable entry URL** that the README links at the top, which
+  an assistant can be handed with no other context. This also closes the
+  backlog item about agents that cannot fetch URLs - if the fetch fails,
+  the human pastes that one file.
+
+Collapsed `<details>` in the README is safe for both: the content is in
+the raw markdown and the rendered DOM either way. Only the human sees it
+folded. Shortening the README must therefore happen by *moving prose out
+of table cells and behind `<details>`*, never by deleting the facts a
+summarizer needs.
 
 ### adapters/
 
