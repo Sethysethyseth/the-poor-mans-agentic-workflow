@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which Level Am I</title>
+<style>
+:root {
+  --paper:        #EEF1F5;
+  --card:         #FAFBFC;
+  --ink:          #141920;
+  --ink-soft:     #4A5462;
+  --ink-faint:    #8994A3;
+  --rule:         #D3DAE3;
+  --smart:        #B5761A;
+  --smart-wash:   #F7EBD6;
+  --cheap:        #14756F;
+  --cheap-wash:   #DDEEEC;
+  --you:          #263040;
+  --you-wash:     #DFE4EC;
+  --none:         #A7B2BF;
+  --shadow:       0 1px 2px rgba(20,25,32,.06), 0 8px 24px rgba(20,25,32,.07);
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10141A; --card: #171D25; --ink: #E7ECF3; --ink-soft: #A3AEBD;
+    --ink-faint: #6B7686; --rule: #262F3B; --smart: #E0A94A; --smart-wash: #2E2416;
+    --cheap: #43B8AE; --cheap-wash: #122E2C; --you: #B6C2D4; --you-wash: #1E2632;
+    --none: #55606E;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10141A; --card: #171D25; --ink: #E7ECF3; --ink-soft: #A3AEBD;
+  --ink-faint: #6B7686; --rule: #262F3B; --smart: #E0A94A; --smart-wash: #2E2416;
+  --cheap: #43B8AE; --cheap-wash: #122E2C; --you: #B6C2D4; --you-wash: #1E2632;
+  --none: #55606E;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding: clamp(28px,5vw,64px) clamp(18px,4vw,40px) 72px;
+  display: flex; flex-direction: column; gap: clamp(26px,4vw,40px);
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 14px;
+}
+h1 {
+  font-size: clamp(30px,5.5vw,52px); line-height: 1.04; letter-spacing: -.022em;
+  font-weight: 700; margin: 0 0 14px; text-wrap: balance;
+}
+.standfirst {
+  font-size: clamp(16px,2.1vw,19px); color: var(--ink-soft);
+  max-width: 62ch; margin: 0;
+}
+.standfirst b { color: var(--ink); font-weight: 600; }
+
+/* ---- the four cards ---- */
+.levels {
+  display: grid; grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 14px;
+}
+.lv {
+  font: inherit; color: inherit; text-align: left; cursor: pointer;
+  background: var(--card); border: 1px solid var(--rule); border-radius: 13px;
+  padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 9px;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+}
+.lv:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.lv:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.lv.on { box-shadow: var(--shadow); }
+.lv[data-accent="smart"].on { border-color: var(--smart); }
+.lv[data-accent="cheap"].on { border-color: var(--cheap); }
+.lv .num {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.lv .name { font-size: 16.5px; font-weight: 700; letter-spacing: -.01em; }
+.lv .price {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: 999px; padding: 3px 9px; align-self: flex-start;
+  font-variant-numeric: tabular-nums;
+}
+.roles { display: flex; gap: 5px; margin-top: 3px; }
+.role {
+  flex: 1; text-align: center; font-family: var(--mono); font-size: 9px;
+  letter-spacing: .06em; padding: 5px 0; border-radius: 5px;
+}
+.role.s { background: var(--smart-wash); color: var(--smart); }
+.role.c { background: var(--cheap-wash); color: var(--cheap); }
+.role.n { border: 1px dashed var(--none); color: var(--ink-faint); }
+.lv .hand {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em;
+  color: var(--ink-faint); margin-top: 2px;
+}
+.lv .hand.auto { color: var(--cheap); }
+
+/* ---- detail ---- */
+.panel {
+  background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
+  box-shadow: var(--shadow); padding: clamp(20px,3vw,30px);
+  display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+  gap: clamp(20px,3vw,34px); min-height: 250px;
+}
+.panel > div { min-width: 0; }
+.tag {
+  display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono);
+  font-size: 11px; letter-spacing: .13em; text-transform: uppercase;
+  padding: 5px 11px; border-radius: 999px; margin-bottom: 14px;
+}
+.tag[data-accent="smart"] { background: var(--smart-wash); color: var(--smart); }
+.tag[data-accent="cheap"] { background: var(--cheap-wash); color: var(--cheap); }
+.panel h2 {
+  font-size: clamp(21px,3vw,27px); line-height: 1.16; letter-spacing: -.015em;
+  margin: 0 0 12px; text-wrap: balance;
+}
+.panel p { margin: 0 0 12px; color: var(--ink-soft); max-width: 56ch; }
+.panel p:last-child { margin-bottom: 0; }
+.panel em { color: var(--ink); font-style: normal; font-weight: 600; }
+.aside {
+  border-left: 1px solid var(--rule); padding-left: clamp(18px,2.5vw,28px);
+  display: flex; flex-direction: column; gap: 17px;
+}
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field .k {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.field .v { font-size: 14.5px; color: var(--ink); }
+.catch {
+  border-left: 3px solid var(--smart); padding-left: 13px;
+  font-size: 14px; color: var(--ink-soft);
+}
+.catch b { color: var(--ink); }
+
+/* ---- the explainer ---- */
+.explain {
+  background: var(--card); border: 1px solid var(--rule);
+  border-radius: 14px; padding: clamp(20px,3vw,30px);
+}
+.explain h2 {
+  font-size: clamp(19px,2.6vw,24px); margin: 0 0 6px; letter-spacing: -.015em;
+}
+.explain > p { color: var(--ink-soft); max-width: 68ch; margin: 0 0 18px; }
+.explain em { color: var(--ink); font-style: normal; font-weight: 600; }
+.two { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 18px; }
+.box { border: 1px solid var(--rule); border-radius: 10px; padding: 15px 17px; }
+.box h3 {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+  text-transform: uppercase; margin: 0 0 8px; font-weight: 500; color: var(--ink-faint);
+}
+.box p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+.box b { color: var(--ink); font-weight: 600; }
+.stamp {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-faint);
+  margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule);
+}
+code {
+  font-family: var(--mono); font-size: .88em; background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 5px; padding: 1px 5px;
+}
+
+@media (max-width: 860px) {
+  .levels { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 720px) {
+  .panel { grid-template-columns: 1fr; }
+  .aside { border-left: 0; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .001ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">The Poor Man's Agentic Workflow</p>
+    <h1>Which level am I?</h1>
+    <p class="standfirst">Four places to stand, and <b>every one of them is a fine place to stop.</b>
+    Click a level to see what it actually involves — what you need, what it costs you,
+    and the catch nobody should discover later.</p>
+  </header>
+
+  <section class="levels" id="levels">
+    <button class="lv on" data-accent="smart" data-i="0">
+      <span class="num">Level 0</span>
+      <span class="name">Just one agent</span>
+      <span class="price">$0–20/mo</span>
+      <span class="roles"><i class="role s">PLAN</i><i class="role s">BUILD</i><i class="role n">NONE</i></span>
+      <span class="hand">NO REVIEW STEP</span>
+    </button>
+    <button class="lv" data-accent="smart" data-i="1">
+      <span class="num">Level 1</span>
+      <span class="name">The full loop</span>
+      <span class="price">~$20/mo</span>
+      <span class="roles"><i class="role s">PLAN</i><i class="role s">BUILD</i><i class="role s">CHECK</i></span>
+      <span class="hand">HANDOFF: YOU</span>
+    </button>
+    <button class="lv" data-accent="cheap" data-i="2">
+      <span class="num">Level 2 · Capacity</span>
+      <span class="name">A second seat</span>
+      <span class="price">~$40/mo</span>
+      <span class="roles"><i class="role s">PLAN</i><i class="role c">BUILD</i><i class="role s">CHECK</i></span>
+      <span class="hand">HANDOFF: YOU</span>
+    </button>
+    <button class="lv" data-accent="cheap" data-i="3">
+      <span class="num">Level 3 · Autonomy</span>
+      <span class="name">It runs itself</span>
+      <span class="price">~$40/mo</span>
+      <span class="roles"><i class="role s">PLAN</i><i class="role c">BUILD</i><i class="role s">CHECK</i></span>
+      <span class="hand auto">HANDOFF: AUTOMATIC</span>
+    </button>
+  </section>
+
+  <section class="panel" aria-live="polite">
+    <div>
+      <span class="tag" id="tag" data-accent="smart">Level 0</span>
+      <h2 id="ptitle"></h2>
+      <div id="pbody"></div>
+    </div>
+    <div class="aside" id="aside"></div>
+  </section>
+
+  <section class="explain">
+    <h2>So what <em>is</em> the cheap agent?</h2>
+    <p>It is not an API key, and it is not a special product. It is simply a second coding
+    agent — one that can read your repo, run commands, and edit files — running on a plan
+    that charges less per token than your good one. <em>Any</em> agent that can read your
+    repo qualifies. The workflow never names a vendor.</p>
+
+    <div class="two">
+      <div class="box">
+        <h3>Form one · inside an editor</h3>
+        <p>You open the agent and paste the one-line handoff yourself. This is what
+        <b>Level 2</b> looks like, and it is all you need there.</p>
+      </div>
+      <div class="box">
+        <h3>Form two · a headless CLI</h3>
+        <p>The same agent as a terminal command, scriptable and able to run unattended.
+        <b>Level 3 requires this form</b> — the reviewer has to drive the builder
+        programmatically, and it cannot type into a window.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:18px">The worked example everything here was measured on is
+    <b>Cursor Pro at $20/mo</b>. Its agent runs both ways: in the editor, and as
+    <code>cursor-agent</code> in a terminal with a non-interactive mode built for scripts
+    and CI. That second form is what makes Level 3 possible at all.</p>
+
+    <div class="two">
+      <div class="box">
+        <h3>The part people get wrong</h3>
+        <p>You are <b>not</b> buying prepaid API credits. Cursor Pro is a subscription
+        with usage included — as of Aug 2026, $20/mo carrying $20 of third-party model
+        usage plus its own models. A CLI API key exists, but it is for authenticating
+        automation, not a separate meter you top up.</p>
+      </div>
+      <div class="box">
+        <h3>Why that distinction matters</h3>
+        <p>The whole <b>$40/mo</b> claim depends on the second seat being a flat
+        subscription. If it were metered API billing, the number would not be $40 — it
+        would be however much you used. Exceed the included allowance and it continues at
+        pay-as-you-go rates, which is precisely where <b>"the $40 can creep"</b> comes from.</p>
+      </div>
+    </div>
+
+    <p class="stamp">Cursor plan terms verified against cursor.com 2026-08-15. Prices and
+    included allowances move — re-check before trusting this figure.</p>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var L = [
+    {
+      accent: "smart", tag: "Level 0", title: "Just one agent, no process",
+      body: [
+        "One coding agent, your project, nothing from this workflow installed. Open it, ask for a small real change, watch what happens.",
+        "The point is not productivity — it is <em>calibration</em>. You find out what an agent is confident about, what it invents, and how it behaves when it does not know something."
+      ],
+      fields: [
+        ["You need", "One agent. Whichever you already pay for."],
+        ["Costs you", "$0–20/mo, depending on the plan."],
+        ["Time to start", "Minutes. Nothing is generated."]
+      ],
+      catch: "<b>There is no review step.</b> You are trusting one agent's account of its own work. Fine for a taste — and the first time it confidently breaks something is the argument for Level 1."
+    },
+    {
+      accent: "smart", tag: "Level 1", title: "The whole loop, on one seat",
+      body: [
+        "Now the workflow is installed. The same agent plays all three roles, but in <em>separate sessions</em> — one plans the task, a fresh one builds it, a third checks it against the task file and re-runs the tests.",
+        "Separate sessions are the trick. The session that checks the work has no memory of writing it, so it cannot be fooled by its own reasoning. That is where the quality comes from, and it costs nothing extra."
+      ],
+      fields: [
+        ["You need", "One agent. Same plan as Level 0."],
+        ["Costs you", "~$20/mo, plus copy-paste per handoff."],
+        ["You learn", "Exactly what the builder gets handed."]
+      ],
+      catch: "<b>Every role shares one usage limit</b>, so this is where the squeeze bites hardest — building burns the same allowance planning needs. You get the fresh second look; you don't get a second opinion from a different model."
+    },
+    {
+      accent: "cheap", tag: "Level 2 · Capacity", title: "A cheap second agent does the typing",
+      body: [
+        "A second, cheaper agent takes over building. Nothing else changes — same task files, same review, same everything. You are still pasting the handoff yourself.",
+        "What you have bought is <em>capacity</em>. Your good model stops spending its limit on mechanical work, so it is there when you need judgment. This is the setup every number in the receipts was measured on."
+      ],
+      fields: [
+        ["You need", "A second agent plan, ~$20/mo."],
+        ["Costs you", "~$40/mo total."],
+        ["You gain", "Your good seat stops running out."]
+      ],
+      catch: "<b>The $40 can creep.</b> Let an expensive model do the typing and the allowance drains fast. Every task file carries a line naming which tier should run it — that is the control, and it only works if you actually use it."
+    },
+    {
+      accent: "cheap", tag: "Level 3 · Autonomy", title: "The handoffs stop needing you",
+      body: [
+        "Same two seats, same cost. The difference is that the reviewer now dispatches tasks to the builder itself, watches the run, audits the result and picks up the next one — a whole batch per session.",
+        "This buys <em>your attention back</em>, not capacity. That is why it costs the same as Level 2 and why it is a genuinely separate decision rather than the next rung up."
+      ],
+      fields: [
+        ["You need", "The builder as a <em>headless CLI</em>."],
+        ["Costs you", "~$40/mo. Same as Level 2."],
+        ["You gain", "One session per batch, not per task."]
+      ],
+      catch: "<b>Deploys, merges, and anything destructive still wait for you</b> — at every level, without exception. And this is the least-proven part of the workflow: you cannot supervise a loop you have never run by hand."
+    }
+  ];
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".lv"));
+  var tag = document.getElementById("tag");
+  var title = document.getElementById("ptitle");
+  var body = document.getElementById("pbody");
+  var aside = document.getElementById("aside");
+
+  function render(i) {
+    var d = L[i];
+    cards.forEach(function (c, n) { c.classList.toggle("on", n === i); });
+    tag.textContent = d.tag;
+    tag.setAttribute("data-accent", d.accent);
+    title.textContent = d.title;
+    body.innerHTML = d.body.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+    aside.innerHTML =
+      d.fields.map(function (f) {
+        return '<div class="field"><span class="k">' + f[0] + '</span><span class="v">' + f[1] + "</span></div>";
+      }).join("") +
+      '<div class="catch">' + d.catch + "</div>";
+  }
+
+  cards.forEach(function (c) {
+    c.addEventListener("click", function () {
+      render(parseInt(c.getAttribute("data-i"), 10));
+    });
+  });
+
+  render(0);
+})();
+</script>
+</body>
+</html>

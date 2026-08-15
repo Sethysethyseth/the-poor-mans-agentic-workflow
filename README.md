@@ -103,10 +103,14 @@ You don't start at $40 — each level adds exactly one idea. And because the
 workflow lives in your repo rather than inside any one tool, moving up *or
 down* just changes which agent you point at a task.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/levels-dark.svg?v=1">
-  <img alt="Four levels. Level 0: one agent plans and builds, with no check step. Level 1: one seat plays all three roles in separate sessions. Level 2: a cheap second agent takes over building. Level 3: the same two seats, with handoffs happening automatically." src="docs/levels.svg?v=1" width="100%">
-</picture>
+<a href="https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/levels-dark.svg?v=1">
+    <img alt="Four levels. Level 0: one agent plans and builds, with no check step. Level 1: one seat plays all three roles in separate sessions. Level 2: a cheap second agent takes over building. Level 3: the same two seats, with handoffs happening automatically." src="docs/levels.svg?v=1" width="100%">
+  </picture>
+</a>
+
+<sup>**[▶ Click any level](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html)** for what it involves — what you need, what it costs you, and the catch.</sup>
 
 **Levels 2 and 3 buy different things**, which is why they cost the same.
 Level 2 buys **capacity** — a cheap agent does the typing so your good one
@@ -122,6 +126,47 @@ recommendation, not a requirement.
 handing the task over yourself is the only way to see exactly what the
 builder was given. Once you've seen that, a task that goes wrong is
 debuggable. Skip ahead if you like; that's the thing it costs you.
+
+<details>
+<summary><b>What exactly is "the cheap agent"?</b></summary>
+
+It isn't an API key and it isn't a special product — it's just a second
+coding agent, one that can read your repo, run commands, and edit files,
+on a plan that charges less per token than your good one. Any agent that
+can do that qualifies; the workflow never names a vendor.
+
+It comes in two forms, and **the difference decides whether Level 3 is
+open to you**:
+
+- **Inside an editor** — you open it and paste the one-line handoff
+  yourself. This is all Level 2 needs.
+- **As a headless CLI** — the same agent as a terminal command,
+  scriptable, able to run unattended. **Level 3 requires this**, because
+  the reviewer has to drive the builder programmatically and it can't
+  type into a window for you.
+
+The worked example every number here was measured on is **Cursor Pro at
+$20/mo**, whose agent runs both ways — in the editor, and as
+`cursor-agent` in a terminal with a non-interactive mode built for
+scripts and CI. Claude Code, Codex, Gemini CLI and OpenCode all have
+headless modes too.
+
+**One thing worth being precise about:** you are *not* buying prepaid API
+credits. Cursor Pro is a subscription with usage included — as of August
+2026, $20/mo carrying $20 of third-party model usage plus its own models.
+An API key exists for authenticating automation, but it isn't a separate
+meter you top up.
+
+That distinction is load-bearing. **The $40/mo claim only works because
+the second seat is a flat subscription.** If it were metered API billing
+the number wouldn't be $40, it would be however much you used. Go past
+the included allowance and it continues at pay-as-you-go rates — which is
+exactly where "the $40 can creep" comes from.
+
+*Cursor plan terms verified against cursor.com on 2026-08-15. Prices and
+allowances move; re-check before trusting the figure.*
+
+</details>
 
 <details>
 <summary><b>The catch at each level, stated not softened</b></summary>
@@ -224,7 +269,8 @@ No code, no CLI, no framework — documents you point your own agent at.
 | --- | --- |
 | [`core/`](core/) | The rules, in one place: the [agent contract](core/CONTRACT.md), the [task format](core/BLOCK.md), the state file |
 | [`skills/`](skills/) | The five skills — set up, plan, build, check, and the one that keeps the set current |
-| [`docs/how-it-works.html`](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html) | The interactive walkthrough — live, or open the file locally |
+| [`docs/how-it-works.html`](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html) | The interactive walkthrough of the loop — live, or open the file locally |
+| [`docs/pick-your-level.html`](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html) | The levels, clickable — including what the cheap agent actually is |
 | [`docs/economics.md`](docs/economics.md) | What it costs, where the $40 creeps, how to watch your usage |
 | [`docs/receipts.md`](docs/receipts.md) | The full paper trail behind every number here, plus [the raw data](docs/receipts-data.json) |
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | Every rule, and the thing that went wrong to cause it |
