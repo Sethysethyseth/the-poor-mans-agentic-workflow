@@ -59,8 +59,8 @@ per handoff.
 
 <a href="https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/relay-line-dark.svg">
-    <img alt="One task travelling five stops: Plan on the smart agent, Hand off by you, Build on the cheap agent, Check on the smart agent, Land by you — with a send-back arc from Check to Build." src="docs/relay-line.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/relay-line-dark.svg?v=2">
+    <img alt="One task travelling five stops: Plan on the smart agent, Hand off by you, Build on the cheap agent, Check on the smart agent, Land by you — with a send-back arc from Check to Build." src="docs/relay-line.svg?v=2" width="100%">
   </picture>
 </a>
 
