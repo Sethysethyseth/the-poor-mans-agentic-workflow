@@ -23,9 +23,6 @@ only at the moment it needs them. Four are the loop itself; the fifth
 keeps the workflow from going stale, writing new skills when you need them
 and pulling in improvements later.
 
-**It has shipped real software:** 37 tasks in 10 days on a production
-app, with two would-have-broken-production bugs caught before deploy.
-
 > [!TIP]
 > **Don't want to read all this? You don't have to.** Paste this into
 > whatever AI you already use (ChatGPT, Claude, anything that reads links):
@@ -60,32 +57,19 @@ Two agents, and they can't talk to each other. Work travels between them
 as **files in your repo**, which means your whole job is one pasted line
 per handoff.
 
-```mermaid
-flowchart LR
-    subgraph PLAN["① PLAN &nbsp;·&nbsp; smart model, short sessions"]
-        P["🧠 <b>Planner</b><br/>writes the task file:<br/>what to build, which files,<br/>how you'll know it worked"]
-    end
-    subgraph BUILD["② BUILD &nbsp;·&nbsp; cheap model, long sessions"]
-        X["⚙️ <b>Executor</b><br/>writes the code, runs the<br/>checks, reports what it did<br/><i>— then stops</i>"]
-    end
-    subgraph CHECK["③ CHECK &nbsp;·&nbsp; smart model again"]
-        R["🔍 <b>Reviewer</b><br/>re-runs the checks itself,<br/>then commits it<br/><i>or sends it back</i>"]
-    end
-    P ==>|"🧍 you paste one line"| X
-    X ==>|"🧍 you say it stopped"| R
-    R ==>|"next task"| P
-    R -.->|"not good enough"| X
-```
+<a href="https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/relay-line-dark.svg">
+    <img alt="One task travelling five stops: Plan on the smart agent, Hand off by you, Build on the cheap agent, Check on the smart agent, Land by you — with a send-back arc from Check to Build." src="docs/relay-line.svg" width="100%">
+  </picture>
+</a>
+
+<sup>**[▶ Click the diagram](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html)** to open the interactive version, where every stop explains what it costs and what you do.</sup>
 
 **The one rule that makes it work:** the reviewer never takes the
-executor's word for anything. It runs the tests again, itself, on the
+builder's word for anything. It runs the tests again, itself, on the
 actual code. Agents are confident about work they didn't finish — this is
 the step that catches it.
-
-> **▶ [See it move: the interactive walkthrough](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html)**
-> — one task riding all five stops, colour-coded by who pays for each
-> step. Takes about a minute and explains this better than the rest of
-> this page does.
 
 <details>
 <summary><b>Why splitting the work in two saves so much money</b></summary>
