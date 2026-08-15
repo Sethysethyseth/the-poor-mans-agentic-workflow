@@ -99,10 +99,9 @@ cost breakdown: [docs/economics.md](docs/economics.md).*
 
 ## Pick your level
 
-You don't start at $40. Each level adds exactly one new idea, and **every
-level is a fine place to stop.** Because the workflow lives in your repo
-rather than inside any one tool, moving up *or down* just changes which
-agent you point at a task.
+You don't start at $40 — each level adds exactly one idea. And because the
+workflow lives in your repo rather than inside any one tool, moving up *or
+down* just changes which agent you point at a task.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/levels-dark.svg?v=1">
