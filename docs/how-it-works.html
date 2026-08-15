@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Relay Line</title>
+<style>
+:root {
+  --paper:        #EEF1F5;
+  --card:         #FAFBFC;
+  --ink:          #141920;
+  --ink-soft:     #4A5462;
+  --ink-faint:    #8994A3;
+  --rule:         #D3DAE3;
+  --smart:        #B5761A;
+  --smart-wash:   #F7EBD6;
+  --cheap:        #14756F;
+  --cheap-wash:   #DDEEEC;
+  --you:          #263040;
+  --you-wash:     #DFE4EC;
+  --track:        #C7D0DB;
+  --shadow:       0 1px 2px rgba(20,25,32,.06), 0 8px 24px rgba(20,25,32,.07);
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #10141A;
+    --card:       #171D25;
+    --ink:        #E7ECF3;
+    --ink-soft:   #A3AEBD;
+    --ink-faint:  #6B7686;
+    --rule:       #262F3B;
+    --smart:      #E0A94A;
+    --smart-wash: #2E2416;
+    --cheap:      #43B8AE;
+    --cheap-wash: #122E2C;
+    --you:        #B6C2D4;
+    --you-wash:   #1E2632;
+    --track:      #2C3644;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #10141A;
+  --card:       #171D25;
+  --ink:        #E7ECF3;
+  --ink-soft:   #A3AEBD;
+  --ink-faint:  #6B7686;
+  --rule:       #262F3B;
+  --smart:      #E0A94A;
+  --smart-wash: #2E2416;
+  --cheap:      #43B8AE;
+  --cheap-wash: #122E2C;
+  --you:        #B6C2D4;
+  --you-wash:   #1E2632;
+  --track:      #2C3644;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 64px) clamp(18px, 4vw, 40px) 72px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 44px);
+}
+
+/* ---------- masthead ---------- */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 14px;
+}
+h1 {
+  font-size: clamp(30px, 5.5vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  font-weight: 700;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.standfirst {
+  font-size: clamp(16px, 2.1vw, 19px);
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: 0;
+}
+.standfirst b { color: var(--ink); font-weight: 600; }
+
+/* ---------- legend ---------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+.key {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.swatch {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  flex: none;
+}
+.key b { color: var(--ink); font-weight: 600; }
+
+/* ---------- the line ---------- */
+.route { position: relative; }
+.track {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 26px 0 8px;
+}
+.rail {
+  position: absolute;
+  left: 6%; right: 6%;
+  top: 44px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--track);
+}
+.railfill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--smart), var(--cheap));
+  transition: width .55s cubic-bezier(.4,.05,.2,1);
+}
+.token {
+  position: absolute;
+  top: 47px;
+  left: 0;
+  width: 22px; height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 6px;
+  background: var(--card);
+  border: 2.5px solid var(--ink);
+  box-shadow: var(--shadow);
+  transition: transform .55s cubic-bezier(.4,.05,.2,1);
+  z-index: 4;
+  display: grid;
+  place-items: center;
+}
+.token::after {
+  content: "";
+  width: 8px; height: 2px;
+  background: var(--ink);
+  box-shadow: 0 3px 0 var(--ink), 0 -3px 0 var(--ink);
+}
+.pulse {
+  position: absolute;
+  inset: -9px;
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  opacity: 0;
+}
+.running .pulse { animation: ping 1.9s ease-out infinite; }
+@keyframes ping {
+  0%   { opacity: .5; transform: scale(.72); }
+  70%  { opacity: 0;   transform: scale(1.25); }
+  100% { opacity: 0;   transform: scale(1.25); }
+}
+
+.stop {
+  position: relative;
+  z-index: 3;
+  flex: 1 1 0;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.stop:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; border-radius: 8px; }
+.dot {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 3px solid var(--track);
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  transition: border-color .3s, color .3s, transform .3s, background .3s;
+}
+.stop[data-owner="smart"].on .dot { border-color: var(--smart); color: var(--smart); background: var(--smart-wash); }
+.stop[data-owner="cheap"].on .dot { border-color: var(--cheap); color: var(--cheap); background: var(--cheap-wash); }
+.stop[data-owner="you"].on   .dot { border-color: var(--you);   color: var(--ink);  background: var(--you-wash); }
+.stop.on .dot { transform: scale(1.14); }
+.stop.done .dot { border-color: var(--ink-faint); color: var(--ink-soft); }
+.stoplabel {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  transition: color .3s;
+  max-width: 12ch;
+}
+.stop.on .stoplabel { color: var(--ink); }
+
+/* the send-back arc */
+.arc {
+  display: block;
+  width: 100%;
+  height: 46px;
+  overflow: visible;
+}
+.arc path {
+  fill: none;
+  stroke: var(--track);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+  transition: stroke .3s;
+}
+.arc.hot path { stroke: var(--smart); }
+.arc text {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  fill: var(--ink-faint);
+  transition: fill .3s;
+}
+.arc.hot text { fill: var(--smart); }
+
+/* ---------- detail panel ---------- */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 3vw, 30px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 34px);
+  min-height: 232px;
+}
+.panel > div { min-width: 0; }
+.who {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.who[data-owner="smart"] { background: var(--smart-wash); color: var(--smart); }
+.who[data-owner="cheap"] { background: var(--cheap-wash); color: var(--cheap); }
+.who[data-owner="you"]   { background: var(--you-wash);   color: var(--ink); }
+.panel h2 {
+  font-size: clamp(21px, 3vw, 27px);
+  line-height: 1.16;
+  letter-spacing: -.015em;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+.panel p { margin: 0 0 12px; color: var(--ink-soft); max-width: 54ch; }
+.panel p:last-child { margin-bottom: 0; }
+.panel em { color: var(--ink); font-style: normal; font-weight: 600; }
+.aside {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(18px, 2.5vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field .k {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.field .v { font-size: 14.5px; color: var(--ink); }
+.field .v.mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  padding: 9px 11px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.cost { font-variant-numeric: tabular-nums; }
+
+/* ---------- controls ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 9px;
+  padding: 9px 17px;
+  cursor: pointer;
+  transition: border-color .2s, transform .1s;
+}
+.btn:hover { border-color: var(--ink-faint); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.hint { font-size: 13px; color: var(--ink-faint); }
+
+/* ---------- closing note ---------- */
+.note {
+  border-top: 1px solid var(--rule);
+  padding-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+.note h3 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+.note p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+.note b { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .panel { grid-template-columns: 1fr; }
+  .aside { border-left: 0; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 20px; }
+  .stoplabel { font-size: 9px; letter-spacing: .08em; }
+  .dot { width: 28px; height: 28px; font-size: 11px; }
+  .rail { top: 41px; }
+  .token { top: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">The Poor Man's Agentic Workflow</p>
+    <h1>One task, five stops, two agents.</h1>
+    <p class="standfirst">This is the whole workflow. A task rides the line from left to right; the
+    colour of each stop tells you <b>who is paying for it</b>. Your job is the two grey stops — and
+    that is genuinely all of it.</p>
+    <div class="legend">
+      <span class="key"><span class="swatch" style="background:var(--smart)"></span><b>Smart agent</b> — expensive, short bursts</span>
+      <span class="key"><span class="swatch" style="background:var(--cheap)"></span><b>Cheap agent</b> — commodity typing</span>
+      <span class="key"><span class="swatch" style="background:var(--you)"></span><b>You</b> — one pasted line</span>
+    </div>
+  </header>
+
+  <section class="route">
+    <div class="track" id="track">
+      <div class="rail"><div class="railfill" id="railfill"></div></div>
+      <div class="token" id="token"><span class="pulse"></span></div>
+      <button class="stop" data-owner="smart" data-i="0"><span class="dot">01</span><span class="stoplabel">Plan</span></button>
+      <button class="stop" data-owner="you"   data-i="1"><span class="dot">02</span><span class="stoplabel">Hand off</span></button>
+      <button class="stop" data-owner="cheap" data-i="2"><span class="dot">03</span><span class="stoplabel">Build</span></button>
+      <button class="stop" data-owner="smart" data-i="3"><span class="dot">04</span><span class="stoplabel">Check</span></button>
+      <button class="stop" data-owner="you"   data-i="4"><span class="dot">05</span><span class="stoplabel">Land</span></button>
+    </div>
+
+    <svg class="arc" id="arc" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 700 2 C 700 40, 500 40, 500 2" vector-effect="non-scaling-stroke"></path>
+      <text x="600" y="40" text-anchor="middle">not good enough → back to 03</text>
+    </svg>
+  </section>
+
+  <section class="panel" id="panel" aria-live="polite">
+    <div>
+      <span class="who" id="who" data-owner="smart">Smart agent</span>
+      <h2 id="ptitle">Plan</h2>
+      <div id="pbody"></div>
+    </div>
+    <div class="aside" id="aside"></div>
+  </section>
+
+  <div class="controls">
+    <button class="btn" id="play">Pause</button>
+    <button class="btn" id="next">Next stop</button>
+    <span class="hint">or click any stop on the line</span>
+  </div>
+
+  <section class="note">
+    <div>
+      <h3>Why two agents</h3>
+      <p>Thinking is expensive and short. Typing is cheap and long. Paying premium rates for
+      both is the thing that costs $200 a month — <b>so don't.</b></p>
+    </div>
+    <div>
+      <h3>Why it doesn't go wrong</h3>
+      <p>The agent that checks the work is never the agent that did it, and it
+      <b>re-runs the tests itself</b> rather than believing the report.</p>
+    </div>
+    <div>
+      <h3>Why you're in the loop</h3>
+      <p>Handing the task over yourself is the only way to see exactly what the builder was
+      told. <b>That's what makes a bad task debuggable.</b></p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var STOPS = [
+    {
+      owner: "smart", who: "Smart agent", title: "Plan the task",
+      body: [
+        "The expensive model reads your goal and writes <em>one task file</em>: what to build, which files to touch, which existing patterns to follow, and — the part that matters — <em>how anyone will know it worked</em>.",
+        "It writes the task down completely, because the agent that builds it will arrive with no memory of this conversation."
+      ],
+      fields: [
+        ["Costs you", "A few expensive minutes. Thinking is short."],
+        ["You do", "Describe what you want. That's it."]
+      ]
+    },
+    {
+      owner: "you", who: "You", title: "Hand it over",
+      body: [
+        "You paste <em>one line</em> into the cheap agent. Not a summary, not context, not a conversation — just a pointer to the file.",
+        "This is deliberately manual at the start. Watching the handoff is how you learn what the builder actually receives."
+      ],
+      fields: [
+        ["Costs you", "About four seconds."],
+        ["You paste", "<span class='mono-inline'>read docs/tasks/&lt;task&gt;.md and execute it</span>", true]
+      ]
+    },
+    {
+      owner: "cheap", who: "Cheap agent", title: "Build it",
+      body: [
+        "The commodity model does the volume work: writes the code, runs the tests itself, and writes down what it did — files touched, real test output, evidence for each requirement.",
+        "Then it <em>stops</em>. It does not commit, and it does not tidy up anything it wasn't asked to touch."
+      ],
+      fields: [
+        ["Costs you", "Lots of tokens, at the cheap rate."],
+        ["You do", "Nothing. Go get a coffee."]
+      ]
+    },
+    {
+      owner: "smart", who: "Smart agent", title: "Check the work",
+      body: [
+        "A fresh session — no memory of building it — reads the report against the actual code and <em>runs every test again itself</em>.",
+        "This is the step that earns the whole workflow. An agent will tell you it finished something it didn't finish; checking the claim instead of trusting it is what catches that. If it doesn't hold up, the task goes <em>back to stop 03</em> unchanged."
+      ],
+      fields: [
+        ["Costs you", "A short expensive session."],
+        ["You do", "Say the builder stopped."]
+      ]
+    },
+    {
+      owner: "you", who: "You", title: "Land it",
+      body: [
+        "Passing work gets committed, and the next task goes out. But <em>merging and deploying never happen on their own</em> — not at any level, not even when the loop is running itself.",
+        "Anything that touches production waits for you to say so, in words. Enthusiasm is not authorisation."
+      ],
+      fields: [
+        ["Costs you", "One decision."],
+        ["You do", "Say the word. Or don't."]
+      ]
+    }
+  ];
+
+  var track   = document.getElementById("track");
+  var token   = document.getElementById("token");
+  var fill    = document.getElementById("railfill");
+  var arc     = document.getElementById("arc");
+  var panel   = document.getElementById("panel");
+  var who     = document.getElementById("who");
+  var ptitle  = document.getElementById("ptitle");
+  var pbody   = document.getElementById("pbody");
+  var aside   = document.getElementById("aside");
+  var playBtn = document.getElementById("play");
+  var nextBtn = document.getElementById("next");
+  var stops   = Array.prototype.slice.call(track.querySelectorAll(".stop"));
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var i = 0;
+  var timer = null;
+  var playing = !reduced;
+
+  function place(idx) {
+    var dot = stops[idx].querySelector(".dot");
+    var tr = track.getBoundingClientRect();
+    var dr = dot.getBoundingClientRect();
+    var x = dr.left - tr.left + dr.width / 2;
+    token.style.transform = "translateX(" + x + "px)";
+
+    var first = stops[0].querySelector(".dot").getBoundingClientRect();
+    var last  = stops[stops.length - 1].querySelector(".dot").getBoundingClientRect();
+    var span  = (last.left + last.width / 2) - (first.left + first.width / 2);
+    var done  = (dr.left + dr.width / 2) - (first.left + first.width / 2);
+    var railL = first.left - tr.left + first.width / 2;
+    var rail  = fill.parentNode;
+    rail.style.left  = railL + "px";
+    rail.style.right = "auto";
+    rail.style.width = span + "px";
+    fill.style.width = (span ? (done / span) * 100 : 0) + "%";
+  }
+
+  function render(idx) {
+    var s = STOPS[idx];
+    i = idx;
+
+    stops.forEach(function (el, n) {
+      el.classList.toggle("on", n === idx);
+      el.classList.toggle("done", n < idx);
+    });
+
+    who.textContent = s.who;
+    who.setAttribute("data-owner", s.owner);
+    ptitle.textContent = s.title;
+
+    pbody.innerHTML = s.body.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+
+    aside.innerHTML = s.fields.map(function (f) {
+      var cls = f[2] ? "v mono" : "v cost";
+      var val = f[2] ? f[1].replace(/<\/?span[^>]*>/g, "") : f[1];
+      return '<div class="field"><span class="k">' + f[0] + '</span><span class="' + cls + '">' + val + "</span></div>";
+    }).join("");
+
+    arc.classList.toggle("hot", idx === 3);
+    token.classList.toggle("running", playing);
+    place(idx);
+  }
+
+  function go(idx) { render((idx + STOPS.length) % STOPS.length); }
+  function tick() { go(i + 1); }
+
+  function setPlaying(on) {
+    playing = on;
+    playBtn.textContent = on ? "Pause" : "Play";
+    clearInterval(timer);
+    if (on) timer = setInterval(tick, 5200);
+    token.classList.toggle("running", on);
+  }
+
+  stops.forEach(function (el) {
+    el.addEventListener("click", function () {
+      setPlaying(false);
+      go(parseInt(el.getAttribute("data-i"), 10));
+    });
+  });
+  nextBtn.addEventListener("click", function () { setPlaying(false); tick(); });
+  playBtn.addEventListener("click", function () { setPlaying(!playing); });
+  window.addEventListener("resize", function () { place(i); });
+
+  render(0);
+  setPlaying(!reduced);
+})();
+</script>
+</body>
+</html>

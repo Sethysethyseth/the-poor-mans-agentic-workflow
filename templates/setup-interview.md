@@ -127,12 +127,30 @@ worked example, not a requirement.)
   works, re-runnable fresh in under ~2 minutes. Every "checks green" in
   the generated templates becomes YOUR named lane(s). Path B infers this
   from your repo (test script, build script, linter config).
-  **Default: NONE YET** - the honest degraded mode: executor evidence
-  becomes "show the change running" (command output, before/after), and
-  the generated files carry a standing TODO to build a real lane, because
-  verify-before-trust is visibly weaker without one. We don't pretend
-  otherwise.
-  `Answer: none yet`
+  **Default: name what exists - and BUILD A MINIMAL ONE if nothing does.**
+  The lane is what the reviewer re-runs fresh, so a setup without one
+  hands you the protocol's most load-bearing step with nothing to run:
+  executor evidence degrades to "show the change running" and review
+  degrades to reading a diff. Rather than record that and move on, setup
+  creates the smallest lane that can actually fail - the build succeeds,
+  the entry point imports, the CLI answers `--help`, the links resolve;
+  whatever proves in ONE command that this project is not broken.
+  Coverage is not the goal and this is not a testing strategy - a lane
+  you can run and trust is. *(Escape hatch, kept on purpose: answer
+  `none yet` and the generated files carry the "show it running" evidence
+  rule plus a standing TODO. It is a visibly weaker setup; it stays
+  documented rather than hidden.)*
+  `Answer: build a minimal lane if none exists`
+- **P2a. Lane falsifiability** - a lane that cannot fail is worse than no
+  lane at all: it prints green over an unproven tree, which is the exact
+  defect class the review gate exists to catch, now wearing a checkmark.
+  So any lane created during setup is proven RED before it is accepted -
+  break something trivial, run it, watch it fail, revert, watch it pass -
+  and that evidence goes in the delivery report like any other criterion.
+  **Default: ON. Not deletable for lanes this setup creates**; a lane
+  nobody has watched fail is an unverified claim, and unverified claims
+  are refused everywhere else in this workflow.
+  `Answer: ON`
 - **P3. Deploy/release flow** - is there a branch whose push deploys
   somewhere, and a production environment at the end of it? Feeds the
   gate items below.
@@ -228,8 +246,10 @@ manifest. Rules, in order:
 2. **Generate from this file alone:**
    - `AGENTS.md` (from `templates/AGENTS.md`) - project facts, division
      of labor, the gate assembled from G1-G6, verify-before-trust,
-     gotchas. Every "checks green" parameterized to P2; if P2 is "none
-     yet," write the degraded evidence rule AND the standing TODO.
+     gotchas. Every "checks green" parameterized to P2 - including a
+     lane this setup creates, which is named here like any other; only
+     if P2 was answered `none yet` (the escape hatch) do you write the
+     degraded evidence rule AND the standing TODO.
    - `<S1>` + `<S2>` (from `templates/HANDOFF.md`) - the work-state file
      with "Next action (human):" pre-filled (see step 4) and an empty
      archive.
@@ -243,10 +263,29 @@ manifest. Rules, in order:
      the Section 0 executor answers. Changing executors later
      regenerates this one file; the protocol files (blocks, queue,
      state, reports) still need zero edits.
-   - `<S4>/u0-hello-relay.md` - a trivial starter block (e.g. add one
-     line to the project README) sized for the ~15-minute first lap in
-     `docs/setup.md`.
+   - `<S4>/u0-hello-relay.md` - the starter block for the ~15-minute
+     first lap in `docs/setup.md`. P2 decides which of two shapes it
+     takes, and both are sized for the same lap:
+     - **A lane already exists:** a trivial change (e.g. add one line to
+       the project README) whose acceptance criteria include running
+       that lane - so the first lap exercises the verification spine,
+       not just the choreography.
+     - **P2 asked for a lane to be built:** the block ESTABLISHES it.
+       CHANGE names the lane command recorded in P2 and what it must
+       cover; ACCEPTANCE CRITERIA are the P2a falsifiability proof - the
+       delivery report must show the lane FAILING against a deliberate
+       trivial break, then PASSING once reverted. The reviewer re-runs
+       both halves. A lane that only ever showed green is a bounce.
    - A `.gitignore` entry for `DELIVERY.md`.
+
+   **Check-lane ordering, so it isn't rediscovered every setup:** the
+   lane's COMMAND is decided at manifest time (step 3) and written into
+   P2, so `AGENTS.md` can name it like any other lane; the lane itself is
+   BUILT during the lap, through the loop. That split is deliberate - the
+   adopter's first unit produces the instrument every later review
+   depends on, which is both the cheapest time to add it and the clearest
+   demonstration of what the loop is for. If building it needs a package
+   installed, that is a G5 gate item and the human runs it.
 3. **Stamp everything.** Every generated file's header carries one line:
    `generated from the-poor-mans-agentic-workflow <version>, <date>` -
    version from this repo's release tag. Version + this manifest = the

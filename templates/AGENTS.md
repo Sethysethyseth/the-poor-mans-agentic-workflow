@@ -26,6 +26,9 @@ too - agents invent scope when you don't name what you DON'T want.>
 - Run: `<how to start the project locally>`
 - Check lane(s) - what proves the project still works, re-runnable fresh
   in under ~2 minutes: `<check-lane-command(s), run from <directory>>`
+- **This lane has been seen to fail** (setup proved it red before green).
+  If a change ever makes it impossible for the lane to fail, the lane is
+  broken - fix the lane before trusting another green.
 - <If you have NO check lane yet: say so honestly here, and keep the
   standing TODO to build one - the review step visibly weakens without it.
   Until then, "proof" means showing the change running: command output,

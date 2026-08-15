@@ -1,0 +1,7 @@
+# Working state, never committed
+HANDOFF.md
+HANDOFF-archive.md
+
+# Executor delivery reports - written every block, read by the reviewer,
+# never part of the record
+DELIVERY.md

@@ -89,12 +89,22 @@ checked, and no executor account has been created ahead of its level.
    deploy hints, database presence - and write inferred answers in
    place, each tagged with what you saw. Anything the evidence can't
    answer keeps its printed default.
-4. Show the completed manifest for **ONE confirmation pass** - a short
+4. **The check lane (P2) is the one answer worth real effort** - it is
+   what the reviewer re-runs on every unit from here on. Find the
+   project's lane if it has one. If it has none, do NOT just record the
+   absence: propose the smallest command that could actually fail for
+   this project (build succeeds, entry point imports, CLI answers
+   `--help`, links resolve) and write THAT command into P2. You are
+   deciding the command now; the hello-relay block builds it in step 6.
+   Name it in the confirmation pass so the human can veto a lane that
+   proves nothing.
+5. Show the completed manifest for **ONE confirmation pass** - a short
    summary of what you inferred and which defaults stand, not an
    interrogation. Write any corrections back into the file.
 
-**Done when:** the manifest file in the project holds every answer, and
-the human has confirmed it once.
+**Done when:** the manifest file in the project holds every answer, the
+check lane is named (found or proposed), and the human has confirmed it
+once.
 
 ## Step 4 - generate
 
@@ -124,12 +134,17 @@ once. Walk the human through the ~15-minute first lap in
 using the generated starter block. Your role during the lap is
 narrator: tell them what to paste where, and after each hop, point at
 what just happened (the stop without committing, the audit, the single
-commit, the state file's next-action line). For an upgrade run, the lap
-is optional - offer it as a regression check.
+commit, the state file's next-action line). If this lap is building the
+check lane, the moment worth narrating is the lane going RED - that is
+the proof it can fail, and it is the only reason a later green means
+anything. For an upgrade run, the lap is optional - offer it as a
+regression check.
 
 **Done when:** one full lap is complete - block dispatched, executor
 stopped uncommitted with a delivery report, reviewer audited and made
-exactly one commit, and the state file names the next action.
+exactly one commit, and the state file names the next action. If the lap
+built the check lane, also: the lane exists, the delivery report shows
+it red-then-green, and the reviewer re-ran both halves.
 
 ## Stop condition
 
