@@ -35,15 +35,15 @@ and pulling in improvements later.
 > The same move runs the entire install:
 > [the quickstart is one paste](#quickstart-one-paste).
 
-To be clear about what this is: it is **not "Max for $40."** It is
-Max-quality *results* for $40, paid for in wall-clock time, your
-attention, and rationing discipline — including [the honest list of what
-you give up](#the-honest-trade).
+To be clear about the trade: you are not getting the $200 plan for $40.
+You're getting **the same quality of output**, paid for in wall-clock
+time, your attention, and some discipline about usage limits. [The honest
+list of what you give up](#the-honest-trade) is at the bottom, unsoftened.
 
 **Jump to:**
 [How it works](#how-it-works) ·
-[The skills](#the-skills) ·
 [Pick your level](#pick-your-level) ·
+[The skills](#the-skills) ·
 [Quickstart](#quickstart-one-paste) ·
 [What's in the repo](#whats-in-the-repo) ·
 [Receipts](#the-receipts) ·
@@ -97,54 +97,6 @@ cost breakdown: [docs/economics.md](docs/economics.md).*
 
 </details>
 
-## The skills
-
-A skill is a folder with an instruction file in it. Your agent reads the
-name and one-line description of each at startup, and loads the full
-instructions **only when that moment actually arrives** — so a skill costs
-almost nothing to keep around. That's the
-[Agent Skills open standard](https://agentskills.io), not a Claude
-feature: Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, VS Code,
-Goose, Roo Code, Mistral Vibe and 40+ other agents all read this format.
-
-That matters here, because it means **you can switch models or tools
-without rewriting anything.** The workflow is text; the agent is
-replaceable.
-
-| Skill | It fires when… |
-| --- | --- |
-| [`relay-setup`](skills/relay-setup/SKILL.md) | **you're installing this.** The whole install in one file — and the upgrade path later |
-| [`relay-plan`](skills/relay-plan/SKILL.md) | **you have a goal**, and it needs turning into task files someone else could build from |
-| [`relay-execute`](skills/relay-execute/SKILL.md) | **a task has been handed over.** Build it, prove it, write down what you did, stop |
-| [`relay-review`](skills/relay-review/SKILL.md) | **work is waiting to be checked.** Ends in landed or sent back — and guards the merge |
-| [`skill-map`](skills/skill-map/SKILL.md) | **you want to see what you have**, or you need a new skill that doesn't exist yet |
-
-Five, on purpose. A skill you have to go looking for is one you'll forget
-you own, so the set stays small enough to hold in your head — and the
-first four are just the loop: set it up, plan it, build it, check it.
-
-**It's built to evolve on its own.** Every time work gets sent back,
-`relay-review` turns the failure into a permanent rule, written where the
-agent will actually read it, with the trade-off it accepted written beside
-it. `relay-setup` pulls in improvements from here later without
-overwriting anything you've customized. And `skill-map` writes you a new
-skill when you catch yourself repeating something — but makes it earn the
-slot first.
-
-It *shrinks* on its own too: any rule nobody can trace back to a real
-problem gets deleted. That's what stops five skills quietly becoming
-thirty rules nobody reads.
-
-<details>
-<summary><b>Want a picture of your own setup?</b></summary>
-
-`skill-map` can render every skill you have — the five that ship, plus any
-you've added — as a single self-contained HTML page showing when each one
-fires. Setup asks whether you want it; it's entirely optional, and nothing
-depends on it.
-
-</details>
-
 ## Pick your level
 
 You don't start at $40. Each level adds exactly one new idea, and **every
@@ -152,23 +104,16 @@ level is a fine place to stop.** Because the workflow lives in your repo
 rather than inside any one tool, moving up *or down* just changes which
 agent you point at a task.
 
-```mermaid
-flowchart LR
-    L0["🦶 <b>Level 0</b><br/>$0–20/mo<br/><br/>one agent,<br/>no process yet"]
-    L1["🌊 <b>Level 1</b><br/>~$20/mo<br/><br/>the full loop,<br/>you hand off by hand"]
-    L2["🏊 <b>Level 2</b><br/>~$40/mo<br/><br/>a second, cheaper<br/>agent does the typing"]
-    L3["🚤 <b>Level 3</b><br/>~$40/mo<br/><br/>the loop hands off<br/>to itself"]
-    L0 --> L1 --> L2 --> L3
-    L2 -.->|"not worth it? go back"| L1
-    L3 -.->|"step back anytime"| L2
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/levels-dark.svg?v=1">
+  <img alt="Four levels. Level 0: one agent plans and builds, with no check step. Level 1: one seat plays all three roles in separate sessions. Level 2: a cheap second agent takes over building. Level 3: the same two seats, with handoffs happening automatically." src="docs/levels.svg?v=1" width="100%">
+</picture>
 
-| Level | What it is | What you get out of it | ~$/mo |
-| --- | --- | --- | --- |
-| **0** | One agent in your project. Nothing installed yet. | You find out what an AI agent actually does | $0–20 |
-| **1** | The whole loop, run by one agent in separate sessions. You copy-paste between them. | **You see exactly what the executor was told** | ~$20 |
-| **2** | A second, cheaper agent takes over the code-writing. | Your good model stops burning through its limit on typing | ~$40 |
-| **3** | The reviewer hands tasks off by itself; you approve. | You supervise a batch instead of babysitting each task | ~$40 |
+**Levels 2 and 3 buy different things**, which is why they cost the same.
+Level 2 buys **capacity** — a cheap agent does the typing so your good one
+stops burning its limit on it. Level 3 buys **your attention back** — the
+handoffs stop needing you. Most people want capacity first, but that's a
+recommendation, not a requirement.
 
 > **Never done any of this before? Start at Level 0**, ship one tiny
 > change with one agent, and come back. The install will still be one
@@ -176,7 +121,7 @@ flowchart LR
 
 **Level 1 makes you copy-paste on purpose.** Not to be cheap — because
 handing the task over yourself is the only way to see exactly what the
-executor was given. Once you've seen that, a task that goes wrong is
+builder was given. Once you've seen that, a task that goes wrong is
 debuggable. Skip ahead if you like; that's the thing it costs you.
 
 <details>
@@ -201,6 +146,50 @@ debuggable. Skip ahead if you like; that's the thing it costs you.
 When you find yourself hitting usage limits weekly even at Level 3, the
 honest answer is to go buy the expensive plan. This path openly ends in
 **outgrowing this repo** — that's a graduation, not a failure.
+
+</details>
+
+## The skills
+
+A skill is a folder with an instruction file in it. Your agent reads the
+name and one-line description of each at startup, and loads the full
+instructions **only when that moment actually arrives** — so a skill costs
+almost nothing to keep around. That's the
+[Agent Skills open standard](https://agentskills.io), not a Claude
+feature: Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, VS Code,
+Goose, Roo Code, Mistral Vibe and 40+ other agents all read this format.
+
+That matters here, because it means **you can switch models or tools
+without rewriting anything.** The workflow is text; the agent is
+replaceable.
+
+| Skill | It fires when… |
+| --- | --- |
+| [`relay-setup`](skills/relay-setup/SKILL.md) | **you're installing this.** The whole install in one file — and the upgrade path later |
+| [`relay-plan`](skills/relay-plan/SKILL.md) | **you have a goal**, and it needs turning into task files someone else could build from |
+| [`relay-execute`](skills/relay-execute/SKILL.md) | **a task has been handed over.** Build it, prove it, write down what you did, stop |
+| [`relay-review`](skills/relay-review/SKILL.md) | **work is waiting to be checked.** Ends in landed or sent back — and guards the merge |
+| [`skill-map`](skills/skill-map/SKILL.md) | **you want to see what you have**, or you need a new skill that doesn't exist yet |
+
+Five, on purpose — a skill you have to go looking for is one you'll forget
+you own. The first four are just the loop: set it up, plan it, build it,
+check it.
+
+**It's built to evolve on its own.** Every time work gets sent back,
+`relay-review` turns that failure into a permanent rule, with the
+trade-off it accepted written next to it. `relay-setup` pulls in
+improvements from here later without touching anything you've customized.
+And `skill-map` writes you a new skill when you catch yourself repeating
+something — after making it earn the slot. It shrinks too: any rule nobody
+can trace to a real problem gets deleted.
+
+<details>
+<summary><b>Want a picture of your own setup?</b></summary>
+
+`skill-map` can render every skill you have — the five that ship, plus any
+you've added — as a single self-contained HTML page showing when each one
+fires. Setup asks whether you want it; it's entirely optional, and nothing
+depends on it.
 
 </details>
 
@@ -245,12 +234,8 @@ No code, no CLI, no framework — documents you point your own agent at.
 ## The receipts
 
 Measured July 2–11, 2026, on two $20 plans, against a production fitness
-tracker — named only so the numbers have a source.
-
-The loop these numbers describe — plan it, hand it off, build it, check
-it, land it — is the same loop you'd run today. What has changed since is
-*how the instructions reach the agents*, not what a task, a report, or a
-review is.
+tracker — named only so the numbers have a source. This was Level 2:
+two seats, every handoff done by hand.
 
 - **37 tasks landed in 10 days** (35 commits) — real features: database
   migrations, analytics, UI rebuilds. Not one-line fixes.
@@ -270,7 +255,7 @@ review is.
 <summary><b>The unflattering numbers, published on purpose</b></summary>
 
 - **~8 of the 37 tasks were done by the planner itself** instead of the
-  cheap executor — about one in five. The split holds ~80% of the time
+  cheap builder — about one in five. The split holds ~80% of the time
   and leaks under pressure, at exactly the seams it warns about.
 - **6 fixes needed in the one session that broke the rules** — three
   tasks run in one folder at once, which the process forbids. The
@@ -310,8 +295,8 @@ agent doesn't give you at all.
 3. **The $40 can creep** if expensive models end up doing the typing.
 4. **Context gets lost at every handoff.** A single agent remembers
    everything from plan through debugging. Here, each task has to be
-   written down completely, and the executor starts cold every time.
-   Reduced by the templates; never eliminated.
+   written down completely, and the builder starts cold every time.
+   Reduced by writing tasks down completely; never eliminated.
 5. **Bad at open-ended work.** "Figure out why production is slow" doesn't
    split into well-specified tasks. It lands on your expensive seat and
    eats it.
@@ -347,7 +332,7 @@ so nobody could quietly undo it later:
   burned the expensive seat on bookkeeping. So the deep review moved to
   the merge gate, and a cheaper model runs the daily loop. *Accepted
   downside:* a bad contract can now live one gate longer.
-- **The executor started proving its own work**, so reviewing became
+- **The builder started proving its own work**, so reviewing became
   auditing a claim instead of reconstructing what happened. *Accepted
   downside:* tasks that specify the contract instead of the
   implementation get sent back slightly more often.
@@ -358,7 +343,7 @@ so nobody could quietly undo it later:
   automatically.
 - **Rules stopped being copy-pasted into every task** and became skills
   that load when their moment arrives. *Accepted downside:* your
-  executor now has to be an agent that can read your repo. A plain chat
+  builder now has to be an agent that can read your repo. A plain chat
   window can still set the workflow up and explain it — but it can't run
   the daily loop anymore.
 
