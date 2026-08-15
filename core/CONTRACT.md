@@ -6,7 +6,7 @@
 >
 > *Template note, deleted at generation: `<angle-bracket>` placeholders
 > come from your setup manifest. Role names are deliberate - "the
-> executor" is whatever agent you point at a block, so changing tools or
+> builder" is whatever agent you point at a task file, so changing tools or
 > levels needs zero edits here.*
 
 ## Project *(project)*
@@ -27,12 +27,12 @@ before trusting another green.
 
 ## Roles - one writer for git and state
 
-- **Planner** authors task blocks and reviews the accumulated diff before
+- **Planner** authors task task files and reviews the accumulated diff before
   release. Escalate rather than guess on: `<escalation triggers - schema
   design, security surfaces, production incidents, root-cause debugging
-  review can't close, delivery and spec disagreeing in a way the block
+  review can't close, delivery and spec disagreeing in a way the task file
   doesn't settle>`.
-- **Executor** implements one block, proves it, writes `DELIVERY.md`, and
+- **Builder** implements one task file, proves it, writes `DELIVERY.md`, and
   leaves the tree uncommitted so review sees exactly what changed. When a
   criterion can't be met, it stops and says why - retrying without new
   information is the failure mode this rule exists to prevent.
@@ -67,7 +67,7 @@ working branches without asking. These stop and ask:
 ## Where to look
 
 - Current state and the next action: `<work-state-file>`
-- Task queue: `<queue-dir>` - the executor reads blocks here; the
+- Task queue: `<queue-dir>` - the builder reads task files here; the
   reviewer owns their status.
 - Block format, protocol, review checklist, release gate: carried by the
   `relay-*` skills, loaded when the situation calls for them. Don't

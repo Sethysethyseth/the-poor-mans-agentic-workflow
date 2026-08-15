@@ -39,7 +39,7 @@ Confirm four things and stop if one fails:
    especially must live outside sync.
 3. **At least one coding agent CLI is installed** - Claude Code, Cursor,
    Codex, whichever. The workflow is tool-neutral; it needs one to start.
-4. **The project's runtime runs** - whatever the check lane will need.
+4. **The project's runtime runs** - whatever the check command will need.
 
 ---
 
@@ -57,7 +57,7 @@ The human should confirm your findings once, not answer a questionnaire.
 Create `docs/relay-manifest.md` with the answers below. **Every question
 has a default that works.** An adopter who changes nothing gets a
 complete, strict setup. Write the default in unless the repo's evidence
-says otherwise; tag inferred answers (`check lane: npm test - found in
+says otherwise; tag inferred answers (`check command: npm test - found in
 package.json`).
 
 **The conversation is never the record.** However an answer was reached,
@@ -73,11 +73,11 @@ reproducible from the file alone.
 - **T2. Level** - `0` one agent no protocol (generates nothing);
   `1` the relay dispatched by hand; `2` a second seat or model tier;
   `3` the loop dispatches itself. *Default: 1.*
-  Level 1 dispatches by copy-paste **on purpose** - handing the block
-  over yourself is the only way to see exactly what context the executor
-  gets, and that is what makes a bad block debuggable later. Say this to
+  Level 1 dispatches by copy-paste **on purpose** - handing the task file
+  over yourself is the only way to see exactly what context the builder
+  gets, and that is what makes a bad task file debuggable later. Say this to
   the adopter; it is the level's whole point.
-- **T3. Model tiers** - blocks carry a `MODEL:` header so dispatch is one
+- **T3. Model tiers** - task files carry a `MODEL:` header so dispatch is one
   glance. *Default: `frontier | mid | cheap`.*
 
 ### Project
@@ -145,8 +145,8 @@ by hand-editing a generated file later.
 
 Show a short summary of what you inferred and which defaults stand. Not
 an interrogation - the adopter should be able to confirm "your tests run
-with `npm test`" on sight without knowing what a check lane is. Name the
-check lane explicitly so a lane that proves nothing can be vetoed. Write
+with `npm test`" on sight without knowing what a check command is. Name the
+check command explicitly so a lane that proves nothing can be vetoed. Write
 corrections back into the manifest.
 
 ## Step 4 - generate
@@ -154,7 +154,7 @@ corrections back into the manifest.
 From the manifest alone, ask zero questions it answers:
 
 - **`AGENTS.md`** at the repo root - the agent contract. Roles, the
-  check lane, verify-before-trust, the gate assembled from G1-G6, and
+  check command, verify-before-trust, the gate assembled from G1-G6, and
   pointers to everything else. Keep it under ~70 lines; it is loaded by
   every agent every session, and length here is a tax on all of them.
 - **`<S1>`** - the state file, with the next-action line pre-filled.
@@ -194,20 +194,20 @@ One lap through the full loop teaches the relay better than any docs
 read, and doubles as the smoke test that the generated files work. Your
 role is narrator: say what to do, then point at what just happened.
 
-The starter block takes one of two shapes:
+The starter task file takes one of two shapes:
 
-- **A lane already existed** - the block is a trivial change (one README
+- **A lane already existed** - the task file is a trivial change (one README
   line) whose `DONE WHEN` includes running that lane.
-- **Setup is building the lane** - the block establishes it, and
+- **Setup is building the lane** - the task file establishes it, and
   `DONE WHEN` demands the P2a proof: the lane shown FAILING against a
   deliberate trivial break, then passing once reverted.
 
 The lap:
 
-1. **Dispatch.** At Level 1 the human opens a fresh executor session and
+1. **Dispatch.** At Level 1 the human opens a fresh builder session and
    pastes one line: *"Read `docs/tasks/u0-hello-relay.md` and execute
    it."* That paste is the lesson - it is the moment you can see exactly
-   what the executor was given and what it wasn't.
+   what the builder was given and what it wasn't.
 2. **Watch it stop.** It changes the code, writes `DELIVERY.md`, and ends
    its turn without committing. The stop is the protocol working. (If the
    lane needs a package installed, it stops and asks - that's G5, and the
@@ -216,9 +216,9 @@ The lap:
    re-runs the lane - **both halves of the red-then-green proof if this
    lap built it** - commits with SHA verification, and updates the state
    file including its next-action line.
-4. **Look at what happened.** One block file, three actors, zero shared
+4. **Look at what happened.** One task file file, three actors, zero shared
    chat context, one commit, and a state file that says what's next. Real
-   units are the same lap with bigger blocks. If the lap built the lane,
+   units are the same lap with bigger task files. If the lap built the lane,
    the adopter now owns the instrument every future review re-runs -
    built through the loop, on the first unit, which is the cheapest it
    will ever be to add.
@@ -228,8 +228,8 @@ The lap:
 ## Stop condition
 
 Stop when the manifest is filled and confirmed, the files are generated
-and stamped, the adapters are rendered, and one lap is complete: block
-dispatched, executor stopped uncommitted with a report, reviewer made
+and stamped, the adapters are rendered, and one lap is complete: task file
+dispatched, builder stopped uncommitted with a report, reviewer made
 exactly one commit, state file names the next action.
 
 Do not invent questions the manifest already answers. Do not generate

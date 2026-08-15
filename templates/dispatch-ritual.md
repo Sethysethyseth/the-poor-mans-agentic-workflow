@@ -31,7 +31,7 @@
   input.
 - **The audit ritual does not change because the dispatcher did.**
   Every delivery gets the same per-unit review the manual relay uses
-  (the workflow repo's `checklists/reviewer-checklist.md` - copy it into
+  (the workflow repo's `skills/relay-review/SKILL.md` - copy it into
   your repo if you want it local), lanes re-run fresh, one commit per
   unit.
 

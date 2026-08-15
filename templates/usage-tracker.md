@@ -19,7 +19,7 @@ Why it earns its place, twice over:
 
 At Level 2 this same file is the test month's mini-receipts sheet - the
 `units` / `bounces` / `review catches` columns are the evidence you'll use
-at the decision gate (`checklists/test-month-playbook.md`). One tracker, two
+at the decision gate ([docs/economics.md](../docs/economics.md#per-level-cost-profiles)). One tracker, two
 jobs; don't keep two.
 
 ---

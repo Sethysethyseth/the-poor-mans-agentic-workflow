@@ -73,7 +73,7 @@ claims more; you'd falsify "foolproof" in a week.
    it before it became a loop, and the correction is recorded in
    place.)*
 6. **Bounce, don't thrash.** A failed review updates the BLOCK with
-   what to fix and re-queues it; the executor never iterates blind
+   what to fix and re-queues it; the builder never iterates blind
    against a silent reviewer.
 
 ## The one-line version
