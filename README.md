@@ -17,12 +17,11 @@ agent reads. Download it, tell your agent *"set this up,"* and about
 twenty minutes later your project has the whole workflow in it — plus a
 practice run, so you've done one lap before any real work.
 
-It comes with **twelve skills** *(new to skills? [here's the two-minute
-version](https://agentskills.io))* — instruction files your agent pulls
-in only at the moment it needs them. Three of them exist to keep the
-workflow itself from going stale: one pulls in updates, one writes you a
-new skill when you catch yourself repeating something, one shows you
-everything you have.
+It comes with **five skills** *(new to skills? [here's the two-minute
+version](https://agentskills.io))* — instruction files your agent pulls in
+only at the moment it needs them. Four are the loop itself; the fifth
+keeps the workflow from going stale, writing new skills when you need them
+and pulling in improvements later.
 
 **It has shipped real software:** 37 tasks in 10 days on a production
 app, with two would-have-broken-production bugs caught before deploy.
@@ -83,15 +82,10 @@ executor's word for anything. It runs the tests again, itself, on the
 actual code. Agents are confident about work they didn't finish — this is
 the step that catches it.
 
-<details>
-<summary><b>Want the animated walkthrough?</b> Open <code>docs/how-it-works.html</code> in your browser</summary>
-
-The repo ships a single self-contained page that animates one task
-travelling through the loop — plan, dispatch, build, check, land — with
-the cost of each step and what you personally do at each handoff. No
-install, no server: double-click the file.
-
-</details>
+> **▶ [See it move: the interactive walkthrough](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html)**
+> — one task riding all five stops, colour-coded by who pays for each
+> step. Takes about a minute and explains this better than the rest of
+> this page does.
 
 <details>
 <summary><b>Why splitting the work in two saves so much money</b></summary>
@@ -123,8 +117,8 @@ cost breakdown: [docs/economics.md](docs/economics.md).*
 
 A skill is a folder with an instruction file in it. Your agent reads the
 name and one-line description of each at startup, and loads the full
-instructions **only when that moment actually arrives** — so twelve
-skills cost almost nothing to keep around. That's the
+instructions **only when that moment actually arrives** — so a skill costs
+almost nothing to keep around. That's the
 [Agent Skills open standard](https://agentskills.io), not a Claude
 feature: Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, VS Code,
 Goose, Roo Code, Mistral Vibe and 40+ other agents all read this format.
@@ -133,31 +127,39 @@ That matters here, because it means **you can switch models or tools
 without rewriting anything.** The workflow is text; the agent is
 replaceable.
 
-| | Skill | It fires when… |
-| --- | --- | --- |
-| **Doing the work** | [`relay-plan`](skills/relay-plan/SKILL.md) | you have a goal that needs breaking into tasks |
-| | [`relay-block`](skills/relay-block/SKILL.md) | one task needs writing, splitting, or narrowing |
-| | [`relay-execute`](skills/relay-execute/SKILL.md) | a task has been handed to the executor |
-| | [`relay-review`](skills/relay-review/SKILL.md) | work is waiting to be checked — ends in **landed or sent back** |
-| | [`relay-gate`](skills/relay-gate/SKILL.md) | a batch is about to be merged or deployed |
-| **Getting set up** | [`relay-setup`](skills/relay-setup/SKILL.md) | you're installing this — the whole install, in one file |
-| | [`relay-lane`](skills/relay-lane/SKILL.md) | your project has no test command, or one that never fails |
-| **Keeping it alive** | [`relay-retro`](skills/relay-retro/SKILL.md) | something went wrong — turns the mistake into a rule |
-| | [`relay-refresh`](skills/relay-refresh/SKILL.md) | the prices and model names in the docs may have gone stale |
-| | [`workflow-upgrade`](skills/workflow-upgrade/SKILL.md) | this repo has moved on — pulls in updates, keeps your edits |
-| | [`create-skill`](skills/create-skill/SKILL.md) | you keep repeating something no skill covers |
-| | [`skill-map`](skills/skill-map/SKILL.md) | you want to see everything you have, on one page |
+| Skill | It fires when… |
+| --- | --- |
+| [`relay-setup`](skills/relay-setup/SKILL.md) | **you're installing this.** The whole install in one file — and the upgrade path later |
+| [`relay-plan`](skills/relay-plan/SKILL.md) | **you have a goal**, and it needs turning into task files someone else could build from |
+| [`relay-execute`](skills/relay-execute/SKILL.md) | **a task has been handed over.** Build it, prove it, write down what you did, stop |
+| [`relay-review`](skills/relay-review/SKILL.md) | **work is waiting to be checked.** Ends in landed or sent back — and guards the merge |
+| [`skill-map`](skills/skill-map/SKILL.md) | **you want to see what you have**, or you need a new skill that doesn't exist yet |
 
-**The workflow is built to evolve on its own.** That last group is the
-point: `relay-retro` turns your mistakes into permanent rules,
-`create-skill` adds new abilities when you need them, and
-`workflow-upgrade` pulls in improvements from here without overwriting
-anything you customized. It gets better the longer you use it, and it
-does the maintaining.
+Five, on purpose. A skill you have to go looking for is one you'll forget
+you own, so the set stays small enough to hold in your head — and the
+first four are just the loop: set it up, plan it, build it, check it.
 
-It also *shrinks* on its own — `relay-retro` deletes any rule nobody can
-trace back to a real problem. That's what stops twelve skills becoming
+**It's built to evolve on its own.** Every time work gets sent back,
+`relay-review` turns the failure into a permanent rule, written where the
+agent will actually read it, with the trade-off it accepted written beside
+it. `relay-setup` pulls in improvements from here later without
+overwriting anything you've customized. And `skill-map` writes you a new
+skill when you catch yourself repeating something — but makes it earn the
+slot first.
+
+It *shrinks* on its own too: any rule nobody can trace back to a real
+problem gets deleted. That's what stops five skills quietly becoming
 thirty rules nobody reads.
+
+<details>
+<summary><b>Want a picture of your own setup?</b></summary>
+
+`skill-map` can render every skill you have — the five that ship, plus any
+you've added — as a single self-contained HTML page showing when each one
+fires. Setup asks whether you want it; it's entirely optional, and nothing
+depends on it.
+
+</details>
 
 ## Pick your level
 
@@ -239,8 +241,8 @@ command (and **proves it can actually fail**, because a test that can't
 fail checks nothing), and walks you through one practice task end to end.
 
 Every decision it made gets written down in one file, so you can change
-your mind later, and updating is `workflow-upgrade` rather than a
-reinstall.
+your mind later — and updating it down the road is the same skill run
+again, not a reinstall.
 
 ## What's in the repo
 
@@ -249,8 +251,8 @@ No code, no CLI, no framework — documents you point your own agent at.
 | | |
 | --- | --- |
 | [`core/`](core/) | The rules, in one place: the [agent contract](core/CONTRACT.md), the [task format](core/BLOCK.md), the state file |
-| [`skills/`](skills/) | The twelve skills — nine for doing the work, three for keeping the workflow current |
-| [`docs/how-it-works.html`](docs/how-it-works.html) | The animated walkthrough — open it in a browser |
+| [`skills/`](skills/) | The five skills — set up, plan, build, check, and the one that keeps the set current |
+| [`docs/how-it-works.html`](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html) | The interactive walkthrough — live, or open the file locally |
 | [`docs/economics.md`](docs/economics.md) | What it costs, where the $40 creeps, how to watch your usage |
 | [`docs/receipts.md`](docs/receipts.md) | The full paper trail behind every number here, plus [the raw data](docs/receipts-data.json) |
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | Every rule, and the thing that went wrong to cause it |
