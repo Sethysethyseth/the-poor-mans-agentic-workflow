@@ -38,7 +38,7 @@ Everything below follows from that.
 
 | Shift | v5 | v6 |
 |---|---|---|
-| Rules → Judgement | Six `Do NOT` lines stamped in every block | Two real invariants stated with their reason; the rest is declared intent the agent can reason about |
+| Rules → Judgment | Six `Do NOT` lines stamped in every block | Two real invariants stated with their reason; the rest is declared intent the agent can reason about |
 | Examples → Interfaces | Small blocks spec line-level detail | The check lane is the interface; `relay-lane` builds one and proves it red-then-green |
 | Upfront → Progressive disclosure | 152-line contract + up-to-300-line state, always loaded | 66-line contract + ~40-line state; everything else loads on trigger |
 | Repeat yourself → Simple descriptions | Footer + delivery schema duplicated across 4 files | Each lives in exactly one file; blocks reference it |

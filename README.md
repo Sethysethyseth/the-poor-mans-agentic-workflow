@@ -59,8 +59,8 @@ per handoff.
 
 <a href="https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/relay-line-dark.svg?v=2">
-    <img alt="One task travelling five stops: Plan on the smart agent, Hand off by you, Build on the cheap agent, Check on the smart agent, Land by you — with a send-back arc from Check to Build." src="docs/relay-line.svg?v=2" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/relay-line-dark.svg?v=3">
+    <img alt="One task traveling five stops: Plan on the smart agent, Hand off by you, Build on the cheap agent, Check on the smart agent, Land by you — with a send-back arc from Check to Build." src="docs/relay-line.svg?v=3" width="100%">
   </picture>
 </a>
 
@@ -180,7 +180,7 @@ allowances move; re-check before trusting the figure.*
 - **Level 2** — the $40 can creep, because letting an expensive model do
   the typing burns your allowance fast. Every task carries a line naming
   which model tier should run it; that's the control, and it only works
-  if you use it. If a month of this doesn't feel worth $20, cancelling
+  if you use it. If a month of this doesn't feel worth $20, canceling
   and going back to Level 1 is a designed outcome, not a failure.
 - **Level 3** — the newest and least-proven part of this (seven tasks
   behind it, against six weeks of the manual loop), and you can't

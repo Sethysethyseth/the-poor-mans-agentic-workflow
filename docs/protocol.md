@@ -123,7 +123,7 @@ would have thrashed on.
 ## Why it looks like this
 
 None of it was designed on a whiteboard. Every refinement **wrote its
-accepted downside into the contract**, so nobody could quietly optimise
+accepted downside into the contract**, so nobody could quietly optimize
 the trade-off back out later:
 
 - **Reviewing every task** caught a broken contract on day one - and

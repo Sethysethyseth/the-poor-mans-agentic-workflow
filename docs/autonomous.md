@@ -20,6 +20,32 @@ two diagnosis) - against roughly six weeks and 40+ tasks for the manual
 loop. It works; it is young. Run the loop by hand first: you cannot steer
 a loop you have never driven.
 
+**Recommended, not required: a terminal that keeps several panes alive at
+once.** A Level 3 session is one long-running shell driving another, and
+it is far easier to supervise when the builder's run, the reviewer's
+session and your own prompt are visible together instead of buried in
+alt-tab. In rough order of how well they fit this level:
+
+1. **[WezTerm](https://wezterm.org/)** - multiplexing is built in, so
+   there is no second tool to install, and it is the same program on
+   Windows, macOS and Linux - the only option here that does not change
+   with your platform. Configured in Lua, so a per-project pane layout is
+   something you can save and reopen. *The wart, stated:* its newest
+   tagged release is still 20240203 (February 2024), and it offers
+   nightly builds alongside it without saying which to prefer.
+   Development continues on `main`; the stable channel is stale. Checked
+   2026-08-15.
+2. **tmux** - the standard answer, and the right one if you already live
+   in it. Runs inside whatever terminal you already have; awkward on
+   Windows outside WSL.
+3. **Windows Terminal** or **iTerm2** - already installed on their
+   respective platforms and perfectly adequate. Each stops at its
+   platform edge, which is the only reason they are not first.
+
+None of this changes what the loop does, and Level 3 runs fine in one
+plain terminal window. It is ergonomics for the level where you watch a
+batch run rather than driving each task.
+
 ---
 
 ## What does NOT change (read this before the mechanics)

@@ -57,10 +57,17 @@ page is the depth.
 | Your agent flailed mid-install | Re-run [`relay-setup`](../skills/relay-setup/SKILL.md) and continue from where the manifest left off. It is written to be resumable. |
 | The loop stalled and you're lost | The state file's `Next action (human):` line is the resume point. It is never empty; if it somehow is, that's the bug to report. |
 | The builder committed when it shouldn't have | Don't reset anything. Follow the recovery steps at the end of [`relay-review`](../skills/relay-review/SKILL.md). |
-| The builder stopped saying a criterion can't be met | Correct behaviour, not failure — the anti-loop rule fired. Send it to review; the reviewer fixes the task file or escalates. |
+| The builder stopped saying a criterion can't be met | Correct behavior, not failure — the anti-loop rule fired. Send it to review; the reviewer fixes the task file or escalates. |
 | An agent ran out of tokens mid-task | Safe by design: task files re-run from scratch. Point the SAME file at another agent, a cheaper tier, or a later window — zero repo edits. |
 
 ## Level 3 — when the loop is driving itself
+
+**Worth setting up first:** a terminal that keeps several panes alive, so
+you can watch the builder run, the reviewer session and your own prompt at
+once. [WezTerm](https://wezterm.org/) is the one to reach for — multiplexing
+built in, same program on every platform — or tmux if you already live in
+it. Optional; the loop doesn't care
+([docs/autonomous.md](../docs/autonomous.md) has the trade-offs).
 
 | You see | You do |
 | --- | --- |

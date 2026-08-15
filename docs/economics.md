@@ -6,7 +6,7 @@ rationing discipline **is** part of what you are paying with.
 
 A provenance rule this page lives by: **official facts and community
 estimates are different classes of claim**, and every number below is
-labelled as one or the other, with a date. Anthropic publishes plan
+labeled as one or the other, with a date. Anthropic publishes plan
 *multipliers* only - it does not publish token quotas. Any guide quoting
 you an exact official token figure invented it; this repo will not be that
 guide.
@@ -112,7 +112,7 @@ honesty header.
    the review exists to stop defects before they compound into re-fix
    sessions.
 
-Non-lever, documented so nobody optimises it: reading a file versus
+Non-lever, documented so nobody optimizes it: reading a file versus
 pasting into chat is token-noise - a few hundred tokens of tool chatter on
 tasks that consume tens of thousands.
 
@@ -130,7 +130,7 @@ tasks that consume tens of thousands.
   measurement, not a commitment:** route your token-heaviest real work
   through it and keep rough notes - tasks shipped, review catches, planner
   windows freed. At month's end your own numbers make the call, and
-  cancelling back to Level 1 is a designed outcome rather than a failure.
+  canceling back to Level 1 is a designed outcome rather than a failure.
   The creep risk below is yours from here; the `MODEL:` header is where
   the price holds.
 - **Level 3 (~$40 plus discipline).** Same seats, same price. The
@@ -180,7 +180,7 @@ tasks and 80.7% of diff bytes were builder-delivered** - so the split is
 not skewed by task size. Converting the builder's 534 KB of diff text to
 tokens gives a **floor** of ~127-162K tokens (3.3-4.2 chars/token, the
 standard band for code-dense text). Applying a stated-but-unmeasured
-5-10x session-overhead multiplier gives a **labelled extrapolation** of
+5-10x session-overhead multiplier gives a **labeled extrapolation** of
 ~0.6-1.6M tokens, midpoint ~1M, of agentic coding moved off the $20
 planner seat.
 
