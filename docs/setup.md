@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+> **Superseded.** The install now lives in
+> [`skills/relay-setup/SKILL.md`](../skills/relay-setup/SKILL.md), which is
+> what the README's one-paste quickstart points at. This file describes the
+> earlier five-level structure and the `templates/` layout, and is kept for
+> reference only — following it will not produce the current workflow.
+
 # Setup - seats, accounts, and the one-time ritual, per level
 
 This is the manual path: the same content the agent-driven

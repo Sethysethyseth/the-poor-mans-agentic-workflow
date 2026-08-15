@@ -1,3 +1,11 @@
+> [!NOTE]
+> **Historical design record.** This was the working document for the
+> rework, written before it was built. It landed on `main` with the merge
+> of `v6-spine` on 2026-08-15. What actually shipped differs from the plan
+> here in places — most visibly, twelve skills became five. Read
+> [the README](../README.md) and [`skills/`](../skills/) for what exists;
+> read this only for why.
+
 # v6 - the spine
 
 Working design document for the v6 rework. Decided 2026-08-06. This file

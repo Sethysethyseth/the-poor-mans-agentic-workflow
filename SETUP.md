@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+> **Superseded.** The install now lives in
+> [`skills/relay-setup/SKILL.md`](skills/relay-setup/SKILL.md), which is
+> what the README's one-paste quickstart points at. This file describes the
+> earlier five-level structure and the `templates/` layout, and is kept for
+> reference only — following it will not produce the current workflow.
+
 # SETUP.md - the agent-facing setup contract
 
 **If you are a human:** you don't need to read this file. Paste
