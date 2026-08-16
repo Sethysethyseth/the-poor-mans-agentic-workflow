@@ -5,6 +5,22 @@ description: Install or upgrade this workflow in a project - fill the setup mani
 
 # relay-setup - install the whole workflow
 
+> [!NOTE]
+> **Human, reading this on GitHub?** This page is written for your
+> *agent*. Your part is one line of it:
+>
+> ```
+> Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/blob/main/skills/relay-setup/SKILL.md and set me up.
+> ```
+>
+> Paste that into a coding agent opened in your project's folder. It reads
+> the rest of this page, shows you what it found, and asks you to confirm
+> once. About twenty minutes later your repo has the workflow in it and
+> you've run one practice task through it, start to finish.
+>
+> **Nothing below this box is yours to do.** It's the agent's checklist,
+> and it's long because it's thorough - not because this is.
+
 **This file is self-contained on purpose.** Someone may have handed you
 this URL with no clone of this repo and no skill support - everything
 needed to install is here, in this file and the two references below.
