@@ -13,15 +13,10 @@ re-runs every check itself — so nothing lands just because an agent
 said it was done. You pay a premium for judgment and pennies for typing.
 
 It isn't an app or a framework. It's a folder of instructions your coding
-agent reads. Download it, tell your agent *"set this up,"* and about
-twenty minutes later your project has the whole workflow in it — plus a
-practice run, so you've done one lap before any real work.
-
-It comes with **five skills** *(new to skills? [here's the two-minute
-version](https://agentskills.io))* — instruction files your agent pulls in
-only at the moment it needs them. Four are the loop itself; the fifth
-keeps the workflow from going stale, writing new skills when you need them
-and pulling in improvements later.
+agent reads — [five skills](#the-skills), loaded only at the moment each
+one is needed. Download it, tell your agent *"set this up,"* and about
+twenty minutes later your project has the whole workflow in it, plus a
+practice run so you've done one lap before any real work.
 
 > [!TIP]
 > **Don't want to read all this? You don't have to.** Paste this into
@@ -31,14 +26,13 @@ and pulling in improvements later.
 > Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow and give me the short version: what it is, what it costs, and which level I should start at.
 > ```
 >
-> That's not a gimmick — this whole repo is written to be read by agents.
-> The same move runs the entire install:
+> The same move runs the entire install —
 > [the quickstart is one paste](#quickstart-one-paste).
 
-To be clear about the trade: you are not getting the $200 plan for $40.
-You're getting **the same quality of output**, paid for in wall-clock
-time, your attention, and some discipline about usage limits. [The honest
-list of what you give up](#the-honest-trade) is at the bottom, unsoftened.
+You are not getting the $200 plan for $40. You're getting **the same
+quality of output**, paid for in wall-clock time, your attention, and some
+discipline about usage limits. [The honest list of what you give
+up](#the-honest-trade) is at the bottom, unsoftened.
 
 **Jump to:**
 [How it works](#how-it-works) ·
@@ -112,61 +106,17 @@ down* just changes which agent you point at a task.
 
 <sup>**[▶ Click any level](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html)** for what it involves — what you need, what it costs you, and the catch.</sup>
 
-**Levels 2 and 3 buy different things**, which is why they cost the same.
-Level 2 buys **capacity** — a cheap agent does the typing so your good one
-stops burning its limit on it. Level 3 buys **your attention back** — the
-handoffs stop needing you. Most people want capacity first, but that's a
-recommendation, not a requirement.
-
-> **Never done any of this before? Start at Level 0**, ship one tiny
-> change with one agent, and come back. The install will still be one
-> paste when you're ready.
-
-**Level 1 makes you copy-paste on purpose.** Not to be cheap — because
-handing the task over yourself is the only way to see exactly what the
-builder was given. Once you've seen that, a task that goes wrong is
-debuggable. Skip ahead if you like; that's the thing it costs you.
-
-<details>
-<summary><b>What exactly is "the cheap agent"?</b></summary>
-
-It isn't an API key and it isn't a special product — it's just a second
-coding agent, one that can read your repo, run commands, and edit files,
-on a plan that charges less per token than your good one. Any agent that
-can do that qualifies; the workflow never names a vendor.
-
-It comes in two forms, and **the difference decides whether Level 3 is
-open to you**:
-
-- **Inside an editor** — you open it and paste the one-line handoff
-  yourself. This is all Level 2 needs.
-- **As a headless CLI** — the same agent as a terminal command,
-  scriptable, able to run unattended. **Level 3 requires this**, because
-  the reviewer has to drive the builder programmatically and it can't
-  type into a window for you.
-
-The worked example every number here was measured on is **Cursor Pro at
-$20/mo**, whose agent runs both ways — in the editor, and as
-`cursor-agent` in a terminal with a non-interactive mode built for
-scripts and CI. Claude Code, Codex, Gemini CLI and OpenCode all have
-headless modes too.
-
-**One thing worth being precise about:** you are *not* buying prepaid API
-credits. Cursor Pro is a subscription with usage included — as of August
-2026, $20/mo carrying $20 of third-party model usage plus its own models.
-An API key exists for authenticating automation, but it isn't a separate
-meter you top up.
-
-That distinction is load-bearing. **The $40/mo claim only works because
-the second seat is a flat subscription.** If it were metered API billing
-the number wouldn't be $40, it would be however much you used. Go past
-the included allowance and it continues at pay-as-you-go rates — which is
-exactly where "the $40 can creep" comes from.
-
-*Cursor plan terms verified against cursor.com on 2026-08-15. Prices and
-allowances move; re-check before trusting the figure.*
-
-</details>
+- **Never done any of this? Start at Level 0.** Ship one tiny change with
+  one agent and come back. The install will still be one paste.
+- **Most people should land on Level 2.** It and Level 3 cost the same
+  because they buy different things: Level 2 buys **capacity**, Level 3
+  buys **your attention back**. Capacity usually comes first — but that's
+  a recommendation, not a requirement.
+- **Level 3 needs your cheap agent to have a headless CLI**, because the
+  reviewer has to drive it programmatically and it can't type into a
+  window for you. What the cheap agent actually is — and why the $40 holds
+  only because that second seat is a flat subscription rather than metered
+  API billing — is in [docs/economics.md](docs/economics.md).
 
 <details>
 <summary><b>The catch at each level, stated not softened</b></summary>
@@ -176,7 +126,9 @@ allowances move; re-check before trusting the figure.*
   confidently breaks something is the argument for Level 1.
 - **Level 1** — every role shares one usage limit, so you'll feel the
   squeeze fastest here. You still get a fresh second look at the code;
-  you just don't get a second opinion from a different model.
+  you just don't get a second opinion from a different model. It also
+  makes you copy-paste on purpose: handing the task over yourself is the
+  only way to see exactly what the builder was given.
 - **Level 2** — the $40 can creep, because letting an expensive model do
   the typing burns your allowance fast. Every task carries a line naming
   which model tier should run it; that's the control, and it only works
@@ -195,17 +147,12 @@ honest answer is to go buy the expensive plan. This path openly ends in
 
 ## The skills
 
-A skill is a folder with an instruction file in it. Your agent reads the
-name and one-line description of each at startup, and loads the full
-instructions **only when that moment actually arrives** — so a skill costs
-almost nothing to keep around. That's the
-[Agent Skills open standard](https://agentskills.io), not a Claude
-feature: Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, VS Code,
-Goose, Roo Code, Mistral Vibe and 40+ other agents all read this format.
-
-That matters here, because it means **you can switch models or tools
-without rewriting anything.** The workflow is text; the agent is
-replaceable.
+A skill is a folder with an instruction file your agent loads **only when
+that moment actually arrives** — so it costs almost nothing to keep
+around. That's the [Agent Skills open standard](https://agentskills.io),
+not a Claude feature: Claude Code, Codex, Cursor, Gemini CLI, Copilot,
+Goose, Roo Code and 40+ other agents read this format, which means **you
+can switch models or tools without rewriting anything.**
 
 | Skill | It fires when… |
 | --- | --- |
@@ -215,9 +162,11 @@ replaceable.
 | [`relay-review`](skills/relay-review/SKILL.md) | **work is waiting to be checked.** Ends in landed or sent back — and guards the merge |
 | [`skill-map`](skills/skill-map/SKILL.md) | **you want to see what you have**, or you need a new skill that doesn't exist yet |
 
-Five, on purpose — a skill you have to go looking for is one you'll forget
-you own. The first four are just the loop: set it up, plan it, build it,
-check it.
+**Want the detail on any of them?** Ask whatever AI you're already using:
+
+```
+Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/tree/main/skills and tell me what each skill does, when it fires, and which one I'd touch first.
+```
 
 **It's built to evolve on its own.** Every time work gets sent back,
 `relay-review` turns that failure into a permanent rule, with the
@@ -226,16 +175,6 @@ improvements from here later without touching anything you've customized.
 And `skill-map` writes you a new skill when you catch yourself repeating
 something — after making it earn the slot. It shrinks too: any rule nobody
 can trace to a real problem gets deleted.
-
-<details>
-<summary><b>Want a picture of your own setup?</b></summary>
-
-`skill-map` can render every skill you have — the five that ship, plus any
-you've added — as a single self-contained HTML page showing when each one
-fires. Setup asks whether you want it; it's entirely optional, and nothing
-depends on it.
-
-</details>
 
 ## Quickstart: one paste
 
@@ -264,6 +203,11 @@ again, not a reinstall.
 ## What's in the repo
 
 No code, no CLI, no framework — documents you point your own agent at.
+GitHub already shows you the file tree above this README; here's what each
+part is for.
+
+<details>
+<summary><b>The file map</b></summary>
 
 | | |
 | --- | --- |
@@ -276,47 +220,34 @@ No code, no CLI, no framework — documents you point your own agent at.
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | Every rule, and the thing that went wrong to cause it |
 | [`checklists/loop-cheat-sheet.md`](checklists/loop-cheat-sheet.md) | "You see X → you do Y" — the one page written for you, not your agent |
 
+</details>
+
 ## The receipts
 
 Measured July 2–11, 2026, on two $20 plans, against a production fitness
-tracker — named only so the numbers have a source. This was Level 2:
-two seats, every handoff done by hand.
+tracker — named only so the numbers have a source. This was Level 2: two
+seats, every handoff done by hand. The flattering and unflattering numbers
+are in one list on purpose.
 
 - **37 tasks landed in 10 days** (35 commits) — real features: database
   migrations, analytics, UI rebuilds. Not one-line fixes.
-- **Nothing failed review outright.** Read that honestly: the tasks were
-  well-specified, and the process deliberately accepts a few more
-  send-backs in exchange for tasks being cheaper to write.
 - **2 bugs that would have broken production, caught before deploy** —
   both cases where shipping the code before its database change would
   have broken live logging for everyone.
 - **1 time the agent stopped and asked instead of guessing** — it hit a
   real ambiguity, paused, and escalated rather than thrashing.
-- **A batch of six tasks handed off, checked, and landed end to end** by
-  the agent itself in one session. The human did one round of testing and
-  said "ship it."
-
-<details>
-<summary><b>The unflattering numbers, published on purpose</b></summary>
-
-- **~8 of the 37 tasks were done by the planner itself** instead of the
-  cheap builder — about one in five. The split holds ~80% of the time
-  and leaks under pressure, at exactly the seams it warns about.
-- **6 fixes needed in the one session that broke the rules** — three
-  tasks run in one folder at once, which the process forbids. The
-  messiest session on record is the one that ignored the process.
+- **~8 of those 37 tasks were done by the planner itself** instead of the
+  cheap builder — about one in five. The split holds ~80% of the time and
+  leaks under pressure, at exactly the seams it warns about.
+- **~Half of all commits are bookkeeping.** That tax is real. It's been
+  priced down a lot, but not to zero.
 - **The required pre-merge review got skipped once**, at the owner's
   explicit instruction — and was written down at the time, so nobody
   could later pretend it happened.
-- **1 wrong belief caused one failed deploy** — a status file claimed
-  something untrue, and it took a real check against the code to catch.
-- **~Half of all commits are bookkeeping.** That tax is real. It's been
-  priced down a lot, but not to zero.
 
-Every number traces back to a file in the repo. Nothing here is rounded
-in its own favor.
-
-</details>
+Nothing here is rounded in its own favor, and every number traces back to
+a file: [docs/receipts.md](docs/receipts.md), with
+[the raw data](docs/receipts-data.json).
 
 ## The honest trade
 
@@ -366,35 +297,10 @@ agent doesn't give you at all.
 
 </details>
 
-<details>
-<summary><b>Why the workflow looks like this — every rule came from something breaking</b></summary>
-
-None of this was designed on a whiteboard. Each rule below exists because
+**None of this was designed on a whiteboard.** Every rule exists because
 something went wrong, and each change wrote down the downside it accepted
-so nobody could quietly undo it later:
-
-- **Reviewing every task caught a broken contract on day one** — and
-  burned the expensive seat on bookkeeping. So the deep review moved to
-  the merge gate, and a cheaper model runs the daily loop. *Accepted
-  downside:* a bad contract can now live one gate longer.
-- **The builder started proving its own work**, so reviewing became
-  auditing a claim instead of reconstructing what happened. *Accepted
-  downside:* tasks that specify the contract instead of the
-  implementation get sent back slightly more often.
-- **The loop learned to hand off to itself**, batching your attention to
-  the end of a batch rather than every task. *Accepted downside:* a
-  batch going off the rails is caught at the end of the batch, not
-  mid-task — which is exactly why merges and deploys never happen
-  automatically.
-- **Rules stopped being copy-pasted into every task** and became skills
-  that load when their moment arrives. *Accepted downside:* your
-  builder now has to be an agent that can read your repo. A plain chat
-  window can still set the workflow up and explain it — but it can't run
-  the daily loop anymore.
-
-The incident behind every rule: [docs/scar-tissue.md](docs/scar-tissue.md).
-
-</details>
+so nobody could quietly undo it later. The incident behind every rule:
+[docs/scar-tissue.md](docs/scar-tissue.md).
 
 ## License
 
