@@ -5,9 +5,13 @@ description: Install or upgrade this workflow in a project - fill the setup mani
 
 # relay-setup - install the whole workflow
 
-**This file is self-contained on purpose.** You may be a chat assistant
-someone handed this URL to, with no repo clone and no skill support.
-Everything needed to install is here.
+**This file is self-contained on purpose.** Someone may have handed you
+this URL with no clone of this repo and no skill support - everything
+needed to install is here, in this file and the two references below.
+
+Self-contained means you need no *other file*. It does not mean you need
+no repo: this installs into the adopter's project, so you need their
+project in front of you. Step 0 checks that before anything else.
 
 Two reference files sit next to this one for the jobs that don't fit
 inline. Read them only when you reach them:
@@ -26,6 +30,47 @@ contract, a state file, a task queue with one starter task, adapters for
 the tools in use, and one completed lap through the loop.
 
 **Time:** ~20 minutes, most of it the lap.
+
+---
+
+## Step 0 - are you where the code is?
+
+Answer this before reading anything about the project, because it decides
+whether there is anything to read. Not "can you fetch a URL" - you just
+did. The question is whether you have a filesystem, a shell, and the
+adopter's repo in front of you.
+
+**If you don't**, you are a chat assistant working from a link, and the
+install cannot happen here. Every step needs the repo: step 1 infers the
+manifest from files you can't open, step 5 writes into `.claude/skills/`,
+step 6 needs a live builder session and a real commit. Say so and hand
+the install over - roughly:
+
+> This one has to run where your code is. I can read the skill from here,
+> but I can't see your repo, write files into it, or run the first lap.
+> Open a coding agent in your project's folder and paste the same line
+> you gave me:
+>
+> ```
+> Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/blob/main/skills/relay-setup/SKILL.md and set me up.
+> ```
+>
+> [Claude Code](https://claude.com/claude-code) is what most people use;
+> any coding agent CLI works. Nothing to install first - whatever
+> terminal you already have is fine.
+
+Then stop, in that turn. Specifically, do not:
+
+- **ask which project it is** - "set me up" already answered that. It's
+  whichever repo they're sitting in, and you can't see it either way.
+- **offer to do steps 1-4 from pasted config.** The manifest is worth
+  something because it was inferred from the repo's own evidence; one
+  assembled from a pasted `package.json` teaches the adopter that this is
+  a document generator. It isn't.
+- **offer a menu.** One exit, stated once. They're two minutes from a
+  terminal where this works.
+
+**If you do** have the repo, keep going.
 
 ---
 
@@ -77,6 +122,11 @@ reproducible from the file alone.
   over yourself is the only way to see exactly what context the builder
   gets, and that is what makes a bad task file debuggable later. Say this to
   the adopter; it is the level's whole point.
+  Only if they pick `3`, mention terminal panes once:
+  [WezTerm](https://wezterm.org/) is the one to reach for - multiplexing
+  built in, same program on every platform - or tmux if they already live
+  in it. A convenience, not a requirement, and not worth raising below
+  Level 3. `docs/autonomous.md` has the trade-offs.
 - **T3. Model tiers** - task files carry a `MODEL:` header so dispatch is one
   glance. *Default: `frontier | mid | cheap`.*
 
@@ -231,6 +281,11 @@ Stop when the manifest is filled and confirmed, the files are generated
 and stamped, the adapters are rendered, and one lap is complete: task file
 dispatched, builder stopped uncommitted with a report, reviewer made
 exactly one commit, state file names the next action.
+
+The other legitimate stop is step 0: no repo, so the install is handed
+over in one turn and nothing is generated. A clean handoff is a success,
+not a failure - a half-install carried across by copy-paste is the
+failure.
 
 Do not invent questions the manifest already answers. Do not generate
 before the confirmation pass. If something can't be determined, say so
