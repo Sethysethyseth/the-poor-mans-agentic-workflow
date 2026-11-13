@@ -12,8 +12,8 @@ sits a gate that **re-runs every check itself**, so nothing lands because
 an agent said it was done. Premium price for judgment, commodity price for
 typing.
 
-It's not an app or a framework - it's [five skills](#the-skills) your
-coding agent loads only when needed. Install is one paste, in a coding
+It's not an app or a framework - it's [a handful of skills](#the-skills)
+your coding agent loads only when needed. Install is one paste, in a coding
 agent opened in your project folder:
 
 ```
@@ -26,6 +26,7 @@ practice task through it. No project yet? An empty folder is fine.
 **Jump to:**
 [The loop](#one-loop) ·
 [Two dials](#two-dials) ·
+[What lands in your repo](#what-lands-in-your-repo) ·
 [The skills](#the-skills) ·
 [Receipts](#the-receipts) ·
 [The honest trade](#the-honest-trade)
@@ -119,31 +120,45 @@ Cost detail and why the second seat must be a flat subscription:
 
 </details>
 
+## What lands in your repo
+
+Four things, all plain files. That's the whole footprint.
+
+| File | What it is | Who writes it |
+| --- | --- | --- |
+| `AGENTS.md` | The standing rules, about 70 lines, read by every agent every session | Setup, once |
+| `docs/tasks/*.md` | One file per task: what to change and how to prove it | The planner |
+| `DELIVERY.md` | The builder's claim: files touched, check output, evidence. Never committed | The builder |
+| `docs/STATE.md` | What landed, what's in flight, and your next action. About 40 lines | The checker |
+
 ## The skills
 
-Folders of instructions in the [Agent Skills open standard](https://agentskills.io) -
+Three skills are the loop - one per role. One installs it. One is
+optional.
+
+| Skill | Role | It fires when… |
+| --- | --- | --- |
+| [`relay-plan`](skills/relay-plan/SKILL.md) | Planner | **you have a goal** that needs turning into task files |
+| [`relay-execute`](skills/relay-execute/SKILL.md) | Builder | **a task was handed over.** Build, prove, report, stop |
+| [`relay-review`](skills/relay-review/SKILL.md) | Checker | **work is waiting.** Ends in landed or sent back, and guards the merge |
+| [`relay-setup`](skills/relay-setup/SKILL.md) | - | **you're installing or upgrading** |
+| [`skill-map`](skills/skill-map/SKILL.md) | - | *optional:* you want to see your skills, or need a new one |
+
+They're folders in the [Agent Skills open standard](https://agentskills.io) -
 Claude Code, Codex, Cursor, Gemini CLI and 40+ other agents read them, so
 switching tools rewrites nothing.
-
-| Skill | It fires when… |
-| --- | --- |
-| [`relay-setup`](skills/relay-setup/SKILL.md) | **you're installing or upgrading** |
-| [`relay-plan`](skills/relay-plan/SKILL.md) | **you have a goal** that needs turning into task files |
-| [`relay-execute`](skills/relay-execute/SKILL.md) | **a task was handed over.** Build, prove, report, stop |
-| [`relay-review`](skills/relay-review/SKILL.md) | **work is waiting to be checked.** Ends in landed or sent back |
-| [`skill-map`](skills/skill-map/SKILL.md) | **you want to see what you have**, or need a skill that doesn't exist |
 
 **It evolves on its own.** Every send-back becomes a permanent rule with
 its accepted trade-off written beside it; any rule nobody can trace to a
 real problem gets deleted.
 
 <details>
-<summary><b>What's in the repo</b></summary>
+<summary><b>Further reading</b></summary>
 
 | | |
 | --- | --- |
-| [`core/`](core/) | The [agent contract](core/CONTRACT.md) and the [task format](core/BLOCK.md) |
-| [`skills/`](skills/) | The five skills |
+| [`docs/protocol.md`](docs/protocol.md) | The loop in full, including parallel worktrees |
+| [`docs/autonomous.md`](docs/autonomous.md) | Turning Dial 2: when the checker dispatches |
 | [`docs/economics.md`](docs/economics.md) | What it costs and where it creeps |
 | [`docs/receipts.md`](docs/receipts.md) | The paper trail behind every number, plus [raw data](docs/receipts-data.json) |
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | Every rule, and what went wrong to cause it |
