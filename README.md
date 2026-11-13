@@ -4,28 +4,29 @@
 [![Works with](https://img.shields.io/badge/works%20with-any%20skills--compatible%20agent-blue.svg)](https://agentskills.io)
 [![Runs on](https://img.shields.io/badge/runs%20on-%2420--40%2Fmo-brightgreen.svg)](#the-honest-trade)
 
-**Agentic coding on two $20 plans instead of one $200 plan - without
-dropping the quality.**
+**You already pay $20 a month for an AI. This gets it building software
+in your project - and keeps it honest while it does.**
 
-One agent plans and reviews. A cheaper one writes the code. Between them
-sits a gate that **re-runs every check itself**, so nothing lands because
-an agent said it was done. Premium price for judgment, commodity price for
-typing.
+*Agentic coding* means the AI stops handing you code to copy and paste.
+It opens your project, edits the files, runs the tests, and reports back.
+Most $20 plans already include an agent that can do this.
 
-It's not an app or a framework - it's [a handful of skills](#the-skills)
-your coding agent loads only when needed. Install is one paste, in a coding
-agent opened in your project folder:
+Two things go wrong when you try it on a $20 plan:
 
-```
-Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/blob/main/skills/relay-setup/SKILL.md and set me up.
-```
+- **You run out of usage**, because your best model is spending its
+  allowance typing boilerplate.
+- **The agent says "done" when it isn't.** It is confident about work it
+  never finished, and nobody checks.
 
-About twenty minutes later the workflow is in your repo and you've run one
-practice task through it. No project yet? An empty folder is fine.
+This repo fixes both with one habit: **one session plans, a fresh one
+builds, and a third re-runs the tests itself before anything is saved.**
+It's not an app. It's a set of instruction files your agent reads.
+
+You start with the plan you have and climb only when something hurts.
 
 **Jump to:**
-[The loop](#one-loop) ·
-[Two dials](#two-dials) ·
+[Start here](#start-here) ·
+[The loop](#the-loop) ·
 [What lands in your repo](#what-lands-in-your-repo) ·
 [The skills](#the-skills) ·
 [Receipts](#the-receipts) ·
@@ -33,10 +34,96 @@ practice task through it. No project yet? An empty folder is fine.
 
 ---
 
-## One loop
+## Start here
 
-There is exactly one thing to learn. Every setup below is this loop,
-unchanged.
+Four levels. Each adds one idea, and each is a fine place to stop.
+
+<a href="https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/levels-dark.svg?v=1">
+    <img alt="Four levels. Level 0: one agent plans and builds, with no check step. Level 1: one plan plays all three roles in separate sessions. Level 2: a cheap second agent takes over building. Level 3: the same setup, with handoffs happening automatically." src="docs/levels.svg?v=1" width="100%">
+  </picture>
+</a>
+
+<sup>**[▶ Click any level](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html)** for the detail.</sup>
+
+### Level 0 - let an agent change one thing · $20, nothing to install from here
+
+Install the coding agent your plan includes (Claude Code, Codex, Cursor,
+Gemini CLI). Open it in a project folder - an empty one is fine - and ask
+for one small change. Watch it edit files and run commands.
+
+**Move up when** it tells you something works and it doesn't. That will
+happen, and it is the whole argument for Level 1.
+
+### Level 1 - add the loop · same $20
+
+Paste this into your agent, in your project folder:
+
+```
+Read https://github.com/Sethysethyseth/the-poor-mans-agentic-workflow/blob/main/skills/relay-setup/SKILL.md and set me up.
+```
+
+About twenty minutes later the workflow is in your repo and you've run
+one practice task through it. From now on every piece of work is planned
+in one session, built in a fresh one, and checked in a third. You carry
+each task across yourself by pasting one line - on purpose, so you see
+exactly what the builder was given.
+
+**Move up when** you hit your usage limit before the week is out.
+
+### Level 2 - give the typing to something cheaper · $20-40
+
+Planning and checking need your smartest model but produce little text.
+Building produces a lot of text and needs little judgment, as long as the
+task was written well. So stop paying top price for typing:
+
+- **Cheaper model, same plan** - point the builder at your plan's smaller
+  model. Still $20.
+- **A second $20 plan** from a different vendor - a separate usage limit,
+  and a second opinion. This is the $40 setup the receipts below measured.
+
+Nothing gets reinstalled. Every task already names which model should
+build it.
+
+**Move up when** the pasting, not the usage, is what's slowing you down.
+
+### Level 3 - let it hand off by itself · same price as Level 2
+
+The checker starts the builder for you instead of waiting for your paste.
+This buys back your attention, not more capacity. It needs a builder that
+can run from the command line, and it's the newest and least-proven part
+of this (seven tasks behind it, against six weeks of the manual loop).
+
+**Deploys, merges, and anything destructive wait for you at every
+level.** Stepping back down is normal: nothing gets uninstalled.
+
+**And when you're hitting limits weekly even here,** buy the expensive
+plan. Outgrowing this repo is a graduation, not a failure.
+
+<details>
+<summary><b>The catch at each level, stated not softened</b></summary>
+
+- **Level 0** - no check at all. You're trusting one agent's claim about
+  its own work.
+- **Level 1** - one usage limit carries all three roles, so the squeeze
+  comes fastest here. You get a fresh look, not a different model's
+  opinion.
+- **Level 2** - $40 can creep if an expensive model ends up typing. The
+  model line on each task is the control, and it only works if you use
+  it. Canceling the second plan is a designed outcome.
+- **Level 3** - you can't supervise a loop you've never run by hand. Do
+  Level 1 or 2 first.
+
+Cost detail, and why the second plan must be a flat subscription rather
+than pay-per-use: [docs/economics.md](docs/economics.md).
+
+</details>
+
+## The loop
+
+Every level from 1 up is this same loop. Only who plays each part
+changes.
 
 <a href="https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/how-it-works.html">
   <picture>
@@ -49,76 +136,15 @@ unchanged.
 
 Three rules hold it up, and they never change:
 
-1. **Roles are sessions, not seats.** Plan, build, and check each start
-   cold. A fresh session can't inherit the last one's assumptions - that
-   is the second look, even when one model plays every part.
-2. **Files are the only wire.** The task file goes in, `DELIVERY.md` comes
-   out, both live in your repo. Agents never talk to each other, so any
-   agent can fill any role.
+1. **Each role starts in a fresh session.** A new conversation can't
+   inherit the last one's assumptions. That is the second look, even
+   when one model plays every part.
+2. **Work travels as files in your repo.** A task file goes in, a
+   delivery report comes out. The agents never talk to each other, so
+   any agent can fill any role.
 3. **The checker never takes the builder's word.** It re-runs the tests
-   itself, on the real code, and it is the only one that commits.
-
-## Two dials
-
-Everything else is two independent settings. Turn either one, either way,
-any time - it's a line in a manifest, not a reinstall.
-
-**Dial 1 - who builds** (buys *capacity*)
-
-| Setting | Cost | What changes |
-| --- | --- | --- |
-| Same model, fresh session | ~$20 | Nothing extra. One usage limit carries all three roles |
-| Cheaper model tier, same plan | ~$20 | Typing stops burning your best model's allowance |
-| A second, cheap seat | ~$40 | A second meter, and a second opinion from a different vendor |
-
-**Dial 2 - who carries the handoff** (buys *attention*)
-
-| Setting | What changes |
-| --- | --- |
-| You paste one line | You see exactly what the builder was given. Start here |
-| The checker dispatches | Needs a builder with a headless CLI. You get your time back, not capacity |
-
-**Start with both dials at their first setting.** Run three clean tasks,
-then turn whichever one hurts: out of usage, turn Dial 1; tired of
-pasting, turn Dial 2. Deploys, merges, and anything destructive wait for
-you at every setting.
-
-<details>
-<summary><b>The old level numbers, if you came in on them</b></summary>
-
-The levels are four presets of the same two dials - still valid in the
-manifest, and still [clickable here](https://sethysethyseth.github.io/the-poor-mans-agentic-workflow/pick-your-level.html).
-
-| Level | Dial 1 | Dial 2 |
-| --- | --- | --- |
-| 0 | *(no loop - one agent, no check)* | - |
-| 1 | Same model, fresh session | You |
-| 2 | Second seat | You |
-| 3 | Second seat | The checker |
-
-The combinations the ladder never named - a cheaper tier on one plan, or
-one seat with automatic handoff - work the same way.
-
-</details>
-
-<details>
-<summary><b>The catch at each setting, stated not softened</b></summary>
-
-- **One limit for everything** squeezes fastest, and you get a fresh look
-  but not a different model's opinion.
-- **A second seat can creep past $40** if an expensive model ends up
-  typing. Every task names its model tier; that control only works if you
-  use it. Canceling the seat is a designed outcome, not a failure.
-- **Automatic handoff is the least-proven part** (seven tasks behind it,
-  against six weeks of the manual loop), and you can't supervise a loop
-  you've never run by hand.
-- **Hitting limits weekly with both dials turned?** Go buy the expensive
-  plan. Outgrowing this repo is a graduation.
-
-Cost detail and why the second seat must be a flat subscription:
-[docs/economics.md](docs/economics.md).
-
-</details>
+   itself, on the real code, and it is the only one that saves (commits)
+   anything.
 
 ## What lands in your repo
 
@@ -158,7 +184,7 @@ real problem gets deleted.
 | | |
 | --- | --- |
 | [`docs/protocol.md`](docs/protocol.md) | The loop in full, including parallel worktrees |
-| [`docs/autonomous.md`](docs/autonomous.md) | Turning Dial 2: when the checker dispatches |
+| [`docs/autonomous.md`](docs/autonomous.md) | Level 3: when the checker starts the builder itself |
 | [`docs/economics.md`](docs/economics.md) | What it costs and where it creeps |
 | [`docs/receipts.md`](docs/receipts.md) | The paper trail behind every number, plus [raw data](docs/receipts-data.json) |
 | [`docs/scar-tissue.md`](docs/scar-tissue.md) | Every rule, and what went wrong to cause it |
@@ -169,8 +195,8 @@ real problem gets deleted.
 ## The receipts
 
 Measured July 2–11, 2026, on two $20 plans, against a production fitness
-tracker — named only so the numbers have a source. Settings: second seat,
-every handoff done by hand. The flattering and unflattering numbers
+tracker — named only so the numbers have a source. This was Level 2 with a
+second plan: every handoff done by hand. The flattering and unflattering numbers
 are in one list on purpose.
 
 - **37 tasks landed in 10 days** (35 commits) — real features: database
